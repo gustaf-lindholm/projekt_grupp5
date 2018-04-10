@@ -6,7 +6,7 @@ Options -MultiViews
 RewriteEngine On
 
 #definierar url-basen, där index är.
-RewriteBase /Sandlåda/public
+RewriteBase /projekt_grupp5/public
 
 #Om parametern motsvarar en mapp ska den inte skriva om
 RewriteCond %{REQUEST-FILENAME} !-d
