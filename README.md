@@ -31,7 +31,7 @@ The initModel method is responsible for requiring a model. The model name is pas
 
 The initModel method is called in the controller you're working with.
 
-The property $modelObj then contains an instance of the instantiated model which you then can call model functions on.
+The property $modelObj then contains an instance of the instantiated model which you can then call model functions on.
 
 ### reqView()
 The reqView method is responsible for acquiring a view and can take two parameters, $view and $data. The view name is passed to the method as a string and $data is mixed (empty array as default): $this->reqView('product',$data);
