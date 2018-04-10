@@ -1,5 +1,10 @@
 <?php
-echo $data['name']
+
+if(isset($data['name'])) {
+    echo $data['name'];
+}else {
+    echo "Data är inte kopplad";
+}
 ?>
 
 <div>
