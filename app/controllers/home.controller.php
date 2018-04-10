@@ -1,6 +1,6 @@
 <?php
 
-class Home extends controller 
+class Home extends base_controller 
 {
 
     public function index($name = "")
