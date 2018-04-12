@@ -8,6 +8,7 @@ session_start();
 
 require_once '../app/init.php';
 
+include_once '../app/views/header.php';
 $app = new App;
 
 
