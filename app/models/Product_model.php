@@ -8,10 +8,14 @@ class Product_Model extends Base_model
     {
 
         $this->sql = 
-        "SELECT * FROM product_variants LEFT JOIN 
-        product ON product.pid = product_variants.product_id WHERE product_id = :pid AND variant_id = :vid;";
+        "SELECT pid, cid, variant_values.variant_id, option_values.option_id, group_concat(value_name separator '/') AS property, title, product.desc, manufacturer, price
+        FROM projekt_klon.variant_values
+        JOIN option_values ON variant_values.value_id = option_values.value_id
+        JOIN product ON variant_values.product_id = product.pid
+        JOIN product_variants ON product_variants.product_id = variant_values.product_id
+        WHERE variant_values.product_id = :pid AND variant_values.variant_id = :vid
+        AND product_variants.product_id = :pid AND product_variants.variant_id = :vid";
         
-        // $this->sql = "SELECT * FROM product_variants WHERE product_id = :pid AND variant_id = :vid;";
         // params to be bound, is sent to the prepQuery method
         $paramBinds = [':pid' => $pid, ':vid' => $vid];
         $base = new Base_model;
