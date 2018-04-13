@@ -1,23 +1,20 @@
 # när webservern laddar mappen med den här filen i körs den här filen
-
 Options -MultiViews
-
 #startar funktionen för att skriva om url'er
 RewriteEngine On
-
 #definierar url-basen, där index är.
-RewriteBase /projekt_grupp5/public
-
-#Om parametern motsvarar en mapp ska den inte skriva om
-RewriteCond %{REQUEST-FILENAME} !-d
-
-#Om parametern motsvarar en fil ska den inte skriva om
-RewriteCond %{REQUEST-FILENAME} !f
-
+# RewriteBase /Sandlåda/public
 #omskrivningsregel som 'skickar' angivna url'en till index.php som en query string
 # QSA = query string appen, skickar med get-parametrar
 # det som är inom en parentes blir en 'variable' (backreferens), $1 är den första referensen
-RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+#Om parametern motsvarar en fil ska den inte skriva om
+RewriteCond %{REQUEST_FILENAME} !-f
+#Om parametern motsvarar en mapp ska den inte skriva om
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?url=$1 [L]
+
+# RewriteRule ^((?!\.js|\.css).*)$ index.php?url=$1 [QSA,L]
+
 
 # vi skulle kunna ha en rewrite för att komma till admin-sidan
 
