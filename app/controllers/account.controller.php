@@ -3,30 +3,20 @@
 class Account extends base_controller 
 {
 
-    public function index($name = "")
+    public function index($fname = "", $lname = "")
     {
         echo "account index";
 
-        $this->initModel('account_model');
+        //connects controller with the right model
+        $this->initModel('Account_model');
         //var_dump($this->modelObj);
+
+        $data = $this->modelObj->getPerson($fname, $lname);
+
+        //connects controller with the right view
+        $this->reqView('account',$data);
 
         
     }
 
 }
-
-
-
-
-
-?>
-
-<html>
-<head>
-
-</head>
-
-<body>
-
-</body>
-</html>
