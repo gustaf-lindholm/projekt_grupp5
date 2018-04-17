@@ -9,7 +9,7 @@ class Product_Model extends Base_model
     {
 
         $this->sql = 
-        "SELECT product.desc, pid, cid, variant_values.variant_id, option_values.option_id, 
+        "SELECT product.info, pid, cid, variant_values.variant_id, option_values.option_id, 
         group_concat(value_name separator '/') AS property, title, manufacturer, price, img_url, sku
         FROM projekt_klon.variant_values
         JOIN option_values ON variant_values.value_id = option_values.value_id

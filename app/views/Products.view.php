@@ -1,4 +1,3 @@
-/*Temporary styling*/
 <style>
     .container {
         display: grid;
@@ -26,6 +25,7 @@
 <div class="container">
     
         <?php
+        //var_dump($data);
         //echo "<pre>";
         foreach ($data as $product) {
             $properties = explode("/", $product['properties']);
