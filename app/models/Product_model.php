@@ -9,8 +9,8 @@ class Product_Model extends Base_model
     {
 
         $this->sql = 
-        "SELECT product.desc, pid, cid, variant_values.variant_id, option_values.option_id, 
-        group_concat(value_name separator '/') AS property, title, manufacturer, price, image_link, sku
+        "SELECT product.info, pid, cid, variant_values.variant_id, option_values.option_id, 
+        group_concat(value_name separator '/') AS property, title, manufacturer, price, img_url, sku
         FROM projekt_klon.variant_values
         JOIN option_values ON variant_values.value_id = option_values.value_id
         JOIN product ON variant_values.product_id = product.pid
@@ -20,11 +20,10 @@ class Product_Model extends Base_model
         
         // params to be bound, is sent to the prepQuery method
         $paramBinds = [':pid' => $pid, ':vid' => $vid];
-        $base = new Base_model;
         
-        $base->prepQuery($this->sql, $paramBinds);
+        $this->prepQuery($this->sql, $paramBinds);
 
-        $base->getAll();
+        $this->getAll();
 
         //returns an array of the data from the database which is then printed to the client in the view
         return self::$data;

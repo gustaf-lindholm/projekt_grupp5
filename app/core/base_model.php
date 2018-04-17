@@ -32,7 +32,13 @@ class Base_model
             }
         }
         
-        $this->stmt->execute();
+        if($this->stmt->execute())
+        {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public function getAll()
