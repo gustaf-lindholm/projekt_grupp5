@@ -47,7 +47,7 @@ printf('<img src="%s" alt="bild" class="prod_img">', $data[0]['img_url']);
 ?>
     <div class="prod_info">
         <h3>
-        <?php echo $data[0]['desc']?>
+        <?php echo $data[0]['info']?>
         </h3>
         <?php
         foreach ($data[0] as $key => $value) {

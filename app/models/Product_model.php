@@ -20,11 +20,10 @@ class Product_Model extends Base_model
         
         // params to be bound, is sent to the prepQuery method
         $paramBinds = [':pid' => $pid, ':vid' => $vid];
-        $base = new Base_model;
         
-        $base->prepQuery($this->sql, $paramBinds);
+        $this->prepQuery($this->sql, $paramBinds);
 
-        $base->getAll();
+        $this->getAll();
 
         //returns an array of the data from the database which is then printed to the client in the view
         return self::$data;
