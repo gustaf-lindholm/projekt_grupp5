@@ -25,8 +25,9 @@ class Admin extends Base_controller
             // call addProduct method in model and check if the model successfuly added a new product to database
             if($this->modelObj->addProduct() || $_POST['newProdStatus'] == 'success')
             {
-                // require the adminPanel
-                $this->reqView('AdminPanel');
+
+                // require the add product view
+                $this->reqView('AddProduct');
                 
             } else {
 
@@ -34,7 +35,19 @@ class Admin extends Base_controller
             }
         }
         
+        // check if user selected the add variant option(pushed button)
+        if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'true')
+        {
+            //call model to handle new variant input
+            $this->initModel('AddVariant_model');
+        }
+    }
 
+    public function addVariant()
+    {
+        
+        $this->modelObj->addVariant();
+        
     }
 
 
