@@ -11,7 +11,6 @@ class App
     public function __construct()
     {
         $url = $this->parseUrl();
-
         print_r($url);
         //echo "<br>";
         // kollar om första parametern i url'en matchar en controller
@@ -51,7 +50,6 @@ class App
         $this->params = $url ? array_values($url) : [];
         //var_dump($url);
         call_user_func_array([$this->controller, $this->method], $this->params);
-        //print_r($url);
         
         
     }
