@@ -35,18 +35,20 @@ class Admin extends Base_controller
             }
         }
         
-        // check if user selected the add variant option(pushed button)
-        if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'true')
-        {
-            //call model to handle new variant input
-            $this->initModel('AddVariant_model');
-        }
     }
 
     public function addVariant()
     {
+        $this->initModel('AddVariant_model');
         
-        $this->modelObj->addVariant();
+        if($this->modelObj->addVariant())
+        {
+            $_POST['addVariant'] = [];
+            $this->reqView('AdminPanel');
+        } else {
+            echo 'failed';
+        }
+        
         
     }
 
