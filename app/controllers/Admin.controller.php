@@ -52,5 +52,13 @@ class Admin extends Base_controller
         
     }
 
+    public function ProdOptions()
+    {
+        $this->initModel('ProdOptions_model');
+
+        $this->modelObj->getOptions();
+
+    }
+
 
 }

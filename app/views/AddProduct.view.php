@@ -15,7 +15,6 @@
         margin: 5% auto 0 auto;
     }
 </style>
-<?php var_dump($_SERVER['REQUEST_URI']); ?>
 <div class="container">
     <form action="<?php echo htmlentities($_SERVER['REQUEST_URI']); ?>" method="POST">
         <fieldset>
@@ -35,7 +34,7 @@
     </form>
 
     <!-- show form for new product variant -->
-    <form action="" method="POST">
+    <form action="<?php echo URLrewrite::adminURL('addvariant') ?>" method="POST">
         <input type="hidden" name="addVariant[status]" value="true">
         <a href="">
             <button type="submit">Add variant</button>
