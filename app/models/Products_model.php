@@ -1,9 +1,11 @@
 <?php
+
 class Products_model extends Base_model
 {
     
     public function getAllProducts()
     {
+
         $this->sql = 
         "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
         product_variants.price, group_concat(DISTINCT value_name order by option_values.option_id separator '/') AS properties, product_variants.sku, product_variants.img_url 
@@ -13,8 +15,10 @@ class Products_model extends Base_model
         INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
         WHERE product_variants.variant_id = variant_values.variant_id
         GROUP BY product_variants.sku";
+
         $this->prepQuery($this->sql);
         $this->getAll();
+
         return self::$data;
     }
 }

@@ -4,9 +4,12 @@ class Base_model
 {
     private $db;    
     private $dbh;
+    protected $dbh;
     
     protected $sql;
     private $stmt;
+
+    protected $lastInsertId;
 
     // uncertain howerver the $data actually needs to be static.
     // at the moment the content is not sent to the view if declared as non static
@@ -21,18 +24,31 @@ class Base_model
 
     public function prepQuery($sql, $paramBinds = [])
     {
-                
-        $this->stmt = $this->dbh->prepare($sql);
-        
-        if($paramBinds != []){
-            // bindParam needs a variable, therefore the value to be bound is passed by reference
-            foreach ($paramBinds as $key => &$value) {
-                $this->stmt->bindParam($key, $value);
-                        
+        try {
+              
+            $this->stmt = $this->dbh->prepare($sql);
+            
+            if($paramBinds != []){
+                // bindParam needs a variable, therefore the value to be bound is passed by reference
+                foreach ($paramBinds as $key => &$value) {
+                    $this->stmt->bindParam($key, $value);
+                            
+                }
             }
-        }
-        
-        $this->stmt->execute();
+
+            
+            if($this->stmt->execute())
+            {
+                // save the last auto incremented id from the last insert statement
+                $this->lastInsertId = $this->dbh->lastInsertId();        
+                return true;
+            } else {
+                return false;
+            }
+    }
+    catch (PDOException $e) {
+        echo "Error with query : " . $e;
+    }
     }
 
     public function getAll()

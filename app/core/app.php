@@ -11,7 +11,12 @@ class App
     public function __construct()
     {
         $url = $this->parseUrl();
+<<<<<<< HEAD
 
+=======
+        print_r($url);
+        //echo "<br>";
+>>>>>>> 6235c2da92b2fb4f1e87fff8697fd43b7ccfc5d7
         // kollar om första parametern i url'en matchar en controller
         // om den matchar sätts $controller till det 
         if (file_exists(CONTROLLER_PATH . $url[0] . '.controller.php'))
@@ -49,7 +54,6 @@ class App
         $this->params = $url ? array_values($url) : [];
         //var_dump($url);
         call_user_func_array([$this->controller, $this->method], $this->params);
-        //print_r($url);
         
         
     }

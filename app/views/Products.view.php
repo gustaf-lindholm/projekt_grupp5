@@ -1,5 +1,3 @@
-<?php
-require_once('Products.model.php');
 <style>
     .container {
         display: grid;
@@ -37,6 +35,7 @@ require_once('Products.model.php');
             echo "<ul>";
             foreach ($properties as $value) {
                 printf("<li>%s</li>", ucfirst($value));
+                
             }
             echo "</ul></div>";
         }
