@@ -7,8 +7,6 @@ session_start();
 // includerar init.php som 'startar' sidan
 
 require_once '../app/init.php';
-
-include_once '../app/views/header.php';
 $app = new App;
 
 

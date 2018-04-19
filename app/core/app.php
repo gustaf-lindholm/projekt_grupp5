@@ -12,8 +12,6 @@ class App
     {
         $url = $this->parseUrl();
 
-        print_r($url);
-        //echo "<br>";
         // kollar om första parametern i url'en matchar en controller
         // om den matchar sätts $controller till det 
         if (file_exists(CONTROLLER_PATH . $url[0] . '.controller.php'))
