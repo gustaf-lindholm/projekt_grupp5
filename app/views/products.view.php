@@ -1,34 +1,10 @@
 <?php
-require_once('Products.model.php');
-<style>
-    .container {
-        display: grid;
-        grid-gap: 5px;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        /* grid-auto-rows: 200px; */
-}
-
-    .prodBox {
-        grid-column: span 2;
-        grid-row: span 2;
-        border: 1px solid black;
-    }
-
-    h1 {
-        text-align: center;
-    }
-
-    .prodImg {
-        max-height: 150px;
-        display: block;
-        margin: auto;
-    }
-</style>
+require_once('Products.model.php'); 
+?>
+ 
+<link rel="stylesheet" href="css/products.css" type="text/css"/>
 <div class="container">
-    
         <?php
-        //var_dump($data);
-        //echo "<pre>";
         foreach ($data as $product) {
             $properties = explode("/", $product['properties']);
             echo "<div class='prodBox'>";
@@ -37,6 +13,7 @@ require_once('Products.model.php');
             echo "<ul>";
             foreach ($properties as $value) {
                 printf("<li>%s</li>", ucfirst($value));
+
             }
             echo "</ul></div>";
         }

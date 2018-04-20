@@ -1,43 +1,11 @@
-<style>
-
-.container {
-    text-align: center;
-}
-
-.personTitle {
-    text-align: center;
-
-}
-
-.button {
-    background-color: #000000;/* Black */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-}
-
-.smbutton {
-    background-color: #afacac;
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-}
-
-</style>
-
 <html>
 <head>
 <title> <?php echo $data[0] ['fname']; ?>'s page</title> <!-- prints out the users surname -->
+<link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
+<?php 
+//include_once 'header.php'
+?>
 <div class="container">
 
 <?php

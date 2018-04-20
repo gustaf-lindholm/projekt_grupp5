@@ -33,15 +33,36 @@
           </ul>
         </li>
       </ul>
+
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Sign In</a></li>
-      </ul>
+      <?php 
+
+        // if ($_SESSION['level']) == 1 or $_SESSION['level']) == 2)
+        // {
+        //       if($_SESSION['level'] == 2 ) 
+        //                                 {
+        //                                  }
+        // };
+
+      switch ($level){
+        case ($_SESSION['level']) == 1:
+            header("Location:views/level_user_header/admin.header.php");
+            break;
+        case ($_SESSION['level']) == 2:
+            header("Location:views/level_user_header/powerUser.header.php");
+            break;
+        case "text3":
+            header("Location:views/level_user_header/customer.header.php");
+            break;
+        default:
+            header("Location:header.php");
+        }
+       ?> 
     </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->

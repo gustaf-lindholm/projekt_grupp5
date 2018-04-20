@@ -16,22 +16,17 @@
     }
 </style>
 <div class="container">
-    <form action="<?php echo htmlentities($_SERVER['REQUEST_URI']); ?>" method="POST">
-        <fieldset>
-            <legend>Please fill in the requested product information</legend>
-            <p>
-                <label for="newProd[title]">Product Title/Name</label>
-                <input type="text" name="newProd[title]" placeholder="product title">
-            </p>
-            <p>
-                <label for="newProd[info]">Product Description</label>
-                <textarea name="newProd[info]" placeholder="Describe the product"></textarea>
-            </p>
-            <label for="newProd[manufacturer]">Manufacturer</label>
-            <input type="text" name="newProd[manufacturer]" placeholder="manufacturer">
-            <button type="submit">Save</button>
-        </fieldset>
-    </form>
+
+        <?php
+        
+        $ProdForm = new Form;
+        $ProdForm->textInput('newProd[title]','Product Title','Product Title or Name');
+        $ProdForm->textAreaInput('newProd[info]','Product Info','Product Information');
+        $ProdForm->textInput('newProd[manufacturer]','Manufacturer','Product Manufacturer');
+        $ProdForm->button('Save');
+        $action = URLrewrite::adminURL('addproduct');
+        $ProdForm->render($action);
+        ?>
 
     <!-- show form for new product variant -->
     <form action="<?php echo URLrewrite::adminURL('addvariant') ?>" method="POST">

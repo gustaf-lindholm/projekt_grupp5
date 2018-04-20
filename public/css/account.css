@@ -1,0 +1,31 @@
+.container {
+    text-align: center;
+}
+
+.personTitle {
+    text-align: center;
+
+}
+
+.button {
+    background-color: #000000;/* Black */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+.smbutton {
+    background-color: #afacac;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+}

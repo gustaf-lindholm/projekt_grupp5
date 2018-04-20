@@ -1,13 +1,13 @@
 <?php
 class URLrewrite
 {
-    /****       Call the class in view with:                 ****/
-    /*          URLrewrite::method()                            */
-    /*                                                          */
-    /*          Returns a url (http://host/public/admin/),      */
-    /*          removes the current method and                  */
-    /*          replaces it with the requested method           */
-    
+    /**        Call the class in view with:              
+    *          URLrewrite::method()                      
+    *                                                    
+    *          Returns a url (http://host/public/admin/),
+    *          removes the current method and            
+    *          replaces it with the requested method     
+    */
     private static $prefix = "http://";
     
     public static function adminURL($controller) {
