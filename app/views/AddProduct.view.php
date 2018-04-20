@@ -30,7 +30,11 @@
         $action = URLrewrite::adminURL('addproduct');
         $ProdForm->render($action,'Add Product Information');
         
-        ?>
+
+        // $ProdForm->validate();
+        // if (!$ProdForm)
+        //     $ProdForm->render();
+        // ?>
 
             <!-- Output the last auto incremented product id -->
     <h4><?php if(isset($_POST['newProdId'])) {echo "The last inserted product id: " . $_POST['newProdId'];} ?></h4>
