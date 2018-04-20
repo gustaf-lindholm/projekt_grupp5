@@ -10,8 +10,6 @@ class URLrewrite
     */
     private static $prefix = "http://";
     
-    private static $prefix = "http://";
-    
     public static function adminURL($controller) {
 
         //filter the url from "" and explode it to array
