@@ -7,7 +7,11 @@ session_start();
 // includerar init.php som 'startar' sidan
 
 require_once '../app/init.php';
+
+//WHY?
 $app = new App;
+
+
 
 
 

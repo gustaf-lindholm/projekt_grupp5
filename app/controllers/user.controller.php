@@ -25,7 +25,6 @@ class User extends Base_controller
     //     // $this->confirm_password= $args['confirm_password'] ?? '';
     // }
 
-
     public function show_Full_Name()
     {
         $this->initModel('User_model');

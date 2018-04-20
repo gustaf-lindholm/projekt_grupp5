@@ -10,12 +10,11 @@ Welcome to the MOBILE!
 <?php 
 if(isset($_SESSION['user']))
 {
-    echo ' '.includeTheName($_SESSION['user']['LAST_NAME']);
+    // echo ' '.includeTheName($_SESSION['user']['LAST_NAME']);
 } 
 ?>
 
-<a href="products.view.php">The list of all products</a>.<br /><br />
-
+<a href="products.view.php">The list of all products</a>
 
 <?php 
 include 'footer.php';

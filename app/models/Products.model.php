@@ -1,7 +1,6 @@
 <?php
 class Products_model extends Base_model
 {
-    
     public function getAllProducts()
     {
         $this->sql = 

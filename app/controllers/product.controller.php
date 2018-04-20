@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Product extends Base_controller
 {
 

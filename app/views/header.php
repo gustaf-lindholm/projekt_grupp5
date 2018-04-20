@@ -49,19 +49,19 @@
         //                                  }
         // };
 
-      switch ($level){
-        case ($_SESSION['level']) == 1:
-            header("Location:views/level_user_header/admin.header.php");
-            break;
-        case ($_SESSION['level']) == 2:
-            header("Location:views/level_user_header/powerUser.header.php");
-            break;
-        case "text3":
-            header("Location:views/level_user_header/customer.header.php");
-            break;
-        default:
-            header("Location:header.php");
-        }
+      // switch ($level){
+      //   case ($_SESSION['level']) == 1:
+      //       header("Location:views/level_user_header/admin.header.php");
+      //       break;
+      //   case ($_SESSION['level']) == 2:
+      //       header("Location:views/level_user_header/powerUser.header.php");
+      //       break;
+      //   case "text3":
+      //       header("Location:views/level_user_header/customer.header.php");
+      //       break;
+      //   default:
+      //       header("Location:header.php");
+      //   }
        ?> 
     </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
