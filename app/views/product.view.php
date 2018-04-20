@@ -1,41 +1,7 @@
-<style>
-
-    h3 {
-        text-align: center;
-    }
-
-    .container {
-        display: grid;
-        grid-gap: 5px;
-        grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: 15% 70% 15%;
-
-    }
-
-    .title {
-        border: 1px solid black;
-        text-align: center;
-        grid-column: 1 / -1
-    }
-
-    .prod_img {
-        border: 1px solid black;
-        grid-row: 2 / 3;
-        grid-column: 1 / 8        
-    }
-    .prod_info {
-        border: 1px solid black;
-        grid-column: 8 / -1;
-    }
-    .footer {
-        border: 1px solid black;
-        grid-column: 1 / -1;
-        
-    }
-</style>
-
 <?php
 var_dump($data); ?>
+
+<link rel="stylesheet" href="css/product.css" type="text/css"/>
 <div class="container">
 <?php 
 

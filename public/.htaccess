@@ -16,6 +16,7 @@ RewriteRule ^(.+)$ index.php?url=$1 [L]
 # RewriteRule ^((?!\.js|\.css).*)$ index.php?url=$1 [QSA,L]
 
 
+# RewriteRule ^((?!.js|.css).*)$ index.php?url=$1 [QSA,L]
+
+
 # vi skulle kunna ha en rewrite för att komma till admin-sidan
-
-
