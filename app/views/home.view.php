@@ -1,20 +1,14 @@
-<?php
-include_once 'header.php';
-?>
-
 <!-- Some kind of hello text -->
 <p>
-Welcome to the MOBILE!
+Welcome to the MOBILE! This is Group 5 project.
 </p>
 
 <?php 
-if(isset($_SESSION['user']))
-{
-    // echo ' '.includeTheName($_SESSION['user']['LAST_NAME']);
-} 
+// if(isset($_SESSION['user']))
+// {
+//     // echo ' '.includeTheName($_SESSION['user']['LAST_NAME']);
+// } 
 ?>
 
-<a href="products.view.php">The list of all products</a>
+<a href="<?php URLrewrite::URL('products');?>">The list of all products</a>
 
-<?php 
-include 'footer.php';

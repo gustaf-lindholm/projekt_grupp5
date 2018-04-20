@@ -2,16 +2,16 @@
 
 class Products extends Base_controller
 {
-    public function index($pid)
+    public function index()
     {
-        // instansiate new model using the function built in from the Base Controller
-        $this->initModel('Products_model');
+        // // instansiate new model using the function built in from the Base Controller
+        // $this->initModel('Products_model');
 
-        //We request modelObjs from the database
-        $data = $this->modelObjs->getAllProducts();
+        // //We request modelObjs from the database
+        // $data = $this->modelObjs->getAllProducts();
 
-        //This will be shown on our products page
-        $this->reqView('Products', $data);
+        // //This will be shown on our products page
+        // $this->reqView('Products', $data);
 
         
     }

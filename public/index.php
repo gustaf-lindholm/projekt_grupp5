@@ -8,8 +8,16 @@ session_start();
 
 require_once '../app/init.php';
 
+
+include_once '../app/views/header.php';
+
+
 //WHY?
 $app = new App;
+
+
+include '../app/views/footer.php';
+
 
 
 

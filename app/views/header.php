@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <script src="javascript/bootstrap.min.js" type="text/javascript"></script>
+    <script src="javascript/jquery-3.2.1.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 </head>
 
@@ -49,7 +50,7 @@
         //                                  }
         // };
 
-      // switch ($level){
+      // switch ($level){  // switch ($level){
       //   case ($_SESSION['level']) == 1:
       //       header("Location:views/level_user_header/admin.header.php");
       //       break;
@@ -62,6 +63,7 @@
       //   default:
       //       header("Location:header.php");
       //   }
+      //load templage part-> 
        ?> 
     </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
