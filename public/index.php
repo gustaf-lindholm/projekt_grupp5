@@ -8,7 +8,7 @@ session_start();
 
 require_once '../app/init.php';
 
-//WHY?
+// Instatiates a new app, i.e the whole page
 $app = new App;
 
 
