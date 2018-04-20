@@ -6,7 +6,7 @@ class Signup extends Base_controller
     public function index() {
 
     	if (!isset($_POST['submit'])) {
-    		header("Location: ../views/signup.view.php");
+    		header("Location: ../app/views/signup.view.php");
     		//$this->reqView('signup');
         } else {
         	//var_dump($_POST['submit']);
@@ -20,7 +20,7 @@ class Signup extends Base_controller
     public function newCompanyAccount() {
 
     	if (!isset($_POST['submit'])) {
-    		header("Location: ../views/companysignup.view.php");
+    		header("Location: ../app/views/companysignup.view.php");
     		//$this->reqView('signup');
         } else {
         	//var_dump($_POST['submit']);

@@ -16,7 +16,7 @@
 			<label for="username-input">Username <span class="text-danger">*</span></label>
 			<input type="text" name="[submit][username]" placeholder="Username">
 			<label for="password-input">Password <span class="text-danger">*</span></label>
-			<input type="text" name="[submit][password]" placeholder="Password">
+			<input type="password" name="[submit][password]" placeholder="Password">
 			<button type="submit" name="submit">Sign up</button>
 		</form>
 	</div>

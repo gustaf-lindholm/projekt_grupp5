@@ -37,7 +37,7 @@ class Signup_Model extends Base_model
             			if ($resultCheck > 0) {
             				echo "username already taken";
             			} else {
-            				$hashedPassword = password_hash($_POST['password'], md5);
+            				$hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
             				$sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, $phone, $email)";
             				$paramBinds = [':level_id' => $level_id, ':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
 					        $User = new User;
