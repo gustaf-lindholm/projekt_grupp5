@@ -1,28 +1,4 @@
-<style>
-    .container {
-        display: grid;
-        grid-gap: 5px;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        /* grid-auto-rows: 200px; */
-}
-
-    .prodBox {
-        grid-column: span 2;
-        grid-row: span 2;
-        border: 1px solid black;
-    }
-
-    h1 {
-        text-align: center;
-    }
-
-    .prodImg {
-        max-height: 150px;
-        display: block;
-        margin: auto;
-    }
-</style>
-<div class="container">
+<div class="prod-container">
     
         <?php
         //var_dump($data);
