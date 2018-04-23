@@ -14,8 +14,6 @@
 </head>
 
 <body>
-<?php var_dump($_GET['url']) ?>;
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
