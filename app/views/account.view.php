@@ -20,27 +20,31 @@ printf("<h1 class='personTitle'> %s</h1>", $data[0] ['fname'] . " " . $data[0] [
 
 <p>Here is the page and info for the users account </p>
 
-<p> Here shall the user-form be with an update/submit to the database to the user table </p>
+<p> Here shall the user-form be with an update/submit to the database to the user table, use GET-form </p>
 
 <?php
 
-foreach ($data[0] as $key => $value) {
+    foreach ($data[0] as $key => $value) {
 
-    //if($key == 'fname' || $key == 'lname')
-    
-        continue;
+        print("<ul><li></li></ul> {$value} "); 
     }
 
-    printf("<ul><li>%s: %s</li></ul>", $key, $value);
+    //printf("<ul><li>%s: %s</li></ul>", $key, $value); 
 
 ?>
 
-<p> Small form (two rows) for the change of password the update/submit button change the account password table</p>
 
-<a class="smbutton">Change password</a>
+
+<p> Small form (two rows) for the change of password the update/submit button change the account password table, use GET-form</p>
+
+<a href="" class="smbutton">Change password</a>
 
 <p> Delete account - removes the user from the database </p>
+
+<form class='delete-form' method='POST' action=''".deletePerson()."''>
+<button>Delete Account</button>
+</form>
         
-<a class="smbutton">Delete account</a>
+<!--<a href="" class="smbutton">Delete account</a> -->
 
 </div>
