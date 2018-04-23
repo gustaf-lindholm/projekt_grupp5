@@ -17,6 +17,20 @@ class Account_model extends Base_model
         //returns an array of the data from the database which is then printed to the client in the view
         return self::$data;
     }
+
+ 
+    /*function getPersonForm($person) {
+        $this->sql =
+        "SELECT * user";
+
+        $base = new Base_model;
+        $base->prepQuery($this->sql);
+        $base->getAll();
+
+        return self::$data;
+
+        
+    }*/
 }
 
 
