@@ -34,7 +34,7 @@ class URLrewrite
 
     public static function URL($controller)
     {
-        $string =  preg_replace('~admin/~', null,trim($_SERVER['REQUEST_URI']));
+        $string =  preg_replace('~admin/~', null,rtrim($_SERVER['REQUEST_URI'], "/"));
 
         $arr = explode('/', $string);
         
