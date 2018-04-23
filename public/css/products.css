@@ -20,3 +20,19 @@ h1 {
     display: block;
     margin: auto;
 }
+
+/* Input forms in admin */
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.g-form {
+    display: grid;
+    grid-column: 2 / 4;
+}
+
+#last-id {
+    grid-column: 2 / 4;
+    margin: auto;
+}
