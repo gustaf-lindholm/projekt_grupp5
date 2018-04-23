@@ -43,9 +43,9 @@ class Form
     }
 
     // method to render all the elements in $this->output
-    public function render($action,  $legend, $method = 'POST')
+    public function render($action,  $legend, $class, $method = 'POST')
     {
-        echo "<form action='$action' method='$method'>";
+        echo "<form class='$class' action='$action' method='$method'>";
         echo "<legend>$legend</legend>";
         // loop to add each input element between div with bootstrap form-group class
         // skips button elements

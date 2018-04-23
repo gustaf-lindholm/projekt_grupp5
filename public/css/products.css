@@ -1,0 +1,38 @@
+.prod-container {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* grid-auto-rows: 200px; */
+}
+
+.prodBox {
+    grid-column: span 2;
+    grid-row: span 2;
+    border: 1px solid black;
+}
+
+h1 {
+    text-align: center;
+}
+
+.prodImg {
+    max-height: 150px;
+    display: block;
+    margin: auto;
+}
+
+/* Input forms in admin */
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.g-form {
+    display: grid;
+    grid-column: 2 / 4;
+}
+
+#last-id {
+    grid-column: 2 / 4;
+    margin: auto;
+}

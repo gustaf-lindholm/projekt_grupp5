@@ -1,8 +1,6 @@
 <?php
-
 class Home extends base_controller 
 {
-
     public function index($name = "")
     {
         $this->initModel('User_model');
@@ -12,7 +10,6 @@ class Home extends base_controller
         $this->reqView('home', ['name' => $this->modelObj->name]);
         
         //var_dump($this->modelObj);
-        
     }
 
 }

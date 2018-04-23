@@ -1,12 +1,10 @@
-<?php
 
-if(isset($data['name'])) {
-    echo $data['name'];
-}else {
-    echo "Data är inte kopplad";
-}
-?>
 
-<div>
-<p>Here we will have our homepage!</p>
-</div>
+<!-- Some kind of hello text -->
+<p>
+Welcome to the MOBILE!
+</p>
+
+
+
+
