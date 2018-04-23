@@ -9,14 +9,29 @@ class Base_controller
     
     public function initModel($model)
     {
-        require_once MODEL_PATH . $model . '.php';
+        $url = (array_filter( explode("/", $_SERVER['REQUEST_URI'])));
+
+        if(in_array('admin', $url))
+        {
+            require_once ADMIN_MODEL . $model . '.php';
+        } else {
+            require_once MODEL_PATH . $model . '.php';
+        }
         $this->modelObj = new $model();
     }
 
     public function reqView($view, $data = [])
     {
+        $url = (array_filter( explode("/", $_SERVER['REQUEST_URI'])));
 
-        require_once VIEW_PATH . $view . '.view.php';
+        if(in_array('admin', $url))
+        {
+            require_once ADMIN_VIEW . $view . '.view.php';
+        } else {
+            require_once VIEW_PATH . $view . '.view.php';
+        }
+        
+        
     }
 }
 
