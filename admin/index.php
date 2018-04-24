@@ -15,7 +15,7 @@ include '../app/views/header.php';
 $app = new Admin_app;
 
 // include footer
-include '../app/views/footer.php';
+//include '../app/views/footer.php';
 
 
 
