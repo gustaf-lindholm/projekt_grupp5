@@ -3,7 +3,7 @@
 <?php
 
     $optionform = new Form;
-    $optionform->textAreaInput('optiontype[new]', 'Option', 'Add Option'); 
+    $optionform->textInput('optiontype[new]', 'Option', 'Add Option'); 
     $valueindex = ['option_id', 'option_name'];
     $optionform->select('Options','Available Options', 'optionform', $data, $valueindex);
     $optionform->button('Save');
