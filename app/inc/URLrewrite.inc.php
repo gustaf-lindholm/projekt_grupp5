@@ -34,7 +34,7 @@ class URLrewrite
 
     public static function URL($controller)
     {
-        $string =  preg_replace('~admin/~', null,trim($_SERVER['REQUEST_URI']));
+        $string =  preg_replace('~admin/~', null,rtrim($_SERVER['REQUEST_URI'], "/"));
 
         $arr = explode('/', $string);
         
@@ -58,6 +58,12 @@ class URLrewrite
         // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
         $pathInfo = pathinfo($currentPath); 
         
+        // replace admin with public if on admin site
+        if (in_array('/projekt_grupp5/admin', $pathInfo)) {
+            
+            $pathInfo['dirname'] = '/projekt_grupp5/public';
+        }
+
         // output: localhost
         $hostName = $_SERVER['HTTP_HOST']; 
         
