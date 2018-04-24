@@ -3,7 +3,7 @@
 // Klassen kollar url och kör rätt controller, metoder och hanterar eventuella parametrar
 class Admin_app
 {
-    protected $controller = 'admin';
+    protected $controller = 'adminpanel';
     protected $method = 'index'; 
     protected $params = [];
 
