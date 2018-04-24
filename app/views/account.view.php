@@ -1,6 +1,6 @@
 <html>
 <head>
-<title> <?php echo $data[0] ['fname']; ?>'s page</title> <!-- prints out the users surname -->
+<title> <?php echo $data[0] ['fname']; ?>'s page</title> <!-- prints out the users surname, is currently overrided with the header.php file -->
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
 <div class="container">
@@ -13,7 +13,7 @@ printf("<h1 class='personTitle'> %s</h1>", $data[0] ['fname'] . " " . $data[0] [
 
 ?>
 
-<a class="button" href="/projekt_grupp5/public/account/">My details</a> <a class="button" href="/projekt_grupp5/public/myorderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
+<a class="button" href="/projekt_grupp5/public/account/">My details</a> <a class="button" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
 
 <p>Here is the page and info for the users account </p>
 
