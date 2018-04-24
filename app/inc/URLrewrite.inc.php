@@ -58,7 +58,7 @@ class URLrewrite
         // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
         $pathInfo = pathinfo($currentPath); 
         
-        // replace admin with public
+        // replace admin with public if on admin site
         if (in_array('/projekt_grupp5/admin', $pathInfo)) {
             
             $pathInfo['dirname'] = '/projekt_grupp5/public';
