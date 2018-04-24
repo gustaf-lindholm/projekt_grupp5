@@ -20,9 +20,11 @@ class Form
         $this->output[] = $element;
     }
 
-    //valueindex is the associative array index names that you want to apply in the html tag
-    // valueindex[0] is the value of the option (id or name)
-    // valueindex[1] is the value you want to print out in the select options
+    /*  valueindex is the associative array index names that you want to apply in the html tag
+    /*  valueindex[0] is the value of the option (id or name)
+    /*  valueindex[1] is the value you want to print out in the select options
+    /*  example in admin OptionType view
+    **/ 
     public function select($name, $label, $form, $data, $valueindex = [], $inputclass = 'form-control')
     {
         $labelTag = "<label for='$name'>$label</label>";
@@ -73,10 +75,6 @@ class Form
             if(substr_compare($value, '<button', 0, 6)){
             $this->output[$key] = '<div class="form-group">'.$value.'</div>';
             }
-            // if (substr_compare($value, '<select', 0, 7)) {
-            //     continue;
-            // }
-
 
         }
         // create a string with html
