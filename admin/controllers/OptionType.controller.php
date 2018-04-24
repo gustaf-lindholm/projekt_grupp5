@@ -12,5 +12,18 @@ class OptionType extends Base_controller
     
     }
 
+    public function addOption()
+    {
+
+        $this->initModel('OptionType_model');
+
+        $this->modelObj->insertOption();
+
+        $this->reqView('optiontype');
+
+
+
+    }
+
 
 }
