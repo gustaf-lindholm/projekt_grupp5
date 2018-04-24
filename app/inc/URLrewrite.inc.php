@@ -58,6 +58,12 @@ class URLrewrite
         // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
         $pathInfo = pathinfo($currentPath); 
         
+        // replace admin with public
+        if (in_array('/projekt_grupp5/admin', $pathInfo)) {
+            
+            $pathInfo['dirname'] = '/projekt_grupp5/public';
+        }
+
         // output: localhost
         $hostName = $_SERVER['HTTP_HOST']; 
         

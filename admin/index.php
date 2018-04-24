@@ -9,13 +9,13 @@ session_start();
 require_once '../app/init.php';
 
 // include header
-//include '../app/views/header.php';
+include '../app/views/header.php';
 
 // Instatiates a new app, i.e the whole page
 $app = new Admin_app;
 
 // include footer
-//include '../app/views/footer.php';
+include '../app/views/footer.php';
 
 
 
