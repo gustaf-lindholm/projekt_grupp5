@@ -36,12 +36,13 @@ The property $modelObj then contains an instance of the instantiated model which
 ### reqView()
 The reqView method is responsible for acquiring a view and can take two parameters, $view and $data. The view name is passed to the method as a string and $data is mixed (empty array as default): $this->reqView('product',$data);
 
+# Admin
+
+For all admin related work the files should be included in the admin folder, not the public folder.  
 
 # Built with
 
 - PHP
 - MYSQL
-
-
 
 
