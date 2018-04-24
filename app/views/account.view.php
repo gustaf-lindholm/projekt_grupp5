@@ -3,9 +3,6 @@
 <title> <?php echo $data[0] ['fname']; ?>'s page</title> <!-- prints out the users surname -->
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
-<?php 
-//include_once 'header.php'
-?>
 <div class="container">
 
 <?php
@@ -22,7 +19,20 @@ printf("<h1 class='personTitle'> %s</h1>", $data[0] ['fname'] . " " . $data[0] [
 
 <p> Here shall the user-form be with an update/submit to the database to the user table, use GET-form </p>
 
-<?php
+<?php /*
+        
+        $UserForm = new Form;
+        $UserForm->textInput('newProd[title]','Firstname');
+        $UserForm->textAreaInput('newProd[info]','Lastname');
+        $UserForm->numInput('newProd[manufacturer]','Phonenumber');
+        $UserForm->emailInput()
+        $UserForm->button('Save');
+        $action = URLrewrite::adminURL('addproduct');
+        $UserForm->render($action,'Change User Information', 'g-form');
+        
+        ?> 
+
+<?php */
 
     foreach ($data[0] as $key => $value) {
 
