@@ -54,9 +54,5 @@ class Signup_Model extends Base_model
             	}
             }
     }
-
-    public function companySignup() {
-        echo "Company Signup!";
-    }
 }
 

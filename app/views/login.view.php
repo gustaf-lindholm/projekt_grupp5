@@ -7,7 +7,7 @@
 			<label for="password-input">Password <span class="text-danger">*</span></label>
 			<input type="password" name="[submit][password]" placeholder="*****">
 			<button type="submit" name="submit">Login</button>
-			<a href="../app/models/Signup_model.php" class="btn btn-link">Signup</a>
+			<a href="<?php echo URLrewrite::URL('signup')?>" class="btn btn-link">Signup</a>
 		</form>
 	</div>
 </section>
