@@ -19,7 +19,7 @@ define("CORE_PATH", PRIVATE_PATH.DS.'core'.DS);
 
 // admin
 
-define("ADMIN_PATH", PROJECT_PATH.DS.'admin'.DS);
+define("ADMIN_PATH", PROJECT_PATH.DS.'admin');
 define("ADMIN_CONTROLLER", ADMIN_PATH.DS.'controllers'.DS);
 define("ADMIN_MODEL", ADMIN_PATH.DS.'models'.DS);
 define("ADMIN_VIEW", ADMIN_PATH.DS.'views'.DS);
