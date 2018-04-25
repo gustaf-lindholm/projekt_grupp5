@@ -45,7 +45,7 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <a href="<?php echo URLrewrite::URL('companySignup')?>">Company Site/signup(leda till egen sida eller bara signup?)</a>
+      <a href="<?php echo URLrewrite::BaseURL('companySignup')?>">Company Site/signup(leda till egen sida eller bara signup?)</a>
       <?php 
 
         // if ($_SESSION['level']) == 1 or $_SESSION['level']) == 2)

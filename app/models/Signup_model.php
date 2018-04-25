@@ -1,9 +1,9 @@
 <?php
 
-class Signup_Model extends Base_model
+class Signup_Model extends base_model
 {
 	// här bygger jag olika metoder som kan hantera och göra olika saker
-    public function signup()
+    public function signupUser()
     {
     	    if (empty($_POST['fname']) || empty($_POST['lname']) || empty($_POST['email']) || empty($_POST['phone']) || empty($_POST['username']) || empty($_POST['password'])) {
             	echo "du måste fylla i de tomma fälten";
@@ -37,6 +37,8 @@ class Signup_Model extends Base_model
 					        $paramBinds = [':userId' => $userId, ':username' => $username, ':hashedPassword' => $hashedPassword,];
 					        $account = new Account;
 					        prepQuery($sql, $paramBinds = []);
+                            URLrewrite::BaseAdminURL('account/index');
+
 
 						}
             		}

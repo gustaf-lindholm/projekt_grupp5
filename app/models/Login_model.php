@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Login_model extends Base_model
+class Login_model extends base_model
 {
 	
 	public function login()
