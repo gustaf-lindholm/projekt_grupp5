@@ -5,19 +5,27 @@
 */
 class Login extends Base_controller
 {
-	
-	public function index()
-    {
-        $this->reqView('login/index');
+    
+    public function index() {
+
+        // Call the model 
+        $this->initModel('Login_model');
+        // Call the method to instansiate
+        $this->modelObj->login();
+        // Render the correct view
+        $this->reqView('login');
+        
     }
 
-    public function login() 
-    {
-    	$this->reqView('login/login');
+    public function login() {
+
+        echo "log in user";
     }
 
-    public function login() 
-    {
-    	$this->reqView('login/logout');
+    public function logout() {
+
+        echo "logout user";
     }
+
+
 }
