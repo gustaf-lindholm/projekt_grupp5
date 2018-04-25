@@ -5,7 +5,7 @@
     }
 
 .prod-title {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
     grid-column: 1 / -1;
     }
