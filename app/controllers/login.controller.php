@@ -17,7 +17,7 @@ class Login extends Base_controller
         
     }
 
-    public function login() {
+    public function loginUser() {
 
         echo "log in user";
     }
