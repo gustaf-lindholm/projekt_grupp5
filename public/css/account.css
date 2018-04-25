@@ -7,6 +7,13 @@
 
 }
 
+.personInfo {
+    text-align: center;
+    color: blue;
+    text-decoration: none;
+    list-style-type: none;
+}
+
 .button {
     background-color: #000000;/* Black */
     border: none;
