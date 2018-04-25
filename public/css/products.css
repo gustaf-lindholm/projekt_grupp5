@@ -36,3 +36,9 @@ h1 {
     grid-column: 2 / 4;
     margin: auto;
 }
+
+/* Table with css-grid */
+
+.grid-table {
+    grid-column: 2 / 4;
+}
