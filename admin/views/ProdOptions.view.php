@@ -7,8 +7,6 @@ $productsList->select('products', 'All products', 'prodInfo', $products, $valueI
 $productsList->button('Show info');
 $action = URLrewrite::BaseAdminURL('productoptions/getoptions');
 $productsList->render($action, 'Show product info', 'g-form', 'prodInfo');
-
-var_dump($action);
 ?>
 
 
@@ -29,8 +27,7 @@ var_dump($action);
             <?php
                 $optionInfo = "";
                 foreach ($data[1] as $key => $value) {
-                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td></tr>";                      
-                    //$option_id .= "<td>".$value['option_id']."</td>";                                   
+                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td></tr>";                                 
                 }?>
                 
                 <?php echo $optionInfo ?>
