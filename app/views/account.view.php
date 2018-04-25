@@ -13,31 +13,28 @@ printf("<h1 class='personTitle'> %s</h1>", $data[0] ['fname'] . " " . $data[0] [
 
 ?>
 
-<a class="button" href="/projekt_grupp5/public/account/">My details</a> <a class="button" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
-
+<a class="btn btn-primary" href="/projekt_grupp5/public/account/">My details</a> <a class="btn btn-primary" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
+<a href="<?php echo URLrewrite::URL('updateuser') ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
+<a href="" class="btn btn-primary">Change password</a>
 <p>Here is the page and info for the users account </p>
 
-<p> Here shall the user-form be with an update/submit to the database to the user table, use GET-form </p>
+<?php 
 
-<?php /*
-        
-        $UserForm = new Form;
-        $UserForm->textInput('newProd[title]','Firstname');
-        $UserForm->textAreaInput('newProd[info]','Lastname');
-        $UserForm->numInput('newProd[manufacturer]','Phonenumber');
-        $UserForm->emailInput()
-        $UserForm->button('Save');
-        $action = URLrewrite::adminURL('addproduct');
-        $UserForm->render($action,'Change User Information', 'g-form');
-        
-        ?> 
+    /*printf($data[0] ['fname']);
+    printf($data[0] ['lname']);
+    printf($data[0] ['phone']);
+    printf($data[0] ['email']); */
 
-<?php */
-
+    $i = 0; 
     foreach ($data[0] as $key => $value) {
+        if ($i++ < 2) { //ignores the first two values in the $data[0]-array 
+            continue;
+        } 
 
         print("<ul><li></li></ul> {$value} "); 
+
     }
+
 
     //printf("<ul><li>%s: %s</li></ul>", $key, $value); 
 
@@ -45,9 +42,6 @@ printf("<h1 class='personTitle'> %s</h1>", $data[0] ['fname'] . " " . $data[0] [
 
 
 
-<p> Small form (two rows) for the change of password the update/submit button change the account password table, use GET-form</p>
-
-<a href="" class="smbutton">Change password</a>
 
 <p> Delete account - removes the user from the database </p>
 
