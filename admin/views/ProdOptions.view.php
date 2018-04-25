@@ -4,6 +4,7 @@
         <a href="<?php echo URLrewrite::BaseAdminURL('productoptions') ?>"><button id="addProduct" class="btn btn-primary adminButton">Manage Product Options</button></a>      
 </div>
 <div class="form-container">
+<!-- Output <select> element with all products -->
 <?php
     $products = $data[0];
     $productsList = new Form;
@@ -22,7 +23,8 @@
 <!-- Output title and info for chosen product if the product have options -->
 <?php if(isset($data[1][0]['title']))
 {
-    echo '<h1 class="prod-title">Available Options for:'.$data[1][0]['title']."</h1>";?>
+    echo '<h1 class="prod-title">Available Options for:'.$data[1][0]['title']."</h1>".
+    '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1>";?>
 </div>
 <div class="form-container">
     <table class="grid-table table-striped table-bordered">
@@ -44,7 +46,9 @@
         </tbody>
     </table>
     
-    <!-- Error message if no options for chosen product -->
+    <!-- Error message if no options for chosen product 
+    @todo: print product_id for product without options
+    -->
     <?php } else {
     echo '<h1 class="prod-title">No options in database for the chosen product.</h1>';
 }
