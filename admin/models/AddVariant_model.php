@@ -22,4 +22,5 @@ class AddVariant_model extends Base_model
             return false;
         }
     }
+    
 }

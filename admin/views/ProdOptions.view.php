@@ -1,8 +1,4 @@
-<div>
-        <p>Temporary menu</p>
-        <a href="<?php echo URLrewrite::BaseAdminURL('addproduct') ?>"><button id="addProduct" class="btn btn-primary adminButton">Add New Product</button></a>
-        <a href="<?php echo URLrewrite::BaseAdminURL('productoptions') ?>"><button id="addProduct" class="btn btn-primary adminButton">Manage Product Options</button></a>      
-</div>
+<?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
 <div class="form-container">
 <!-- Output <select> element with all products -->
 <?php
@@ -25,6 +21,7 @@
     echo '<h1 class="prod-title">Available Options for:'.$data[1][0]['title']."</h1>".
     '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1>";?>
 </div>
+<!-- Table with info for chosen product -->
 <div class="form-container">
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
@@ -45,9 +42,7 @@
         </tbody>
     </table>
     
-    <!-- Error message if no options for chosen product 
-    @todo: print product_id for product without options
-    -->
+    <!-- Error message if no options for chosen product  -->
     <?php } elseif (isset(($_POST['products']))) {
     echo '<h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1>';
     echo $_POST['products'];
