@@ -32,7 +32,7 @@ class Form
         $element = $labelTag . $select;
         
         foreach ($data as $key => $value) {
-            $element .= "<option value=". $value[$valueindex[0]] .'">'. $value[$valueindex[1]]."</option>";
+            $element .= "<option value=". $value[$valueindex[0]] .'>'. $value[$valueindex[1]]."</option>";
             
         }       
         $this->output[] = $element.'</select>';

@@ -15,7 +15,6 @@
     $productsList->render($action, 'Show product info', 'g-form', 'prodInfo');
 ?>
 
-
 </div>
 <?php if (isset($_POST['products'])) { ?>
 <div>
@@ -49,8 +48,9 @@
     <!-- Error message if no options for chosen product 
     @todo: print product_id for product without options
     -->
-    <?php } else {
-    echo '<h1 class="prod-title">No options in database for the chosen product.</h1>';
+    <?php } elseif (isset(($_POST['products']))) {
+    echo '<h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1>';
+    echo $_POST['products'];
 }
 ?>
 </div>
