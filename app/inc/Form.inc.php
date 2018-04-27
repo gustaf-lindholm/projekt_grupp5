@@ -76,10 +76,11 @@ class Form
         // skips button elements
         foreach ($this->output as $key => $value) {
             
-            // @todo : fixa en preg_match istället
-            if(substr_compare($value, '<button', 0, 6)){
-            $this->output[$key] = '<div class="form-group">'.$value.'</div>';
+            // Skips div around buttons and hidden input elements
+            if(preg_match('/^(<button)|(hidden)/', $value)){
+                continue;
             }
+            $this->output[$key] = '<div class="form-group">'.$value.'</div>';
 
         }
         // create a string with html

@@ -3,12 +3,12 @@
 <div class="form-container">
 <!-- Form to choose product and option to add -->
 <?php
-var_dump(Registry::getStatus('addProdStatus'));
     // Print response on product option insert
-    if(Registry::getStatus('addProdStatus') && Registry::getStatus('addProdStatus') == 'success')
+    if(Registry::getStatus() !== null && Registry::getStatus('addProdStatus') == 'success')
     {
         echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
-    } elseif (Registry::getStatus('addProdStatus') && Registry::getStatus('addProdStatus') == 'fail') {
+        
+    } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
     $products = $data[0];

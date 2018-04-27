@@ -12,8 +12,14 @@ class Registry
     }
 
     // get the status with the inserted index
-    public static function getStatus($index)
+    public static function getStatus($index = null)
     {
-        return self::$status[$index];
+        // if the entered index is in $status array
+        // return that status
+        if (isset(self::$status[$index])) {
+            return self::$status[$index];            
+        } else {
+            return self::$status;
+        }
     }
 }
