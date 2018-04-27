@@ -57,4 +57,24 @@ class ProdOptions_model extends Base_model
         $this->prepQuery($this->sql, $paramBinds) ? $_POST['optiontype']['status'] = 'true' : $_POST['optiontype']['status'] = 'false';
 
     }
+
+    public function insertProductOption()
+    {
+
+        $values = [$_POST['newProdOption']['product_id'], $_POST['newProdOption']['option_id']];
+
+        $this->sql = "INSERT INTO product_options (product_id, option_id) values (:product_id, :option_id)";
+        
+        $paramBinds = [':product_id' => $values[0], ':option_id' => $values[1]];
+
+        if ($this->prepQuery($this->sql, $paramBinds))
+        {
+            //$_POST['newProdOption']['status'] = 'success';
+            return true;
+        } else {
+            return false;
+        }
+
+        
+    }
 }

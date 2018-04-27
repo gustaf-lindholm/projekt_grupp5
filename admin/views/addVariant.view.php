@@ -1,7 +1,6 @@
 <?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
 <div class="form-container">
 <?php
-var_dump($_POST);
 // tanken är att visa en 'alert' efter att ny variant lagts till
 if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'success')
 {
@@ -18,7 +17,7 @@ if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 's
 
 ?>
 </div>
-<h1 class="prod-title">All products and variations</h1>
+<h1 class="prod-title">All product variations</h1>
 
 <div class="form-container">
     <table class="grid-table table-striped table-bordered">

@@ -29,7 +29,7 @@ class AddVariant extends Base_controller
         
         if($this->modelObj->addVariant())
         {
-            // att sätta $_POST här verkar inte ha någon inverkan...
+            // att sätta $_POST här verkar inte ha någon inverkan...TA BORT
             //$_POST['addVariant'] = [];
             $_POST['addVariant']['status'] = 'success';
             header('Location:'.URLrewrite::BaseAdminURL('addvariant'));

@@ -1,4 +1,32 @@
 <?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
+
+<div class="form-container">
+<!-- Form to choose product and option to add -->
+<?php
+var_dump(Registry::getStatus('addProdStatus'));
+    // Print response on product option insert
+    if(Registry::getStatus('addProdStatus') && Registry::getStatus('addProdStatus') == 'success')
+    {
+        echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
+    } elseif (Registry::getStatus('addProdStatus') && Registry::getStatus('addProdStatus') == 'fail') {
+        echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
+    }
+    $products = $data[0];
+    $options = $data[2];
+    $productsList = new Form;
+    $productIndex = ['pid', 'title'];
+    $optionIndex = ['option_id', 'option_name'];
+    $productsList->select("newProdOption[product_id]", 'All products', 'newOption', $products, $productIndex);
+    $productsList->select("newProdOption[option_id]", 'All options', 'newOption', $options, $optionIndex);
+    $productsList->hiddenInput('newProdOption[status]', 'sent');        
+    $productsList->button('Add option');
+    $action = URLrewrite::BaseAdminURL('productoptions/addProductOption');
+    $productsList->render($action, 'Add option to product', 'g-form', 'newOption');
+?>
+
+</div>
+
+
 <div class="form-container">
 <!-- Output <select> element with all products -->
 <?php
@@ -18,8 +46,8 @@
 <!-- Output title and info for chosen product if the product have options -->
 <?php if(isset($data[1][0]['title']))
 {
-    echo '<h1 class="prod-title">Available Options for:'.$data[1][0]['title']."</h1>".
-    '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1>";?>
+    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data[1][0]['title']."</h1>".
+    '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1></div>";?>
 </div>
 <!-- Table with info for chosen product -->
 <div class="form-container">
@@ -44,8 +72,7 @@
     
     <!-- Error message if no options for chosen product  -->
     <?php } elseif (isset(($_POST['products']))) {
-    echo '<h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1>';
-    echo $_POST['products'];
+    echo '<div class="alert alert-warning"><h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1></div>';
 }
 ?>
 </div>
