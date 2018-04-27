@@ -41,9 +41,10 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 ?>
 
+<!-- DELETE ACCOUNT BUTTON -->
 
 <form class='delete-form' method='POST' action=''".deletePerson()."''>
-<button class="btn btn-danger">Delete Account</button>
+<input type="submit" class="btn btn-danger" placeholder="Delete account"></input>
 </form>
         
 <!--<a href="" class="smbutton">Delete account</a> -->
