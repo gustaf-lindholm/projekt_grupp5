@@ -12,6 +12,7 @@ class Registry
     }
 
     // get the status with the inserted index
+    // default null to prevent undefined index
     public static function getStatus($index = null)
     {
         // if the entered index is in $status array

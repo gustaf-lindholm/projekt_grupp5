@@ -7,7 +7,7 @@
     if(Registry::getStatus() !== null && Registry::getStatus('addProdStatus') == 'success')
     {
         echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
-        
+
     } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
@@ -36,7 +36,7 @@
     $productsList->select('products', 'All products', 'prodInfo', $products, $valueIndex);
     $productsList->button('Show info');
     $action = URLrewrite::BaseAdminURL('productoptions');
-    $productsList->render($action, 'Show product info', 'g-form', 'prodInfo');
+    $productsList->render($action, 'Product Option Info', 'g-form', 'prodInfo');
 ?>
 
 </div>
