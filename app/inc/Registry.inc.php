@@ -1,6 +1,7 @@
 <?php
 
 // this class makes it easy to send status from models and controllers to a view
+// example: if INSERT-statement { status = success } else { stauts =  fail}
 class Registry 
 {
     private static $status = [];
