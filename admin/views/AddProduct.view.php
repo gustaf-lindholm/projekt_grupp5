@@ -1,24 +1,6 @@
-<style>
-    /* Temporary styling */
-    .container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
+<?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
 
-    form {
-        display: grid;
-        grid-column: 2 / 4;
-    }
-
-    h4 {
-        grid-column: 2 / 4;
-        margin: auto;
-    }
-</style>
-<head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-</head>
-<div class="container">
+<div class="form-container">
 
         <?php
         
@@ -28,7 +10,7 @@
         $ProdForm->textInput('newProd[manufacturer]','Manufacturer','Product Manufacturer');
         $ProdForm->button('Save');
         $action = URLrewrite::adminURL('addproduct');
-        $ProdForm->render($action,'Add Product Information');
+        $ProdForm->render($action,'Add Product Information', 'g-form');
         
 
         // $ProdForm->validate();
@@ -37,12 +19,12 @@
         // ?>
 
             <!-- Output the last auto incremented product id -->
-    <h4><?php if(isset($_POST['newProdId'])) {echo "The last inserted product id: " . $_POST['newProdId'];} ?></h4>
+    <h4 id="last-id"><?php if(isset($_POST['newProdId'])) {echo "The last inserted product id: " . $_POST['newProdId'];} ?></h4>
     
     <?php 
             //show add variant form after new product has been added
-            if(isset($_POST['newProdId']))
-            {
+        //     if(isset($_POST['newProdId']))
+        //     {
                 $variantForm = new Form;
                 $variantForm->textInput('addVariant[product_id]', 'Product Id', 'Product ID');
                 $variantForm->textInput('addVariant[sku]', 'SKU', 'Stock Keeping Unit');
@@ -50,7 +32,8 @@
                 $variantForm->textInput('addVariant[img_url]', 'Image Url', 'Url to product image');
                 $variantForm->button('Save Variant');
                 $action = URLrewrite::adminURL('addvariant');
-                $variantForm->render($action,'Add Variant Information');
+                $variantForm->render($action,'Add Variant Information', 'g-form');
 
-            }
+           // }
     ?>
+    </div>

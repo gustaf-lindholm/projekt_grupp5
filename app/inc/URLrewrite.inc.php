@@ -16,7 +16,7 @@ class URLrewrite
         $arr = array_filter( explode("/", $_SERVER['REQUEST_URI']));
 
         // remove the last element in array, i.e the method
-        array_pop($arr);
+        array_pop($arr);        
 
         if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on")
         {    
@@ -34,7 +34,7 @@ class URLrewrite
 
     public static function URL($controller)
     {
-        $string =  preg_replace('~admin/~', null,trim($_SERVER['REQUEST_URI']));
+        $string =  preg_replace('~admin/~', null,rtrim($_SERVER['REQUEST_URI'], "/"));
 
         $arr = explode('/', $string);
         
@@ -58,6 +58,12 @@ class URLrewrite
         // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
         $pathInfo = pathinfo($currentPath); 
         
+        // replace admin with public if on admin site
+        if (in_array('/projekt_grupp5/admin', $pathInfo)) {
+            
+            $pathInfo['dirname'] = '/projekt_grupp5/public';
+        }
+
         // output: localhost
         $hostName = $_SERVER['HTTP_HOST']; 
         
@@ -66,6 +72,30 @@ class URLrewrite
         
         // return: http://localhost/myproject/
         return $protocol.$hostName.$pathInfo['dirname']."/";
+    }
+
+    public static function BaseAdminURL($controllerMethod) 
+    {
+        // output: /myproject/index.php
+        $currentPath = $_SERVER['PHP_SELF']; 
+        
+        // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
+        $pathInfo = pathinfo($currentPath); 
+        
+        // replace public with admin if on admin site
+        if (in_array('/projekt_grupp5/public', $pathInfo)) {
+            
+            $pathInfo['dirname'] = '/projekt_grupp5/admin';
+        }
+
+        // output: localhost
+        $hostName = $_SERVER['HTTP_HOST']; 
+        
+        // output: http://
+        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https://'?'https://':'http://';
+        
+        // return: http://localhost/myproject/ + the provided controller and method.
+        return $protocol.$hostName.$pathInfo['dirname']."/".$controllerMethod;
     }
 }
 

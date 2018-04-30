@@ -11,15 +11,16 @@ class AddVariant_model extends Base_model
         $paramBinds = [
             ':pid' => $_POST['addVariant']['product_id'],
             ':sku' => $_POST['addVariant']['sku'],
-            ':price' => $_POST['addVariant']['product_id'],
-            ':img_url' => $_POST['addVariant']['product_id'],
+            ':price' => $_POST['addVariant']['price'],
+            ':img_url' => $_POST['addVariant']['img_url'],
         ];
+
         if($this->prepQuery($this->sql, $paramBinds))
         {
-            // testing purpose
-            echo "successfully adde new variant";
+            return true;
         } else {
-            echo "failed to add new variant";
+            return false;
         }
     }
+    
 }

@@ -1,15 +1,9 @@
 <?php
 
-class Admin extends Base_controller
+class AddProduct extends Base_controller
 {
-    
-    public function Index()
-    {
-        
-        $this->reqView('AdminPanel');
-    }
 
-    public function addProduct()
+public function Index()
     {
 
         // require view with form for new product
@@ -35,20 +29,6 @@ class Admin extends Base_controller
             }
         }
         
-        // check if user selected the add variant option(pushed button)
-        if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'true')
-        {
-            //call model to handle new variant input
-            $this->initModel('AddVariant_model');
-        }
     }
-
-    public function addVariant()
-    {
-        
-        $this->modelObj->addVariant();
-        
-    }
-
 
 }
