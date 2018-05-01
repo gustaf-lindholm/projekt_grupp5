@@ -2,16 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/bootstrap.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/account.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/product.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/products.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/grid_table.css';?>" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    
 </head>
 
 <body>
@@ -30,6 +31,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Apple <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Samsung</a></li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -40,13 +42,40 @@
         </li>
       </ul>
 
-      <form class="navbar-form navbar-left">
+      <form action="<?php echo URLrewrite::BaseURL('search')?>" method="POST" class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0"  style="background-color: lightgreen;" type="submit">Search</button>
       </form>
-      <a href="<?php echo URLrewrite::BaseURL('companySignup')?>">Company Site/signup(leda till egen sida eller bara signup?)</a>
+
+
+      <div  class="navbar-form navbar-left">
+      <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" style="background-color: lightgreen;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login/Sign Up
+          </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" href="<?php echo URLrewrite::BaseURL('companysignup')?>">Company</a></button>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?php echo URLrewrite::BaseUrl('signup')?>">Individual</a>
+              </div>
+</div>
+</div>
+
+
+          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul> -->
+        </li>
+
+     
+    
       <?php 
 
         // if ($_SESSION['level']) == 1 or $_SESSION['level']) == 2)

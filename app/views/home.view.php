@@ -1,9 +1,15 @@
+<?php 
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
 
+//printf("Hello, dear %s", $this->fname);
 
-<!-- Some kind of hello text -->
-<p>
-Welcome to the MOBILE!
-</p>
+include "../app/views/showCarousel.php";
+
+//include "../app/views/search.php";
+?>
+
 
 
 
