@@ -63,42 +63,24 @@
 </div>
 </div>
 
-
-          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul> -->
         </li>
-
-     
     
       <?php 
 
-        // if ($_SESSION['level']) == 1 or $_SESSION['level']) == 2)
-        // {
-        //       if($_SESSION['level'] == 2 ) 
-        //                                 {
-        //                                  }
-        // };
-
-      // switch ($level){  // switch ($level){
+      // switch ($level){ 
       //   case ($_SESSION['level']) == 1:
       //       header("Location:views/level_user_header/admin.header.php");
       //       break;
       //   case ($_SESSION['level']) == 2:
       //       header("Location:views/level_user_header/powerUser.header.php");
       //       break;
-      //   case "text3":
+      //   case ($_SESSION['level']) == 3:
       //       header("Location:views/level_user_header/customer.header.php");
       //       break;
       //   default:
       //       header("Location:header.php");
       //   }
-      //load templage part-> 
+     
        ?> 
     </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->

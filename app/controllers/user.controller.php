@@ -25,6 +25,12 @@ class User extends Base_controller
     //     // $this->confirm_password= $args['confirm_password'] ?? '';
     // }
 
+    public function index() {
+        $this->initModel('User_model');
+        $userData = $this->modelObj->displayAllUsers();
+        $this->reqView('displayAllUsers', $userData);
+    }
+
     public function show_Full_Name()
     {
         $this->initModel('User_model');
@@ -77,4 +83,4 @@ class User extends Base_controller
         return (int)$this->getUserLevel() === 3;
     }
 
-}
+}

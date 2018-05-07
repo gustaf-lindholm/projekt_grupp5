@@ -14,6 +14,10 @@ include '../app/views/header.php';
 // Instatiates a new app, i.e the whole page
 $app = new App;
 
+include "../app/views/Carousel.php";
+
+include '../app/views/filter.view.php';
+
 // include footer
 include '../app/views/footer.php';
 

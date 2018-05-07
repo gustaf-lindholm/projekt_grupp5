@@ -1,3 +1,0 @@
-<?php
-//SQL questions here
-?>

@@ -1,18 +1,16 @@
 <?php
 
-class Search_model extends Base_model
+class Filter_model extends Base_model
 {
-    
-    public function searchForProducts()
+    public function filterForProducts()
     {
-        if (isset($_POST['search'])) {
-            $searchSql = $_POST['search'];
-            $searchSql = preg_replace("#[^0-0a-z]#1", "". $searchSql);
+        if (isset($_POST['filter'])) {
+        $searchSql = $_POST['filter'];
+        $searchSql = preg_replace("#[^0-0a-z]#1", "". $searchSql);
            
         $query = mysql_query("SELECT * FROM user
         WHERE user.fname LIKE '%$searchSql%' OR user.lname LIKE '%$searchSql%'") || die("Could not search!");
-        //$this->sql = 
-        //$this->prepQuery($this->sql);
+      
         $count = mysql_num_rows($query);
         if ($count==0) {
             $output= "There were no search results";
