@@ -11,8 +11,8 @@
     } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
-    $products = $data[0];
-    $options = $data[2];
+    $products = $data['products'];
+    $options = $data['optionType'];
     $productsList = new Form;
     $productIndex = ['pid', 'title'];
     $optionIndex = ['option_id', 'option_name'];
@@ -30,7 +30,7 @@
 <div class="form-container">
 <!-- Output <select> element with all products -->
 <?php
-    $products = $data[0];
+    $products = $data['products'];
     $productsList = new Form;
     $valueIndex = ['pid', 'title'];
     $productsList->select('products', 'All products', 'prodInfo', $products, $valueIndex);
@@ -44,10 +44,10 @@
 <div>
 
 <!-- Output title and info for chosen product if the product have options -->
-<?php if(isset($data[1][0]['title']))
+<?php if(isset($data['options']['products']['title']))
 {
-    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data[1][0]['title']."</h1>".
-    '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1></div>";?>
+    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options']['products']['title']."</h1>".
+    '<h1 class=""><small> PID:'.$data['options']['products']['product_id']."</small></h1></div>";?>
 </div>
 <!-- Table with info for chosen product -->
 <div class="form-container">
@@ -61,7 +61,7 @@
         <tbody class="">
             <?php
                 $optionInfo = "";
-                foreach ($data[1] as $key => $value) {
+                foreach ($data['options'] as $key => $value) {
                     $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td></tr>";                                 
                 }?>
                 
@@ -100,7 +100,7 @@
     // value and text output = <option value="option_id">option_name</option> 
 
     $valueindex = ['option_id', 'option_name'];
-    $optionform->select('Options','Available Options', 'optionform', $data[2], $valueindex);
+    $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
 
         
     // input of new option

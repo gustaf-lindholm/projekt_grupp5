@@ -47,6 +47,18 @@ class ProdOptions_model extends Base_model
 
     }
 
+    public function getOptionValues()
+    {
+        $this->sql = "SELECT option_values.option_id, option_values.value_id, option_values.value_name FROM projekt_klon.option_values
+        JOIN option_type ON option_values.option_id = option_type.option_id";
+
+        $this->prepQuery($this->sql);
+
+        $data = $this->getAll();
+
+        return $data;
+    }
+
     // insert new option
     public function insertOption()
     {
@@ -74,7 +86,6 @@ class ProdOptions_model extends Base_model
         } else {
             return false;
         }
-
-        
+       
     }
 }
