@@ -12,6 +12,13 @@ class Form
         $this->output[] = $element;
     }
 
+    public function hiddenInput($name, $value="")
+    {
+        $element = "<input type='hidden' name='$name' value='$value'>";
+       
+        $this->output[] = $element;
+    }
+
     public function textAreaInput($name, $pholder="", $label, $inputClass = "form-control")
     {
         $labelTag = "<label for='$name'>$label</label>";
@@ -32,7 +39,7 @@ class Form
         $element = $labelTag . $select;
         
         foreach ($data as $key => $value) {
-            $element .= "<option value=". $value[$valueindex[0]] .'">'. $value[$valueindex[1]]."</option>";
+            $element .= "<option value=". $value[$valueindex[0]] .'>'. $value[$valueindex[1]]."</option>";
             
         }       
         $this->output[] = $element.'</select>';
@@ -69,12 +76,11 @@ class Form
         // skips button elements
         foreach ($this->output as $key => $value) {
             
-
-            // mindfuck: ologiskt att den skippar button-elementet när substr_compare gäller
-            // http://php.net/manual/en/function.substr-compare.php
-            if(substr_compare($value, '<button', 0, 6)){
-            $this->output[$key] = '<div class="form-group">'.$value.'</div>';
+            // Skips div around buttons and hidden input elements
+            if(preg_match('/^(<button)|(hidden)/', $value)){
+                continue;
             }
+            $this->output[$key] = '<div class="form-group">'.$value.'</div>';
 
         }
         // create a string with html

@@ -39,14 +39,3 @@ h1 {
     margin: auto;
 }
 
-/* Table with css-grid */
-
-.grid-table {
-    grid-column: 2 / 4;
-}
-
-td, th {
-    padding: 2%;
-    text-align: center;
-
-}

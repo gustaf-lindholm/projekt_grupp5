@@ -47,6 +47,18 @@ class ProdOptions_model extends Base_model
 
     }
 
+    public function getOptionValues()
+    {
+        $this->sql = "SELECT option_values.option_id, option_values.value_id, option_values.value_name FROM projekt_klon.option_values
+        JOIN option_type ON option_values.option_id = option_type.option_id";
+
+        $this->prepQuery($this->sql);
+
+        $data = $this->getAll();
+
+        return $data;
+    }
+
     // insert new option
     public function insertOption()
     {
@@ -56,5 +68,36 @@ class ProdOptions_model extends Base_model
 
         $this->prepQuery($this->sql, $paramBinds) ? $_POST['optiontype']['status'] = 'true' : $_POST['optiontype']['status'] = 'false';
 
+    }
+
+    public function insertProductOption()
+    {
+
+        $values = [$_POST['newProdOption']['product_id'], $_POST['newProdOption']['option_id']];
+
+        $this->sql = "INSERT INTO product_options (product_id, option_id) values (:product_id, :option_id)";
+        
+        $paramBinds = [':product_id' => $values[0], ':option_id' => $values[1]];
+
+        if ($this->prepQuery($this->sql, $paramBinds))
+        {
+            //$_POST['newProdOption']['status'] = 'success';
+            return true;
+        } else {
+            return false;
+        }
+       
+    }
+
+    public function removeProductOption($pid, $option_id)
+    {
+        $this->sql = "DELETE FROM projekt_klon.product_options WHERE product_id= :pid and option_id = :option_id;";
+
+        $paramBinds = [
+            ':pid' => $pid,
+            ':option_id' => $option_id,
+        ];
+
+        $this->prepQuery($this->sql, $paramBinds);
     }
 }
