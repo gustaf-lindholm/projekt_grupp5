@@ -50,10 +50,16 @@ class ProductOptions extends Base_controller
             $this->Index();
             
         }
-
-        
-
     
+    }
+
+    public function removeProductOption($pid = "", $product_id = "")
+    {
+        $this->initModel('ProdOptions_model');
+
+        $this->modelObj->removeProductOption($pid, $product_id);
+
+        $this->index();
     }
 
 }

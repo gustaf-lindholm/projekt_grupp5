@@ -49,6 +49,8 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 
 <!-- Output title and info for chosen product if the product have options -->
 <?php
+
+var_dump($url);
 if(isset($data['options'][0]['title']))
 {
     echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
@@ -68,7 +70,9 @@ if(isset($data['options'][0]['title']))
                 $optionInfo = "";
                 foreach ($data['options'] as $key => $value) {
                     $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td>"
-                    .'<td><a href=""<span class="glyphicon glyphicon-remove"></span></a></td>'."</tr>";                                 
+                    .'<td><a href="'
+                    .URLrewrite::BaseAdminURL('productoptions/removeProductOption').'/'.$data['options'][0]['product_id'].'/'.$value['option_id']
+                    .'"<span class="glyphicon glyphicon-remove"></span></a></td>'."</tr>";                                 
                 }?>
                 
                 <?php echo $optionInfo ?>

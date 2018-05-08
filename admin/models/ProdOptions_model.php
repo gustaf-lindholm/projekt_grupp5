@@ -88,4 +88,16 @@ class ProdOptions_model extends Base_model
         }
        
     }
+
+    public function removeProductOption($pid, $option_id)
+    {
+        $this->sql = "DELETE FROM projekt_klon.product_options WHERE product_id= :pid and option_id = :option_id;";
+
+        $paramBinds = [
+            ':pid' => $pid,
+            ':option_id' => $option_id,
+        ];
+
+        $this->prepQuery($this->sql, $paramBinds);
+    }
 }
