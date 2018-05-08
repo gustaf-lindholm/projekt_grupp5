@@ -67,7 +67,8 @@ if(isset($data['options'][0]['title']))
             <?php
                 $optionInfo = "";
                 foreach ($data['options'] as $key => $value) {
-                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td></tr>";                                 
+                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td>"
+                    .'<td><a href=""<span class="glyphicon glyphicon-remove"></span></a></td>'."</tr>";                                 
                 }?>
                 
                 <?php echo $optionInfo ?>
