@@ -1,4 +1,8 @@
-<?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
+<?php include ADMIN_VIEW.'tempAdminMenu.php'; 
+
+$pid = isset($_POST['products']) ? $_POST['products'] : null;
+
+?>
 
 <div class="form-container">
 <!-- Form to choose product and option to add -->
@@ -44,10 +48,11 @@
 <div>
 
 <!-- Output title and info for chosen product if the product have options -->
-<?php if(isset($data['options']['products']['title']))
+<?php
+if(isset($data['options'][0]['title']))
 {
-    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options']['products']['title']."</h1>".
-    '<h1 class=""><small> PID:'.$data['options']['products']['product_id']."</small></h1></div>";?>
+    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
+    '<h1 class=""><small> PID:'.$data['options'][0]['product_id']."</small></h1></div>";?>
 </div>
 <!-- Table with info for chosen product -->
 <div class="form-container">
