@@ -1,6 +1,6 @@
 <?php
 var_dump(URLrewrite::BaseURL().'signup/createNewAccount');
-var_dump($_POST);
+var_dump($_POST['user']);
 ?>
 
 <section class="main-container">
@@ -8,19 +8,19 @@ var_dump($_POST);
 	<div class="main-wrapper">
 		<h2>Signup</h2>
 		<form class="signup-form" action="<?php echo URLrewrite::BaseURL().'signup/createNewAccount'?>" method="POST">
-			<input type="hidden" name="submit[level_id]" value="1">
+			<input type="hidden" name="user[level_id]" value="1">
 			<label for="firstname-input">Firstname <span class="text-danger">*</span></label>
-			<input type="text" name="submit[fname]" placeholder="Firstname">
+			<input type="text" name="user[fname]" placeholder="Firstname">
 			<label for="lastnamename-input">Lastname <span class="text-danger">*</span></label>
-			<input type="text" name="submit[lname]" placeholder="Lastname">
+			<input type="text" name="user[lname]" placeholder="Lastname">
 			<label for="email-input">Email <span class="text-danger">*</span></label>
-			<input type="text" name="submit[email]" placeholder="E-mail">
+			<input type="text" name="user[email]" placeholder="E-mail">
 			<label for="telephone-input">Telephone <span class="text-danger">*</span></label>
-			<input type="text" name="submit[phone]" placeholder="Telephone">
+			<input type="text" name="user[phone]" placeholder="Telephone">
 			<label for="username-input">Username <span class="text-danger">*</span></label>
-			<input type="text" name="submit[username]" placeholder="Username">
+			<input type="text" name="user[username]" placeholder="Username">
 			<label for="password-input">Password <span class="text-danger">*</span></label>
-			<input type="password" name="submit[password]" placeholder="Password">
+			<input type="password" name="user[password]" placeholder="Password">
 			<button type="submit" name="submit">Sign up</button>
 		</form>
 	</div>
