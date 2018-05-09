@@ -51,9 +51,3 @@ class Signup_Model extends base_model
             }
     }
 }
-
-// lägg till ny user
-// INSERT INTO `projekt_klon`.`user` (`level_id`, `fname`, `lname`, `phone`, `email`) VALUES ('3', 'musa', 'jallow', '123456', 'musa@djur.se');
-
-// lägg till ny account
-// INSERT INTO `projekt_klon`.`account` (`uid`, `username`, `password`) VALUES ('5', 'mbrown', 'password');
