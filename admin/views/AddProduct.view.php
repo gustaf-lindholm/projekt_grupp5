@@ -1,8 +1,5 @@
-<div>
-        <p>Temporary menu</p>
-        <a href="<?php echo URLrewrite::BaseAdminURL('addproduct') ?>"><button id="addProduct" class="btn btn-primary adminButton">Add New Product</button></a>
-        <a href="<?php echo URLrewrite::BaseAdminURL('productoptions') ?>"><button id="addProduct" class="btn btn-primary adminButton">Manage Product Options</button></a>      
-</div>
+<?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
+
 <div class="form-container">
 
         <?php
@@ -26,8 +23,8 @@
     
     <?php 
             //show add variant form after new product has been added
-            if(isset($_POST['newProdId']))
-            {
+        //     if(isset($_POST['newProdId']))
+        //     {
                 $variantForm = new Form;
                 $variantForm->textInput('addVariant[product_id]', 'Product Id', 'Product ID');
                 $variantForm->textInput('addVariant[sku]', 'SKU', 'Stock Keeping Unit');
@@ -37,6 +34,6 @@
                 $action = URLrewrite::adminURL('addvariant');
                 $variantForm->render($action,'Add Variant Information', 'g-form');
 
-            }
+           // }
     ?>
     </div>

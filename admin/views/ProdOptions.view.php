@@ -1,31 +1,62 @@
-<div>
-        <p>Temporary menu</p>
-        <a href="<?php echo URLrewrite::BaseAdminURL('addproduct') ?>"><button id="addProduct" class="btn btn-primary adminButton">Add New Product</button></a>
-        <a href="<?php echo URLrewrite::BaseAdminURL('productoptions') ?>"><button id="addProduct" class="btn btn-primary adminButton">Manage Product Options</button></a>      
+<?php include ADMIN_VIEW.'tempAdminMenu.php'; 
+
+$pid = isset($_POST['products']) ? $_POST['products'] : null;
+
+?>
+
+<div class="form-container">
+<!-- Form to choose product and option to add -->
+<?php
+    // Print response on product option insert
+    if(Registry::getStatus() !== null && Registry::getStatus('addProdStatus') == 'success')
+    {
+        echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
+
+    } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
+        echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
+    }
+    $products = $data['products'];
+    $options = $data['optionType'];
+    $productsList = new Form;
+    $productIndex = ['pid', 'title'];
+    $optionIndex = ['option_id', 'option_name'];
+    $productsList->select("newProdOption[product_id]", 'All products', 'newOption', $products, $productIndex);
+    $productsList->select("newProdOption[option_id]", 'All options', 'newOption', $options, $optionIndex);
+    $productsList->hiddenInput('newProdOption[status]', 'sent');        
+    $productsList->button('Add option');
+    $action = URLrewrite::BaseAdminURL('productoptions/addProductOption');
+    $productsList->render($action, 'Add option to product', 'g-form', 'newOption');
+?>
+
 </div>
+
+
 <div class="form-container">
 <!-- Output <select> element with all products -->
 <?php
-    $products = $data[0];
+    $products = $data['products'];
     $productsList = new Form;
     $valueIndex = ['pid', 'title'];
     $productsList->select('products', 'All products', 'prodInfo', $products, $valueIndex);
     $productsList->button('Show info');
     $action = URLrewrite::BaseAdminURL('productoptions');
-    $productsList->render($action, 'Show product info', 'g-form', 'prodInfo');
+    $productsList->render($action, 'Product Option Info', 'g-form', 'prodInfo');
 ?>
-
 
 </div>
 <?php if (isset($_POST['products'])) { ?>
 <div>
 
 <!-- Output title and info for chosen product if the product have options -->
-<?php if(isset($data[1][0]['title']))
+<?php
+
+var_dump($url);
+if(isset($data['options'][0]['title']))
 {
-    echo '<h1 class="prod-title">Available Options for:'.$data[1][0]['title']."</h1>".
-    '<h1 class=""><small> PID:'.$data[1][0]['product_id']."</small></h1>";?>
+    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
+    '<h1 class=""><small> PID:'.$data['options'][0]['product_id']."</small></h1></div>";?>
 </div>
+<!-- Table with info for chosen product -->
 <div class="form-container">
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
@@ -37,8 +68,11 @@
         <tbody class="">
             <?php
                 $optionInfo = "";
-                foreach ($data[1] as $key => $value) {
-                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td></tr>";                                 
+                foreach ($data['options'] as $key => $value) {
+                    $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['option_id']."</td>"
+                    .'<td><a href="'
+                    .URLrewrite::BaseAdminURL('productoptions/removeProductOption').'/'.$data['options'][0]['product_id'].'/'.$value['option_id']
+                    .'"<span class="glyphicon glyphicon-remove"></span></a></td>'."</tr>";                                 
                 }?>
                 
                 <?php echo $optionInfo ?>
@@ -46,11 +80,9 @@
         </tbody>
     </table>
     
-    <!-- Error message if no options for chosen product 
-    @todo: print product_id for product without options
-    -->
-    <?php } else {
-    echo '<h1 class="prod-title">No options in database for the chosen product.</h1>';
+    <!-- Error message if no options for chosen product  -->
+    <?php } elseif (isset(($_POST['products']))) {
+    echo '<div class="alert alert-warning"><h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1></div>';
 }
 ?>
 </div>
@@ -78,7 +110,7 @@
     // value and text output = <option value="option_id">option_name</option> 
 
     $valueindex = ['option_id', 'option_name'];
-    $optionform->select('Options','Available Options', 'optionform', $data[2], $valueindex);
+    $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
 
         
     // input of new option
