@@ -11,7 +11,7 @@ class Account extends base_controller
         $this->initModel('Account_model');
         //var_dump($this->modelObj);
 
-        $uid = $_SESSION['loggedin']; //
+        $uid = $_SESSION['loggedIn']['uid']; //
 
         $data = $this->modelObj->getPerson($uid);
 
@@ -20,5 +20,11 @@ class Account extends base_controller
 
         
     }
+
+    public function deletePerson($uid) {
+        $this->initModel('Account_model');
+        $this->modelObj->deletePerson($uid);
+        $this->index();
+    } 
 
 }
