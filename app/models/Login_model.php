@@ -31,7 +31,7 @@ class Login_model extends base_model
             			} else { //om rätt användare finns i db, logga in användaren 
             				if ($resultCheck['username'] === $username && $resultCheck['username'] === $hashedPassword) {
                                 $_SESSION['loggedIn'] = true;
-                                URLrewrite::BaseAdminURL('account/index');
+                                URLrewrite::BaseURL('account/index'); 
                             }
             		}
                 }
