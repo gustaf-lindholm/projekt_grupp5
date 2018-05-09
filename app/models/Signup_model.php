@@ -32,7 +32,7 @@ class Signup_Model extends base_model
             				echo "username already taken";
                             var_dump($resultCheck);
             			} else {
-            				$hashedPassword = md5($_POST['login']['password']);
+            				$hashedPassword = md5($_POST['user']['password']);
             				$sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
             				$paramBinds = [':level_id' => $level_id, ':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
 					        $this->prepQuery($sql, $paramBinds);
