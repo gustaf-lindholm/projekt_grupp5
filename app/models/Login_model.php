@@ -1,5 +1,4 @@
 <?php
-
 /**
 * 
 */
@@ -8,8 +7,7 @@ class Login_model extends base_model
 	
 	public function login()
     {
-        $_SESSION['loggedIn'] = false;
-    	// kolla om alla fälten är ifyllda
+        // kolla om alla fälten är ifyllda
         if (empty($_POST['username']) || empty($_POST['password'])) {
         	echo "Fyll i de tomma fälten";
         } else { // kolla så att alla fälten är korrekt ifyllda
@@ -30,7 +28,7 @@ class Login_model extends base_model
             				echo "du finns inte i db, försök igen";
             			} else { //om rätt användare finns i db, logga in användaren 
             				if ($resultCheck['username'] === $username && $resultCheck['username'] === $hashedPassword) {
-                                $_SESSION['loggedIn'] = true;
+                                $_SESSION['username'] = $username;
                                 URLrewrite::BaseURL('account/index');
                             }
             		}

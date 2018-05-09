@@ -21,7 +21,11 @@ var_dump($_POST);
 			<input type="text" name="submit[username]" placeholder="Username">
 			<label for="password-input">Password <span class="text-danger">*</span></label>
 			<input type="password" name="submit[password]" placeholder="Password">
+<<<<<<< HEAD
 			<button type="" name="">Sign up</button>
+=======
+			<button type="submit" name="submit">Sign up</button>
+>>>>>>> 4590e9485c73b31237b5aca953274cfb5def305e
 		</form>
 	</div>
 </section>

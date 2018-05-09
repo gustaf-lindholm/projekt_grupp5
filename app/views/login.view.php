@@ -1,5 +1,8 @@
 <?php
 var_dump(URLrewrite::BaseURL().'login/loginUser');
+var_dump($_SESSION);
+var_dump($_POST['submit']);
+echo session_id();
 ?>
 
 <section class="main-container">
