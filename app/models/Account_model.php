@@ -32,6 +32,8 @@ class Account_model extends Base_model
         } else {
             echo "fail";
         }
+        
+        unset($_SESSION['loggedIn']);
         session_destroy();
         header('Location:'.URLrewrite::baseURL()); //rewrites the deleted user to the default-page
 
