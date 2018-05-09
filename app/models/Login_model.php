@@ -27,8 +27,8 @@ class Login_model extends base_model
 							echo "du finns inte i db, försök igen";
 						} else { //om rätt användare finns i db, logga in användaren 
 							if ($result['username'] === $username && $result['password'] === $hashedPassword) {
-								$_SESSION['username'] = $username;
-								$_SESSION['uid'] = $result['uid'];
+								$_SESSION['loggedIn']['username'] = $username;
+								$_SESSION['loggedIn']['uid'] = $result['uid'];
 								URLrewrite::BaseURL('account/index');
 							}
 					}
