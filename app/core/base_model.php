@@ -24,18 +24,16 @@ class Base_model
     public function prepQuery($sql, $paramBinds = [])
     {
         try {
-              
             $this->stmt = $this->dbh->prepare($sql);
             
             if($paramBinds != []){
                 // bindParam needs a variable, therefore the value to be bound is passed by reference
                 foreach ($paramBinds as $key => &$value) {
                     $this->stmt->bindParam($key, $value);
-                            
+                      
                 }
-            }
-
             
+            }            
             if($this->stmt->execute())
             {
                 // save the last auto incremented id from the last insert statement
