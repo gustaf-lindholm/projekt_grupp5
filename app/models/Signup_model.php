@@ -5,8 +5,11 @@ class Signup_Model extends base_model
 	// här bygger jag olika metoder som kan hantera och göra olika saker
     public function signupUser()
     {
-    	    if (empty($_POST['fname']) || empty($_POST['lname']) || empty($_POST['email']) || empty($_POST['phone']) || empty($_POST['username']) || empty($_POST['password'])) {
-            	echo "du måste fylla i de tomma fälten";
+		var_dump($_POST);
+		
+    	    if (empty($_POST['submit']['fname']) || empty($_POST['submit']['lname']) || empty($_POST['submit']['email']) || empty($_POST['submit']['phone']) || empty($_POST['submit']['username']) || empty($_POST['submit']['password'])) {
+				echo "du måste fylla i de tomma fälten";
+				
             } else {
             	if (!preg_match('/^[a-zA-Z]*$/', $_POST['fname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['lname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['username'])) {
             		echo "fel tecken";
@@ -27,7 +30,7 @@ class Signup_Model extends base_model
             				echo "username already taken";
             			} else {
             				$hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            				$sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, $phone, $email)";
+            				$sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
             				$paramBinds = [':level_id' => $level_id, ':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
 					        $User = new User;
 					        prepQuery($sql, $paramBinds = []);
