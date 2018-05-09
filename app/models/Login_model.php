@@ -37,4 +37,9 @@ class Login_model extends base_model
                 }
         }
 	}
+
+	public function logout()
+	{
+		// logout
+	}
 }
