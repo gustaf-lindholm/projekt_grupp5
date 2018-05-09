@@ -50,7 +50,6 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 <!-- Output title and info for chosen product if the product have options -->
 <?php
 
-var_dump($url);
 if(isset($data['options'][0]['title']))
 {
     echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
