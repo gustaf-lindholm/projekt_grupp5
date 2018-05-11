@@ -41,8 +41,10 @@ class Login_model extends base_model
 	public function logout()
 	{
 		//unset session
-		unset ($_SESSION['loggedIn']);
+		unset($_SESSION["loggedin"]['username']);
+		//destroy session
+		session_destroy();
 		// redirect to homepage
-		URLrewrite::BaseURL('index');
+		header('Location:'.URLrewrite::BaseURL().'index');
 	}
 }
