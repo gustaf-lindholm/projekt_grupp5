@@ -14,7 +14,7 @@ class Cart extends Base_Controller
         //We instansiate cartItems method where we save the new array from session
         $data = $this->modelObj->cartItems();
 
-        //This will be shown on our products page
+        //This will be shown on our cart page
         $this->reqView('Cart', $data);
 	}
 }
