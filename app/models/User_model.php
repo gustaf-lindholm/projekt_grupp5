@@ -9,7 +9,7 @@ class User_model extends Base_model
         INNER JOIN  user_levels ON user.level_id = user_levels.level_id";
         $this->prepQuery($this->sql);
         $this->getAll();
-        return self::$data;
+        return self::$userData;
     }
 
     public function getUser($uid)
