@@ -15,5 +15,6 @@ class Signup extends Base_controller
         $this->initModel('Signup_model');
         // här kallar vi på metoder i den instanserade modeln
         $this->modelObj->signupUser();
+        //$this->reqView('login');
     }
 }

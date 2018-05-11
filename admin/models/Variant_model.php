@@ -1,6 +1,6 @@
 <?php
 
-class AddVariant_model extends Base_model
+class Variant_model extends Base_model
 {
     public function addVariant()
     {
@@ -22,5 +22,17 @@ class AddVariant_model extends Base_model
             return false;
         }
     }
+
+    public function getProdVariants()
+    {
+        $this->sql = "SELECT variant_id, product_id, sku, price FROM product_variants ORDER BY product_id";
+
+        $this->prepQuery($this->sql);
+
+        $data = $this->getAll();
+
+        return $data;
+    }
+
     
 }
