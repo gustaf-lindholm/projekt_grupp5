@@ -117,7 +117,6 @@ if (isset($_SESSION['loggedIn']['username'])) {
 } 
 ?>
 
-<?php 
 
 
       <div  class="navbar-form navbar-left">
