@@ -11,7 +11,7 @@ class Account extends base_controller
         $this->initModel('Account_model');
         //var_dump($this->modelObj);
 
-        $uid = $_SESSION['loggedin']; //
+        $uid = $_SESSION['loggedIn']; //
 
         $data = $this->modelObj->getPerson($uid);
 

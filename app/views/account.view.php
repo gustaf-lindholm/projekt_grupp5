@@ -1,6 +1,6 @@
 <html>
 <head>
-<title> <?php echo $data[0] ['fname']; ?>'s page</title> <!-- prints out the users surname, is currently overrided with the header.php file -->
+<title> <?php echo $data[0]['fname']; ?>'s page</title> <!-- prints out the users surname, is currently overrided with the header.php file -->
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
 <div class="container">
