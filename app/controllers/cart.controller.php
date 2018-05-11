@@ -6,7 +6,7 @@
 class Cart extends Base_Controller
 {
 	
-	public function cart() 
+	public function index() 
 	{
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Cart_model');
