@@ -20,6 +20,7 @@
             <form method="POST" action="<?php URLrewrite::BaseURL().'/cart'; ?> ">
                 <input type="hidden" name="cartItem[pid]" value="<?php echo $data[0]['pid'] ?>">
                 <input type="hidden" name="cartItem[variant_id]" value="<?php echo $data[0]['variant_id'] ?>">
+                <input type="hidden" name="cartItem[price]" value="<?php echo $data[0]['price'] ?>">                
                 <button type="submit">Köp</button>
             </form>
         </div>
