@@ -1,10 +1,7 @@
 <div class="prod-container">
-
-        
-        //Will go to filter results controller
         <div class="col-xs-12">
-        <form action="<?php echo URLrewrite::BaseURL().'productFilter'?>">;
-        <select class="form-control" name="filter[brand]">';
+        <form action="<?php echo URLrewrite::BaseURL().'productFilter'?>" method="POST">;
+        <select class="form-control" name="filter[brand]">;
         <?php
         foreach($data as $key => $value) {
             var_dump($value["manufacturer"]);
@@ -17,7 +14,7 @@
     </div>
 
 <?php
-        //var_dump($data);
+        var_dump($data);
         //var_dump($data[1]['manufacturer']);
         foreach ($data as $product) {
             $properties = explode("/", $product['properties']);
