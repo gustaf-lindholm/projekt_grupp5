@@ -16,7 +16,7 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 ?>
 
 <a class="btn btn-primary" href="/projekt_grupp5/public/account/">My details</a> <a class="btn btn-primary" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
-<a href="<?php echo URLrewrite::URL('updateuser') ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
+<a href="<?php echo URLrewrite::URL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="" class="btn btn-primary">Change password</a>
 
 <!--- Page info for the users account -->
