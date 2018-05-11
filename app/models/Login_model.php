@@ -29,7 +29,7 @@ class Login_model extends base_model
 							if ($result['username'] === $username && $result['password'] === $hashedPassword) {
 								$_SESSION['loggedIn']['username'] = $username;
 								$_SESSION['loggedIn']['uid'] = $result['uid'];
-								URLrewrite::BaseURL('account/index');
+								header('Location:'.URLrewrite::BaseURL().'account/index');
 							}
 					}
 						
