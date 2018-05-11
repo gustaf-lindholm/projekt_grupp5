@@ -47,6 +47,7 @@
         <button type="submit" class="btn btn-default">Search</button>
       </form>
       <a href="<?php echo URLrewrite::BaseURL('companySignup')?>">Company Site/signup(leda till egen sida eller bara signup?)</a>
+      <a href="<?php echo URLrewrite::BaseURL().'login'?>"><button type="btn">Login</button></a>
 <?php
     if (isset($_SESSION['loggedIn']['username'])) { ?>
     <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button type="btn">Logout</button></a>
