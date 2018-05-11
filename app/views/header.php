@@ -48,9 +48,9 @@
       </form>
       <a href="<?php echo URLrewrite::BaseURL('companySignup')?>">Company Site/signup(leda till egen sida eller bara signup?)</a>
 <?php
-    if (isset($_SESSION['loggedIn']['username'])) {
-    print_r('<a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button type="btn">Logout</button></a>');
-?>
+    if (isset($_SESSION['loggedIn']['username'])) { ?>
+    <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button type="btn">Logout</button></a>
+<?php }?>
           </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->
