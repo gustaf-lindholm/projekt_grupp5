@@ -1,3 +1,7 @@
+<?php
+var_dump($_POST['cartItem']);
+?>
+
 <div class="single-prod-container">
     <?php 
     //title
@@ -17,11 +21,9 @@
                printf("<ul><li>%s: %s</li></ul>", $key, $value);
            }
             ?>
-            <form method="POST" action="<?php URLrewrite::BaseURL().'/cart'; ?> ">
-                <input type="hidden" name="cartItem[pid]" value="<?php echo $data[0]['pid'] ?>">
-                <input type="hidden" name="cartItem[variant_id]" value="<?php echo $data[0]['variant_id'] ?>">
-                <input type="hidden" name="cartItem[price]" value="<?php echo $data[0]['price'] ?>">                
-                <button type="submit">Köp</button>
+            <form method="POST" action="<?php echo URLrewrite::BaseURL().'cart'; ?>">
+              <input type="hidden" name="cartItem" value="<?php echo htmlentities(serialize($data[0])); ?>" />
+              <button type="submit">Köp</button>
             </form>
         </div>
 </div>
