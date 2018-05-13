@@ -11,7 +11,7 @@
             <?php
            foreach ($data[0] as $key => $value) {
 
-               if($key == 'desc' || $key == 'img_url'){
+               if($key == 'info' || $key == 'img_url'){
                    continue;
                }
                printf("<ul><li>%s: %s</li></ul>", $key, $value);
