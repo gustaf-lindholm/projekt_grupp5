@@ -43,10 +43,19 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <!-- DELETE ACCOUNT BUTTON -->
 
-<form class='delete-form' method='POST' action=''".deletePerson()."''>
-<input type="submit" class="btn btn-danger" placeholder="Delete account"></input>
+<a onclick="confirmDelete()" class="btn btn-danger" href="<?php echo URLrewrite::BaseURL()."Account/deletePerson"."/".$_SESSION['loggedIn']['uid'] ?>">Delete</a>
+
+
+<!--<form method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
+    <input type="hidden" name="_METHOD" value="DELETE">
+    <input type="hidden" name="uid" value="<?php echo $uid; ?>"> 
+    <button class="btn btn-danger" type="submit">Delete Account</button> <!-- https://stackoverflow.com/questions/16962280/delete-button-and-confirmation -->
 </form>
-        
-<!--<a href="" class="smbutton">Delete account</a> -->
+
+<script>
+function confirmDelete() {
+    confirm("Are you sure you want to delete your account?");
+}
+   </script>     
 
 </div>

@@ -20,6 +20,25 @@ class Account_model extends Base_model
         return self::$data;
     }
 
+    public function deletePerson($uid) {
+        
+        $this->sql = "DELETE FROM `projekt_klon`.`account` WHERE uid= :uid";
+
+        $paramBinds = [':uid' => $uid]; 
+        
+        if($this->prepQuery($this->sql, $paramBinds))
+        {
+            echo "working";
+        } else {
+            echo "fail";
+        }
+        
+        unset($_SESSION['loggedIn']);
+        session_destroy();
+        header('Location:'.URLrewrite::baseURL()); //rewrites the deleted user to the default-page
+
+}
+
  
     /*function getPersonForm($person) {
         $this->sql =
