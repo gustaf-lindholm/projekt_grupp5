@@ -1,0 +1,43 @@
+<body>    
+    <div id="mainContainer">
+       <h2 class="titleCart">Varukorg</h2>
+        <div id="cartContainer">
+            <?php
+            $data[] = unserialize($_POST['cartItem']);
+            foreach ($data as $product) {
+                echo "<div id='prodContainer'>";
+                echo "<div id='prodImg'>";
+                printf("<img class='prodImg' alt='%s' src='%s'>", $product['manufacturer']." ".$product['title'], $product['img_url']);
+                echo "</div>";
+                echo "<div id='prodInfo'>";
+                print_r($product['manufacturer']." ".$product['title']);
+                print_r($product['property']);
+                echo "Shipping within 2-3 days";
+                echo "</div>";
+                echo "<div id='prodPrice'>";
+                print_r($product['price']);
+                echo "</div>";
+                echo "<div id='prodAmount'>";
+                printf("<form action='%s' method='POST'>", URLrewrite::BaseURL().'cart');
+                printf("<input type='number' value='1'>");
+                printf("<button type='submit'>Update</button>");
+                printf("</form>");
+                echo "</div>";
+                echo "</div>";
+                    }
+                ?>
+        </div>
+            <div id="orderInfo">
+                <div id="totalAmount">
+                    <span>TOTALT:</span><span id="showSum"></span>
+                </div>
+                <div id="confirmCart">
+                    <button type="button">GÅ TILL KASSAN</button>
+                    <article>
+                       Terms & conditions
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>	
+</body>

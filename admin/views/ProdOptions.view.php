@@ -5,6 +5,48 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 ?>
 
 <div class="form-container">
+
+<?php
+    // display message if insert of new option was succssessful or not
+    if(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] === 'true')
+    {
+        echo "<h4>New option type successfully added!</h4>";
+
+    } elseif(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] = 'false')
+    {
+        echo "<h4 class='prod-title'>Failed to insert new option type, try again or contact site administrator</h4>";
+    }
+    
+    // instantiate new form object
+    $optionform = new Form;
+    
+    // output existing options from db:
+    // $data is queried in the model, sent to controller and the to the view.
+    // valueindex is the $data array key names so the form-class can identify
+    // which values in the data array is given to the select's option element's
+    // value and text output = <option value="option_id">option_name</option> 
+
+    $valueindex = ['option_id', 'option_name'];
+    $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
+
+        
+    // input of new option
+    $optionform->textInput('optiontype[new]', 'Option', 'Add Option'); 
+
+    // form action
+    $action = URLrewrite::adminURL('productoptions/addoption');
+
+    // submit button
+    $optionform->button('Save New Option');
+    
+    // render and output complete form element
+    $optionform->render($action, 'Options', 'g-form', 'optionform');
+
+
+?>
+</div>
+
+<div class="form-container">
 <!-- Form to choose product and option to add -->
 <?php
     // Print response on product option insert
@@ -50,7 +92,6 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 <!-- Output title and info for chosen product if the product have options -->
 <?php
 
-var_dump($url);
 if(isset($data['options'][0]['title']))
 {
     echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
@@ -87,44 +128,4 @@ if(isset($data['options'][0]['title']))
 ?>
 </div>
 <?php } ?>
-<div class="form-container">
 
-<?php
-    // display message if insert of new option was succssessful or not
-    if(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] === 'true')
-    {
-        echo "<h4>New option type successfully added!</h4>";
-
-    } elseif(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] = 'false')
-    {
-        echo "<h4 class='prod-title'>Failed to insert new option type, try again or contact site administrator</h4>";
-    }
-    
-    // instantiate new form object
-    $optionform = new Form;
-    
-    // output existing options from db:
-    // $data is queried in the model, sent to controller and the to the view.
-    // valueindex is the $data array key names so the form-class can identify
-    // which values in the data array is given to the select's option element's
-    // value and text output = <option value="option_id">option_name</option> 
-
-    $valueindex = ['option_id', 'option_name'];
-    $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
-
-        
-    // input of new option
-    $optionform->textInput('optiontype[new]', 'Option', 'Add Option'); 
-
-    // form action
-    $action = URLrewrite::adminURL('productoptions/addoption');
-
-    // submit button
-    $optionform->button('Save New Option');
-    
-    // render and output complete form element
-    $optionform->render($action, 'Options', 'g-form', 'optionform');
-
-
-?>
-</div>

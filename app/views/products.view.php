@@ -1,7 +1,21 @@
 <div class="prod-container">
-    
+        <div class="col-xs-12">
+        <form action="<?php echo URLrewrite::BaseURL().'productFilter'?>" method="POST">;
+        <select class="form-control" name="filter[brand]">;
         <?php
+        foreach($data as $key => $value) {
+            var_dump($value["manufacturer"]);
+            echo '<option value="'.$value["manufacturer"].'">'.$value["manufacturer"].'</option>';
+        };
+        ?>
+    </select
+        ><button class="btn" type="submit">Search</button>
+    </form>
+    </div>
 
+<?php
+        var_dump($data);
+        //var_dump($data[1]['manufacturer']);
         foreach ($data as $product) {
             $properties = explode("/", $product['properties']);
             echo "<div class='prodBox'>";
@@ -15,4 +29,5 @@
             echo "</ul></div>";
         }
         ?>    
+    
 </div>

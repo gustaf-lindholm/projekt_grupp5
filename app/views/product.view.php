@@ -1,3 +1,7 @@
+<?php
+var_dump($_POST['cartItem']);
+?>
+
 <div class="single-prod-container">
     <?php 
     //title
@@ -11,11 +15,15 @@
             <?php
            foreach ($data[0] as $key => $value) {
 
-               if($key == 'desc' || $key == 'img_url'){
+               if($key == 'info' || $key == 'img_url'){
                    continue;
                }
                printf("<ul><li>%s: %s</li></ul>", $key, $value);
            }
             ?>
+            <form method="POST" action="<?php echo URLrewrite::BaseURL().'cart'; ?>">
+              <input type="hidden" name="cartItem" value="<?php echo htmlentities(serialize($data[0])); ?>" />
+              <button type="submit">Köp</button>
+            </form>
         </div>
 </div>

@@ -29,12 +29,22 @@ class Login_model extends base_model
 							if ($result['username'] === $username && $result['password'] === $hashedPassword) {
 								$_SESSION['loggedIn']['username'] = $username;
 								$_SESSION['loggedIn']['uid'] = $result['uid'];
-								URLrewrite::BaseURL('account/index');
+								header('Location:'.URLrewrite::BaseURL().'account/index');
 							}
 					}
 						
 					
                 }
         }
+	}
+
+	public function logout()
+	{
+		//unset session
+		unset($_SESSION["loggedin"]['username']);
+		//destroy session
+		session_destroy();
+		// redirect to homepage
+		header('Location:'.URLrewrite::BaseURL().'index');
 	}
 }
