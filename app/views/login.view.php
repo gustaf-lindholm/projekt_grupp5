@@ -1,6 +1,10 @@
 <?php
 
-var_dump($_SESSION['loggedIn']);
+var_dump(md5('pass'));
+var_dump($_SESSION);
+
+
+//var_dump($_SESSION['loggedIn']);
 
 //var_dump($_POST);
 // echo session_id();
