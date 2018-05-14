@@ -43,7 +43,7 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <!-- DELETE ACCOUNT BUTTON -->
 
-<a id="alert" class="btn btn-danger" href="<?php echo URLrewrite::BaseURL()."Account/deletePerson"."/".$_SESSION['loggedIn']['uid'] ?>">Delete</a>
+<a onclick="confirmDelete()" class="btn btn-danger" href="<?php echo URLrewrite::BaseURL()."Account/deletePerson"."/".$_SESSION['loggedIn']['uid'] ?>">Delete</a>
 
 
 <!--<form method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
@@ -53,9 +53,9 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 </form>
 
 <script>
-$(document).on("click","#alert",function(){
- alert("I am a pop up ! ");
-});
+function confirmDelete() {
+    confirm("Are you sure you want to delete your account?");
+}
    </script>     
 
 </div>
