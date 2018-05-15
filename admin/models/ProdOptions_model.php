@@ -14,6 +14,18 @@ class ProdOptions_model extends Base_model
 
         return $products;
     }
+
+    public function getProduct($pid)
+    {
+        $this->sql = "SELECT pid, title FROM product WHERE pid = :pid";
+
+        $paramBinds = [':pid' => $pid];
+        $this->prepQuery($this->sql, $paramBinds);
+
+        $products = $this->getOne();
+
+        return $products;
+    }
     
     // fetch options and types for specific (chosen) product
     public function getOptions()
@@ -81,7 +93,6 @@ class ProdOptions_model extends Base_model
 
         if ($this->prepQuery($this->sql, $paramBinds))
         {
-            //$_POST['newProdOption']['status'] = 'success';
             return true;
         } else {
             return false;
