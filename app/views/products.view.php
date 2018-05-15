@@ -24,10 +24,13 @@
             echo "<ul>";
             foreach ($properties as $value) {
                 printf("<li>%s</li>", ucfirst($value));
-                
             }
-            echo "</ul></div>";
+            echo "</ul>";
+            printf("<form method='POST' action='<?php echo URLrewrite::BaseURL().'cart'; ?>'>");
+            printf("<input type='hidden' name='cartItem' value='<?php echo htmlentities(serialize(%s)); ?>'/>", $product[0]);
+            printf("<button type='submit'>Köp</button>");
+            printf("</form>");
+            echo "</div>";
         }
         ?>    
-    
 </div>
