@@ -10,7 +10,8 @@ class orderhistory extends base_controller
 
         $uid = $_SESSION['loggedIn']['uid']; //
         
-        $data = $this->modelObj->displayOrders($uid);
+        //the SQL-array is named $data but alos 'orderInfo'
+        $data['orderInfo'] = $this->modelObj->displayOrders($uid);
         //connects controller with the right view
         $this->reqView('orderhistory',$data);
         
