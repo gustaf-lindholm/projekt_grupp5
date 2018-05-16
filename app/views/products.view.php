@@ -7,7 +7,7 @@
                 $result = $value["manufacturer"];
             };
             
-            echo URLrewrite::BaseURL().'productFilter/'.$result;
+            echo URLrewrite::BaseURL().'productFilter/';
         
             ?>" method="POST">
         <select class="form-control" name="manufacturer">

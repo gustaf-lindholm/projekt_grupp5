@@ -15,11 +15,4 @@ class ProductFilter extends Base_controller
     }
 }
 
-//     public function resultFilterProduct()
-//     {
 
-//     $filterResults = $this->modelObj->
-//     $this->reqView('ProductFilter', $filterResults);
-
-//     }
-// }
