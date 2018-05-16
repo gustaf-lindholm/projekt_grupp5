@@ -46,12 +46,13 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <a href="<?php echo URLrewrite::BaseURL().'login'?>"><button type="btn">Login</button></a>
+      
+      <a href="<?php echo URLrewrite::BaseURL().'login'?>"><button class="btn btn-success" type="btn">Login</button></a>
 <?php
     if (isset($_SESSION['loggedIn']['username'])) { ?>
-    <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button type="btn">Logout</button></a>
+    <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button class="btn btn-success" type="btn">Logout</button></a>
 <?php }?>
-      <a href="<?php echo URLrewrite::BaseURL().'index/companysignup'?>"><button type="btn">Company Site(Leder ingenstans)</button></a>
+      <a href="<?php echo URLrewrite::BaseURL().'index/companysignup'?>"><button class="btn btn-success" type="btn">Company Login</button></a>
           </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->

@@ -9,19 +9,22 @@
         };
         ?>
     </select>
-        <?php 
+        <?php
+        /*
         foreach($data as $number => $content) {
             var_dump($content["type"]);
             echo '<div>'.$content["optionType"];
         }
+        */
         ?>
-    <button class="btn" type="submit">Search</button>
+    <button class="btn btn-success" type="submit">Search</button>
     </form>
-    <a href="<?php echo URLrewrite::BaseURL('productFilter') ?>"><button class="btn btn-primary">Search for Brands</button></a>
+
+
     </div>
 
 <?php
-        var_dump($data);
+        //var_dump($data);
         //var_dump($data[1]['manufacturer']);
         foreach ($data as $product) {
             $properties = explode("/", $product['properties']);
@@ -35,7 +38,7 @@
             echo "</ul>";
             printf("<form method='POST' action='<?php echo URLrewrite::BaseURL().'cart'; ?>'>");
             printf("<input type='hidden' name='cartItem' value='<?php echo htmlentities(serialize(%s)); ?>'/>", $product[0]);
-            printf("<button type='submit'>Köp</button>");
+            printf("<button class='btn btn-success' type='submit'>Köp</button>");
             printf("</form>");
             echo "</div>";
         }
