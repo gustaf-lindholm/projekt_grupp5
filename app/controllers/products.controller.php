@@ -10,6 +10,12 @@ class Products extends Base_controller
         //We request modelObjs from the database
         $data = $this->modelObj->getAllProducts();
 
+        
+        $this->initModel('ProductFilter_model');
+
+        $data['brands'] = $this->modelObj->getBrands();
+  
+
         //This will be shown on our products page
         $this->reqView('Products', $data);
 
