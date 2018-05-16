@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, retu
     header("Location: index.php");
 }
 
-var_dump($data);
+//var_dump($data);
 
 //Users title 
 
