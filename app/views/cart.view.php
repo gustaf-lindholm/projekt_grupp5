@@ -4,9 +4,11 @@
         <div id="cartContainer">
             <?php
             $data[] = unserialize($_POST['cartItem']);
-            var_dump($data);
-            foreach ($data as $product) {
-                echo "<div id='prodContainer'>";
+            $_SESSION['cartItem'] = $data;
+            var_dump($_SESSION['cartItem']);
+            echo "<br><br>";
+            foreach ($_SESSION['cartItem'] as $key => $product) {
+                echo "<div id='prodContainer' class='%s'>", $product['pid'];
                 echo "<div id='prodImg'>";
                 printf("<img class='prodImg' alt='%s' src='%s'>", $product['manufacturer']." ".$product['title'], $product['img_url']);
                 echo "</div>";
@@ -26,12 +28,13 @@
                 echo "</div>";
                 echo "<div id='deleteItem'>";
                 printf("<form action='%s' method='POST'>", URLrewrite::BaseURL().'cart/deleteItem');
-                printf("<button type='submit'>Delete</button>", $product['pid']);
+                printf("<button type='submit' name='%s'>Delete</button>", $product['pid']);
                 printf("</form>");
                 echo "</div>";
                 echo "</div>";
-                    }
-                ?>
+            }
+            
+            ?>
         </div>
             <div id="orderInfo">
                 <div id="totalAmount">

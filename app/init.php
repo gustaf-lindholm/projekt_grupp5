@@ -25,5 +25,8 @@ define("ADMIN_MODEL", ADMIN_PATH.DS.'models'.DS);
 define("ADMIN_VIEW", ADMIN_PATH.DS.'views'.DS);
 define("ADMIN_DEFAULT", 'adminpanel');
 
-
+// Var ska det här ligga?
+if (!$_SESSION['cart'] instanceof SessionCart) {
+	$_SESSION['cart'] = new SessionCart();
+}
 
