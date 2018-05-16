@@ -3,19 +3,33 @@
 class ProductFilter_model extends Base_model
 {
     
-    public function getChosenCategory($manufacturer, $title)
+    public function getChosenCategory()
     {
-        var_dump($_POST);
         //Variations must be added
         $this->sql = 
-        "SELECT * FROM projekt_klon.product WHERE manufacturer = :brand";
-        $manufacturer= $_POST['filter']['brand'];
-        $title = $_POST['filter']['brand']['name'];
-        $paramBinds = [':brand' => $manufacturer, ':brandName' => $title];
-        //var_dump($_POST['filter']);
+        "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
+        product_variants.price, group_concat(DISTINCT value_name order by option_values.option_id separator '/') AS properties, product_variants.sku, product_variants.img_url 
+        FROM projekt_klon.option_values
+        INNER JOIN variant_values ON variant_values.value_id = option_values.value_id 
+        INNER JOIN product ON product.pid = variant_values.product_id
+        INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
+        WHERE manufacturer = :brand";
+       
+        $manufacturer = $_POST['manufacturer'];
+        $paramBinds = [':brand' => $manufacturer];
         $this->prepQuery($this->sql, $paramBinds);
-        $this->getAll();
-        return self::$data;
+        $data = $this->getAll();
+        return $data;
+    }
+
+    public function getBrands() {
+        $this->sql = "SELECT distinct manufacturer FROM product";
+
+        $this->prepQuery($this->sql);
+
+        $data = $this->getAll();
+
+        return $data;
     }
 }
 
