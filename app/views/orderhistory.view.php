@@ -6,7 +6,7 @@
      Feel free to contact our Costumer Service if you have any problems.</p>
 
 <?php
-var_dump ($data);
+//var_dump ($data);
 
 
 //if the user don't have any orders 
@@ -14,6 +14,7 @@ if ($data['orderInfo'] == false) {
     echo "You don't have any orders to display";
 }
 
+//creates table for specific values in the SQL-array
 else {
     ?>
 
@@ -37,7 +38,7 @@ else {
             foreach($data['orderInfo'] as $key => $value) {
                 $productInfo .= "<tr><td>".$value['order_id']."</td>"."<td>".$value['antal']."</td>".
                 "<td>".$value['product_id']."</td>"."<td>".$value['price']."</td>"."<td>".
-                $value['order_time']."</td>"."<td><img".$value['img_url']."'/></td>";
+                $value['order_time']."</td>"."<td class='col-md-2'><img class='img-responsive' src='".$value['img_url']."'/></td>";
                 
              }
            
