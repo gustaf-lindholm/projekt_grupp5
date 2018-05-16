@@ -1,16 +1,23 @@
 <div class="prod-container">
         <div class="col-xs-12">
-        <form action="<?php echo URLrewrite::BaseURL().'productFilter'?>" method="POST">;
-        <select class="form-control" name="filter[brand]">;
+        <form action="<?php echo URLrewrite::BaseURL().'productFilter'?>" method="POST">
+        <select class="form-control" name="filter[brand]">
         <?php
         foreach($data as $key => $value) {
             var_dump($value["manufacturer"]);
             echo '<option value="'.$value["manufacturer"].'">'.$value["manufacturer"].'</option>';
         };
         ?>
-    </select
-        ><button class="btn" type="submit">Search</button>
+    </select>
+        <?php 
+        foreach($data as $number => $content) {
+            var_dump($content["type"]);
+            echo '<div>'.$content["optionType"];
+        }
+        ?>
+    <button class="btn" type="submit">Search</button>
     </form>
+    <a href="<?php echo URLrewrite::BaseURL('productFilter') ?>"><button class="btn btn-primary">Search for Brands</button></a>
     </div>
 
 <?php
