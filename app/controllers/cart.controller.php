@@ -18,10 +18,18 @@ class Cart extends Base_Controller
         $this->reqView('Cart', $data);
 	}
 
+	public function add() {
+		
+		
+		$this->modelObj->add($pid);
+
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+	}
+
 	public function updateCart()
 	{
 		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->updateCart();
+        $data = $this->modelObj->updateCart($pid);
 
         //This will be shown on our cart page
         $this->reqView('Cart', $data);
