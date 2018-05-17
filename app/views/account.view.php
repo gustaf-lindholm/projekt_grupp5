@@ -7,7 +7,11 @@
 
 <?php
 
-var_dump($data);
+if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, return to index-page
+    header("Location: index.php");
+}
+
+//var_dump($data);
 
 //Users title 
 
@@ -54,7 +58,11 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <script>
 function confirmDelete() {
-    confirm("Are you sure you want to delete your account?");
+    if (!confirm("Are you sure you want to delete your account?")) //deletes anyway :< 
+    {
+        return false;
+
+   } 
 }
    </script>     
 
