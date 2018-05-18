@@ -16,4 +16,8 @@ class SessionCart {
 
 
 	}	
+
+	public function remove($pid) {
+		unset($this->products[$pid]);
+	}
 }
