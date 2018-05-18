@@ -22,7 +22,41 @@ class UpdateUser_model extends Base_model
     
     public function UpdateUser($uid) {
 
-    $this->sql = "UPDATE FROM `projekt_klon`.`user` WHERE uid= :uid";
+        var_dump($_POST);
+		
+    
+            if (!preg_match('/^[a-zA-Z]*$/', $_POST['user']['fname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['user']['lname']) {
+                echo "fel tecken";
+            } else {
+                if (!filter_var($_POST['user']['email'], FILTER_VALIDATE_EMAIL)) {
+                    echo "invalid email";
+                } else {
+                    $fname = $_POST['user']['fname'];
+                    $lname = $_POST['user']['lname'];
+                    $email = $_POST['user']['email'];
+                    $phone = $_POST['user']['phone'];
+        
+                        $sql = "UPDATE projekt_klon.user (fname, lname, phone, email) VALUES (:fname, :lname, :phone, :email)";
+                        $paramBinds = [':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
+                        $this->prepQuery($sql, $paramBinds);
+                        $userId = $this->lastInsertId;
+                        echo $userId;
+                        
+                       
+                        URLrewrite::BaseAdminURL('account/index');
+
+
+                    }
+                }
+            }
+        
+       
+
+    
+    
+    
+    
+        /*$this->sql = "UPDATE FROM `projekt_klon`.`user` WHERE uid= :uid";
 
         $paramBinds = [':uid' => $uid]; 
         
@@ -34,7 +68,7 @@ class UpdateUser_model extends Base_model
         }
 
 
-    }
+    }*/
 
 
     

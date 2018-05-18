@@ -21,8 +21,10 @@ class updateuser extends base_controller
         
     }
 
+    //update user function
     public function Update($uid) {
         $this->initModel('UpdateUser_model');
+        $this->modelObj->Update($uid);
     } 
 
 }
