@@ -1,4 +1,5 @@
 <?php
+
 require_once 'settings.inc.php';
 
 // ---- Singleton database connection class ----

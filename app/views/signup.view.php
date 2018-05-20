@@ -1,6 +1,6 @@
 <?php
-var_dump(URLrewrite::BaseURL().'signup/createNewAccount');
-var_dump($_POST['user']);
+//var_dump(URLrewrite::BaseURL().'signup/createNewAccount');
+//var_dump($_POST['user']);
 ?>
 
 <section class="main-container">
@@ -21,7 +21,7 @@ var_dump($_POST['user']);
 			<input type="text" name="user[username]" placeholder="Username">
 			<label for="password-input">Password <span class="text-danger">*</span></label>
 			<input type="password" name="user[password]" placeholder="Password">
-			<button type="submit" name="submit">Sign up</button>
+			<button type="submit" class="btn btn-warning" name="submit">Sign up</button>
 		</form>
 	</div>
 </section>

@@ -17,4 +17,48 @@ class Cart extends Base_Controller
         //This will be shown on our cart page
         $this->reqView('Cart', $data);
 	}
+
+	public function add() {
+		
+		
+		$this->modelObj->add($pid);
+
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+	}
+
+	public function updateCart()
+	{
+		//We instansiate cartItems method where we save the new array from session
+        $data = $this->modelObj->updateCart($pid);
+
+        //This will be shown on our cart page
+        $this->reqView('Cart', $data);
+	}
+
+	public function updateAmount()
+	{
+		//We instansiate cartItems method where we save the new array from session
+        $data = $this->modelObj->updateAmount();
+
+        //This will be shown on our cart page
+        $this->reqView('Cart', $data);
+	}
+
+	public function deleteItem()
+	{
+		//We instansiate cartItems method where we save the new array from session
+        $data = $this->modelObj->deleteItem();
+
+        //This will be shown on our cart page
+        $this->reqView('Cart', $data);
+	}
+
+	public function deleteAllItems()
+	{
+		//We instansiate cartItems method where we save the new array from session
+        $data = $this->modelObj->deleteAllItems();
+
+        //This will be shown on our cart page
+        $this->reqView('Cart', $data);
+	}
 }

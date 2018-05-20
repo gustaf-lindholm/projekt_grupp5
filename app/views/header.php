@@ -20,21 +20,18 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Mobile website</span>
-        <span class="icon-bar">Model</span>
+        <span class="icon-bar active">Model</span>
       </button>
-      <a class="navbar-brand" href="#">MOBILE</a>
+      <a class="navbar-brand" href="<?php echo URLrewrite::BaseURL()?>">MOBILE</a>
     </div>
 
   
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Apple <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Samsung</a></li>
+        <li><a href="<?php echo URLrewrite::BaseURL().'products'?>">Products<span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Accessories</a></li>
-            <li><a href="#">News</a></li>
             <li><a href="#">Contact Us</a></li>
           </ul>
         </li>
@@ -46,12 +43,13 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <a href="<?php echo URLrewrite::BaseURL().'login'?>"><button type="btn">Login</button></a>
+      
+      <a href="<?php echo URLrewrite::BaseURL().'login'?>"><button class="btn btn-success" type="btn">Login</button></a>
 <?php
     if (isset($_SESSION['loggedIn']['username'])) { ?>
-    <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button type="btn">Logout</button></a>
+    <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button class="btn btn-success" type="btn">Logout</button></a>
 <?php }?>
-      <a href="<?php echo URLrewrite::BaseURL().'index/companysignup'?>"><button type="btn">Company Site(Leder ingenstans)</button></a>
+      <a href="<?php echo URLrewrite::BaseURL().'index/companysignup'?>"><button class="btn btn-success" type="btn">Company Login</button></a>
           </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->

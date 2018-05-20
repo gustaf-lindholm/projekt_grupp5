@@ -24,6 +24,3 @@ define("ADMIN_CONTROLLER", ADMIN_PATH.DS.'controllers'.DS);
 define("ADMIN_MODEL", ADMIN_PATH.DS.'models'.DS);
 define("ADMIN_VIEW", ADMIN_PATH.DS.'views'.DS);
 define("ADMIN_DEFAULT", 'adminpanel');
-
-
-
