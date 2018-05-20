@@ -36,13 +36,25 @@ class manageProduct extends base_controller
         $this->viewProductVariants($pid);
     }
 
-    public function editVariant($vid, $pid)
+    public function editVariant($pid, $vid)
     {
         $this->initModel('Variant_model');
 
-        $data = $this->modelObj->getSpecificProdVariant($vid, $pid);
+        $data = $this->modelObj->getSpecificProdVariant($pid, $vid);
 
+        $data['optionValues'] = $this->modelObj->getOptionValues();
+        
         $this->reqView('editVariant', $data);
+    }
+
+    public function editVariantOption($pid, $option_id, $vid)
+    {
+        $this->initModel('Variant_model');
+
+        $this->modelObj->editVariantOption($pid, $option_id, $vid);
+            
+        $this->editVariant($pid, $vid);
+
     }
 
 }
