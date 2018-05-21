@@ -20,7 +20,7 @@ class Changepassword_model extends Base_model {
 
     /*public function changeUserPassword($uid) {
 
-        $this->sql = "UPDATE `projekt_klon`.`account` SET `password` WHERE uid= :uid"
+        $this->sql = "UPDATE `projekt_klon`.`account` SET `password`=:password WHERE uid= :uid"
         $binds = [':uid' => $uid];
         $this->prepQuery($this->sql, $binds);
         $data = $this->getAll();

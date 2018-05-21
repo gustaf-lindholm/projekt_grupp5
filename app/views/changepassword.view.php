@@ -27,6 +27,12 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <h3 class="text-center">Change password </h3> <br>
 
+<div class="form-group">
+    <label for="">New password</label>
+    <input type="password" class="form-control" id="" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
 </div>
 
 </body>
