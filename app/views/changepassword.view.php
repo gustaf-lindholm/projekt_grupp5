@@ -23,15 +23,77 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
 
-<!--- Page info for the users account -->
+<!--- Change password form -->
 
-<h3 class="text-center">Change password </h3> <br>
+<?php
 
-<div class="form-group">
-    <label for="">New password</label>
-    <input type="password" class="form-control" id="" placeholder="Password">
+if ($_POST['submit']) { //using this tutorial https://www.youtube.com/watch?v=IC_H-91DnVs
+
+    //echo "test";
+
+    //check fields
+
+    $oldpassword = md5($_POST['oldpassword']);
+    $newpassword = md5($_POST['newpassword']);
+    $repeatnewpassword = md5($_POST['repeatnewpassword']);
+
+    //echo"$oldpassword/$newpassword/$repeatnewpassword";
+
+    $oldpassworddb = $data[0] ['password'];
+
+    //echo $oldpassworddb."<br>"; only debugg 
+    //echo $oldpassword."<br>"; only debugg 
+
+    //check password
+
+    if ($oldpassword==$oldpassworddb){
+
+        //check two new passwords
+        if ($newpassword==$repeatnewpassword){
+
+            //sucess
+            //change password in db
+
+            echo "Sucess!";
+           /* $querychange = mysql_query("UPDATE account SET password='$newpassword' WHERE uid=:uid");
+
+            die("Your password has been changed");
+            session_destroy();
+            header('Location:'.URLrewrite::baseURL()); */
+        }
+
+        else {
+
+            die("New passwords don't match!");
+        }
+
+    }
+
+    else {
+        die("Old password doesn't match!");
+    }
+
+
+}
+
+else { 
+
+echo"
+<h3 class='text-center'>Change password </h3> <br>
+
+<div class='form-group'>
+    <form action='".URLrewrite::BaseURL().'changePassword/changeUserPassword'."'method='POST'>
+    <label for=''>Old password</label>
+    <input type='text' class='form-control' id='' name='oldpassword'>
+    <label for=''>New password</label>
+    <input type='password' class='form-control' id='' name='newpassword'>
+    <label for=''>Repeat new password</label>
+    <input type='password' class='form-control' id='' name='repeatnewpassword'>
+  <input type='submit' class='btn btn-primary' name='submit' value='Change password'>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>";
+}
+  ?>
 
 </div>
 

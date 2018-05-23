@@ -13,11 +13,11 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <section class="main-container">
 		<form class="update-form" action="<?php echo URLrewrite::BaseURL().'UpdateUser'?>" method="POST">
-			<label for="firstname-input">Firstname <span class="text-danger"></span></label>
+			<label id="" for="firstname-input">Firstname <span class="text-danger"></span></label>
 			<input type="text" name="user[fname]" placeholder="<?php echo $data[0] ['fname'] ?>">
-			<label for="lastnamename-input">Lastname <span class="text-danger"></span></label>
+			<label id="" for="lastnamename-input">Lastname <span class="text-danger"></span></label>
 			<input type="text" name="user[lname]" placeholder="<?php echo $data[0] ['lname'] ?>">
-			<label for="email-input">Email <span class="text-danger"></span></label>
+			<label id="" for="email-input">Email <span class="text-danger"></span></label>
 			<input id="emailID" type="text" name="user[email]" placeholder="<?php echo $data[0] ['email'] ?>">
 			<label for="telephone-input">Telephone <span class="text-danger"></span></label>
 			<input id="phoneID" type="text" name="user[phone]" placeholder="<?php echo $data[0] ['phone'] ?>">
