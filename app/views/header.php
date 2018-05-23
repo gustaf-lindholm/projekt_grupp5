@@ -49,7 +49,7 @@
     if (isset($_SESSION['loggedIn']['username'])) { ?>
     <a href="<?php echo URLrewrite::BaseURL().'login/logout'?>"><button class="btn btn-success" type="btn">Logout</button></a>
 <?php }?>
-      <a href="<?php echo URLrewrite::BaseURL().'index/companysignup'?>"><button class="btn btn-success" type="btn">Company Login</button></a>
+      <a href="<?php echo URLrewrite::BaseURL().'companysignup'?>"><button class="btn btn-success" type="btn">Company Login</button></a>
           </div><!-- End for .navbar-collapse -->
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->

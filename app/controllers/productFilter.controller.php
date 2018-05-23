@@ -10,6 +10,7 @@ class ProductFilter extends Base_controller
         {
         $this->initModel('ProductFilter_model');
         $data = $this->modelObj->getChosenCategory();
+        $data['variants'] = $this->modelObj->getProductVariants();
         $this->reqView('ProductFilter', $data);
         }
     }

@@ -8,11 +8,11 @@ class SessionCart {
 
 	public function add($pid, $amount = 1) {
 	
-		if (array_key_exists($pid, $this->products) {
-			$this->products[$pid] += $amount;
-		} else {
-			$this->products[$pid] = $amount;
-		}
+		// if (array_key_exists($pid, $this->products) {
+		// 	$this->products[$pid] += $amount;
+		// } else {
+		// 	$this->products[$pid] = $amount;
+		// }
 
 
 	}	

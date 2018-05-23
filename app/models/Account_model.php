@@ -6,10 +6,7 @@ class Account_model extends Base_model
     public function getPerson($uid) 
     {
         $this->sql = 
-        "SELECT * FROM user WHERE user.uid = :uid"; //display user info and connects url-id with user id
-        
-        //"SELECT * FROM user JOIN account ON account.uid = user.uid WHERE user.uid = :uid"; // both the clients info and password
-        
+        "SELECT * FROM user WHERE user.uid = :uid"; //display user info and connects url-id with user id        
         // parameters to be bound, is sent to the prepQuery method (doesn't always have to be included)
         $paramBinds = [':uid' => $uid];
         $base = new Base_model;

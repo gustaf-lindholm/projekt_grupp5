@@ -1,8 +1,4 @@
 <?php
-
-/**
-* 
-*/
 class CompanySignup_model extends Base_Model
 {
 	
