@@ -31,6 +31,24 @@ class ProductFilter_model extends Base_model
 
         return $data;
     }
+
+    public function getProductVariants() {
+        $this->sql = 
+        "SELECT product.info, pid, cid, variant_values.variant_id, option_values.option_id, 
+        group_concat(value_name separator '/') AS property, title, manufacturer, price, img_url, sku
+        FROM projekt_klon.variant_values
+        JOIN option_values ON variant_values.value_id = option_values.value_id
+        JOIN product ON variant_values.product_id = product.pid
+        JOIN product_variants ON product_variants.product_id = variant_values.product_id
+        WHERE variant_values.product_id = product.pid AND variant_values.variant_id = product.vid
+        AND product_variants.product_id = product.pid AND product_variants.variant_id = product.vid";
+
+        $this->prepQuery($this->sql);
+
+        $data = $this->getAll();
+
+        return $data;
+    }
 }
 
 

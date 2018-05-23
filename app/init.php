@@ -24,3 +24,9 @@ define("ADMIN_CONTROLLER", ADMIN_PATH.DS.'controllers'.DS);
 define("ADMIN_MODEL", ADMIN_PATH.DS.'models'.DS);
 define("ADMIN_VIEW", ADMIN_PATH.DS.'views'.DS);
 define("ADMIN_DEFAULT", 'adminpanel');
+
+// Var ska det här ligga?
+/*if (!$_SESSION['cart'] instanceof SessionCart) {
+	$_SESSION['cart'] = new SessionCart();
+} */ //Commented out because it didn't work for me (Carolina)
+

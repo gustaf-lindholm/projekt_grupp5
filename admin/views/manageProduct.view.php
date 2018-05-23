@@ -1,4 +1,6 @@
 <?php
+include ADMIN_VIEW.'tempAdminMenu.php'; 
+
 $status = Registry::getStatus('editProduct');
 if (!isset($status) || $status != 'edit' )
 {

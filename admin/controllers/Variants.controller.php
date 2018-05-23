@@ -36,4 +36,13 @@ class Variants extends Base_controller
             echo 'failed';
         }   
     }
+
+    public function updateVariant()
+    {
+        $this->initModel('Variant_model');
+
+        $this->modelObj->updateVariant();
+
+        
+    }
 }

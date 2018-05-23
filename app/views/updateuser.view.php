@@ -6,18 +6,31 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 <div class="text-center">
 <a class="btn btn-primary" href="/projekt_grupp5/public/account/">My details</a> <a class="btn btn-primary" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
-<a href="" class="btn btn-primary">Change password</a>
+<a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>"><button class="btn btn-primary updateButton">Change Password</button></a>
 
 <h3>Update <?php echo $data[0] ['fname'] ?>'s Information </h3>
 
-</div>
+
+<section class="main-container">
+		<form class="update-form" action="<?php echo URLrewrite::BaseURL().'UpdateUser'?>" method="POST">
+			<label id="" for="firstname-input">Firstname <span class="text-danger"></span></label>
+			<input type="text" name="user[fname]" placeholder="<?php echo $data[0] ['fname'] ?>">
+			<label id="" for="lastnamename-input">Lastname <span class="text-danger"></span></label>
+			<input type="text" name="user[lname]" placeholder="<?php echo $data[0] ['lname'] ?>">
+			<label id="" for="email-input">Email <span class="text-danger"></span></label>
+			<input id="emailID" type="text" name="user[email]" placeholder="<?php echo $data[0] ['email'] ?>">
+			<label for="telephone-input">Telephone <span class="text-danger"></span></label>
+			<input id="phoneID" type="text" name="user[phone]" placeholder="<?php echo $data[0] ['phone'] ?>">
+			<button type="submit" class="btn btn-warning" name="submit">Update</button>
+		</form>
+	</div>
+</section>
 
 
 <?php 
 
-
         
-        $UserForm = new Form();
+        /* $UserForm = new Form();
         $UserForm->textInput('updateU[firstname]','Firstname');
         $UserForm->textAreaInput('updateU[lastname]','Lastname');
         $UserForm->numInput('updateU[phone]','Phonenumber');
@@ -26,4 +39,4 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
         $action = URLrewrite::BaseURL('UpdateUser');
         $UserForm->render($action,'Change User Information', 'g-form'); 
         
-        ?>  
+        ?>  */
