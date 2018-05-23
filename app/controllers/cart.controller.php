@@ -12,7 +12,7 @@ class Cart extends Base_Controller
         $this->initModel('Cart_model');
 
         //We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->cartItems();
+        $data = $this->modelObj->showCart();
 
         //This will be shown on our cart page
         $this->reqView('Cart', $data);
@@ -21,44 +21,25 @@ class Cart extends Base_Controller
 	public function add() {
 		
 		
-		$this->modelObj->add($pid);
+		$this->modelObj->add($sku);
 
 		header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
-	public function updateCart()
+	public function removeItem()
 	{
 		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->updateCart($pid);
+        $data = $this->modelObj->removeItem();
 
-        //This will be shown on our cart page
-        $this->reqView('Cart', $data);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
-	public function updateAmount()
+	public function emptyCart()
 	{
 		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->updateAmount();
+        $this->modelObj->emptyCart();
 
-        //This will be shown on our cart page
-        $this->reqView('Cart', $data);
-	}
-
-	public function deleteItem()
-	{
-		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->deleteItem();
-
-        //This will be shown on our cart page
-        $this->reqView('Cart', $data);
-	}
-
-	public function deleteAllItems()
-	{
-		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->deleteAllItems();
-
-        //This will be shown on our cart page
-        $this->reqView('Cart', $data);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 }
+
