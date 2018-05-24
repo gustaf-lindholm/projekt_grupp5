@@ -10,7 +10,8 @@ echo "<pre>";
     $properties = explode("/", $product['properties']);
     echo "<div class='prodBox'>";
     //var_dump($product);
-    echo "<h1>" . $product['title'] . "</h1>";
+    printf('<h1><a href="'.URLrewrite::BaseURL().'product/'.$product['pid'].'/'.$product['variant_id'].'">'. $product['title'] . "</a></h1>");
+    //printf('<h3><a href="'.URLrewrite::BaseURL().'product/'.$product['product_id'].'/'.$product['variant_id'].'">' . $product['title'] . '</a></h3>');
     printf("<img class='prodImg' alt='%s' src='%s'>", $product['title'], $product['img_url']);
     echo "<ul>";
     foreach ($properties as $value) {

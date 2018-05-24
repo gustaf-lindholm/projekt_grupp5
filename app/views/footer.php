@@ -25,10 +25,10 @@
 					<div class="col-sm-4 col-sm-offset-1">
 						<div class="single-widget">
 							<h2>Keep in Touch with us <3</h2>
+							<p>Sign up to our newsletter <br/></p>
 							<form action="#" class="searchform">
 								<input type="text" class="form-control" placeholder="Enter your email address: " />
-								<button type="submit" class="btn btn-default">Submit</button>
-								<p>Sign up to our newsletter <br/></p>
+								<button type="submit" class="btn btn-success">Submit</button>
 							</form>
 						</div>
 					</div>
