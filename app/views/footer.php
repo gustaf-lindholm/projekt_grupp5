@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-sm-4 col-sm-offset-1">
 						<div class="single-widget">
-							<h2>About US</h2>
+							<h2>Keep in Touch with us <3</h2>
 							<form action="#" class="searchform">
 								<input type="text" class="form-control" placeholder="Enter your email address: " />
 								<button type="submit" class="btn btn-default">Submit</button>

@@ -34,7 +34,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="<?php echo URLrewrite::BaseURL().'contactus'?>">Contact Us</a></li>
           </ul>
         </li>
       </ul>
