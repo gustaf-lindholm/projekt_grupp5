@@ -23,4 +23,37 @@ class User_model extends Base_model
         $this->getOne();
         return self::$data;
     }
+
+    public function searchDatabase()
+    {
+        if (isset($_POST['search'])) {
+            $this->sql = "SELECT title FROM product WHERE title LIKE '%$title%' LIMIT 5;";
+            //$title = $_POST['search'];
+            $title = $_POST['search'];
+            $paramBinds = [':title' => $title];
+            $this->prepQuery($this->sql, $paramBinds);
+            $data = $this->getAll();
+    
+            return $data;
+
+         echo '<ul>';
+ 
+        while ($data) {
+ 
+       ?>
+         <li onclick='fill("<?php echo $data['title']; ?>")'>
+        <a><?php echo $data['title']; ?></li></a>
+ 
+   <?php
+ 
+}}
+ 
+ 
+?>
+ 
+</ul>
+
+    <?php
+    }
 }
+?>
