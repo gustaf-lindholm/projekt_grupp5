@@ -34,15 +34,24 @@ class ProductFilter_model extends Base_model
 
     public function getProductVariants() {
         $this->sql = 
-        "SELECT pid, cid, variant_id, sku, manufacturer, info, price, img_url FROM product JOIN product_variants
-        ON product.pid = product_variants.product_id
-        WHERE product.manufacturer = :brand";
+        "SELECT product.title, product.pid, product.manufacturer, product.info, product_variants.sku,
+        product_variants.variant_id,
+        product_variants.price, group_concat(DISTINCT value_name order by product_variants.variant_id separator '/') AS properties,product_variants.img_url
+        FROM projekt_klon.product_variants
+        JOIN variant_values
+        ON product_variants.variant_id = variant_values.variant_id
+        AND product_variants.product_id = variant_values.product_id
+        JOIN option_values
+        ON variant_values.option_id = option_values.option_id
+        AND variant_values.value_id = option_values.value_id
+        JOIN product
+        ON product_variants.product_id = product.pid
+        WHERE manufacturer = :brand
+        GROUP BY product_variants.sku";
     
-
         $manufacturer = $_POST['manufacturer'];
         $paramBinds = [':brand' => $manufacturer];
         $this->prepQuery($this->sql, $paramBinds);
-
         $data = $this->getAll();
 
         return $data;
