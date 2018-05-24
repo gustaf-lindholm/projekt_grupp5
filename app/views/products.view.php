@@ -28,12 +28,13 @@
 <?php
         foreach ($data as $product) {
             if(isset($product['title'])){
+                //var_dump($product);
             $properties = explode("/", $product['properties']);
             echo "<div class='prodBox'>";
             //printf('<h1>Mobiles<a href="'.URLrewrite::BaseURL().'/product">' . $data['brand'] . '</a></h1>');
             printf("<img class='prodImg' alt='%s' src='%s'>", $product['title'], $product['img_url']);
             echo "<ul>";
-            printf('<h3><a href="'.URLrewrite::BaseURL().'/product">' . $product['title'] . '</a></h3>');
+            printf('<h3><a href="'.URLrewrite::BaseURL().'product/'.$product['product_id'].'/'.$product['variant_id'].'">' . $product['title'] . '</a></h3>');
             foreach ($properties as $value) {
                 printf("<li>%s</li>", ucfirst($value));
             }
