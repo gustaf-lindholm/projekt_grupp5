@@ -1,5 +1,5 @@
 <?php
-//
+var_dump($data);
 ?>
 
 <div class="single-prod-container">
@@ -21,10 +21,18 @@
                printf("<ul><li>%s: %s</li></ul>", $key, $value);
            }
             ?>
-            <form method="POST" action="<?php echo URLrewrite::BaseURL().'cart'; ?>">
-              <input type="hidden" name="cartItem" value="<?php echo htmlentities(serialize($data[0])); ?>" />
-              <input type="hidden" name="pid" value="312" />
-              <input type="submit" name="submit" value="BUY"/>
-            </form>
+            <?php
+            // inte den bästa lösningen men för att det ska funka för stunden
+            foreach ($data[0] as $key => $value) {
+
+               if($key == 'info' || $key == 'img_url' || $key == 'pid' || $key == 'cid' || $key == 'variant_id' || $key == 'option_id' || $key == 'property' || $key == 'title' || $key == 'manufacturer' || $key == 'price'){
+                   continue;
+               }
+             }
+                printf('<form method="POST" action="<?php echo URLrewrite::BaseURL()."cart"; ?>">');
+                printf('<input type="hidden" name="%s" value="%s" />', $key, $value );
+                printf('<input type="submit" name="submit" value="BUY"/>');
+                printf('</form>');
+            ?>
         </div>
 </div>

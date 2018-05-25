@@ -1,6 +1,6 @@
 <?php
 /**
-* Class that manges list of PIDs in Session
+* Class that manges list of SKUs in Session
 */
 class SessionCart {
 	private $products = [];
