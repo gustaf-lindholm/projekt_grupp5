@@ -29,10 +29,12 @@ var_dump($data);
                    continue;
                }
              }
-                printf('<form method="POST" action="<?php echo URLrewrite::BaseURL()."cart"; ?>">');
+             ?>
+                <form method="POST" action="<?php echo URLrewrite::BaseURL()."cart"; ?>">
+                  <?php
                 printf('<input type="hidden" name="%s" value="%s" />', $key, $value );
                 printf('<input type="submit" name="submit" value="BUY"/>');
-                printf('</form>');
-            ?>
+                ?>
+                </form>
         </div>
 </div>

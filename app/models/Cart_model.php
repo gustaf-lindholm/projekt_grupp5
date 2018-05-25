@@ -42,20 +42,20 @@ class Cart_model extends Base_model
 
 	public function add($sku, $amount = 1) {
 
-		SELECT count(*) FROM products WHERE sku = ':sku'
+		$this->sql = "SELECT count(*) FROM products WHERE sku = ':sku'";
 
 		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
 		if ($sku > 0) {
 			$_SESSION['cart']->addProduct($sku, $amount);
 		}
 	}
-
+/*
 	public function removeItem($sku)
 	{
 		// delete one item from session array
 		unset($_SESSION['cart']->deleteProduct($sku));
 	}
-
+*/
 	public function emptyCart() 
 	{
 		// empty cartarray
