@@ -135,42 +135,41 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
 
-    $prodOptions = [];
-    foreach ($data['variantOptions'] as $key => $value) {
-        //var_dump($value['option_id']);
-        $prodOptions[] = $value['option_id'];
-    }
+    // current options for variant
+    $variantOptions = [];
+    // all options
     $allOptions = [];
-    // only show options not added to variant in the select element
-    foreach ($data['optionType'] as $key => $value) {
-        $allOptions[] = $value['option_id'];
-    }
+    $options;
 
-    var_dump($prodOptions);
-
-    foreach ($allOptions as $key => $value) {
-        if ($allOptions[$key] == $prodOptions[0]) {
-            echo "hej";
-            
+    // dont know how but its working. Only showing options which can be added
+    foreach ($data['optionType'] as $key => $aoptions) {
+        foreach ($data['variantOptions'] as $k => $vOptions) {
+            $variantOptions['option_id'][$k] = $vOptions['option_id'];
+            $variantOptions['option_name'][$k] = $vOptions['option_name'];
         }
+        $allOptions['option_id'][$key] = $aoptions['option_id'];
+        $allOptions['option_name'][$key] = $aoptions['option_name'];
+           
     }
-    //var_dump($allOptions);
-            // $options[$key]['option_id'] = $value['option_id'];
-            // $options[$key]['option_name'] = $value['option_name'];
-    // create and render form
-    // $productsList = new Form;
-    // $optionIndex = ['option_id', 'option_name'];
-    // $productsList->select("newProdOption[option_id]", 'All options', 'newOption', $options, $optionIndex);
-    // $productsList->hiddenInput('newProdOption[status]', 'sent');        
-    // $productsList->hiddenInput('newProdOption[product_id]', $data['variantInfo']['pid']);        
-    // $productsList->button('Add option');
-    // $action = URLrewrite::BaseAdminURL('productoptions/addProductOption');
-    // $productsList->render($action, 'Add option to <strong>'.$data['variantInfo']['title'].'</strong>', 'g-form', 'newOption');
+    $optionIds = array_diff($allOptions['option_id'], $variantOptions['option_id']);
+    $optionNames = array_diff($allOptions['option_name'], $variantOptions['option_name']);
+    foreach ($optionIds as $key => $value) {
+       $options[] = ['option_id' => $value, 'option_name' => $optionNames[$key]];
+    }
+
+    // create and render form for adding option to variant
+    $productsList = new Form;
+    $optionIndex = ['option_id', 'option_name'];
+    $productsList->select("newProdOption[option_id]", 'All options', 'newOption', $options, $optionIndex);
+    $productsList->hiddenInput('newProdOption[status]', 'sent');        
+    $productsList->hiddenInput('newProdOption[product_id]', $data['variantInfo']['pid']);        
+    $productsList->button('Add option');
+    $action = URLrewrite::BaseAdminURL('productoptions/addProductOption');
+    $productsList->render($action, 'Add option to <strong>'.$data['variantInfo']['title'].'</strong>', 'g-form', 'newOption');
 ?>
 </div>
 
 <?php
-echo "<pre>";
-//var_dump();
-
-var_dump($data);
+// echo "<pre>";
+// var_dump($data['variantOptions']);
+// var_dump($data['optionType']);

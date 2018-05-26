@@ -58,6 +58,8 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
     $products = $data['products'];
+    echo "<pre>";
+    var_dump($products);
     $options = $data['optionType'];
     $productsList = new Form;
     $productIndex = ['pid', 'title'];
