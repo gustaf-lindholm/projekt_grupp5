@@ -1,23 +1,22 @@
 <?php
 /**
-* Class that manges list of PIDs in Session
+* Class that manges list of SKUs in Session
 */
-
 class SessionCart {
 	private $products = [];
 
-	public function add($pid, $amount = 1) {
+	public function addProduct($sku, $amount = 1) 
+	{
 	
-		if (array_key_exists($pid, $this->products) {
-			$this->products[$pid] += $amount;
+		if (array_key_exists($sku, $this->products)) {
+			$this->products[$sku] += $amount;
 		} else {
-			$this->products[$pid] = $amount;
+			$this->products[$sku] = $amount;
 		}
-
-
 	}	
 
-	public function remove($pid) {
-		unset($this->products[$pid]);
+	public function remove($sku) 
+	{
+		unset($this->products[$sku]);
 	}
 }

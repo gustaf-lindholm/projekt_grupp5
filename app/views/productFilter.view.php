@@ -1,31 +1,29 @@
 <?php 
-//var_dump($_POST['manufacturer']);
 echo "<h2>".$_POST['manufacturer']."</h2>";
-
+echo "<pre>";
+//var_dump($_POST);
 //var_dump($data);
-
-foreach ($data as $product) {
+//var_dump($data['variants']);
+//var_dump($data);
+ foreach ($data['variants'] as $product) {
+    if(isset($product['sku'])){
     $properties = explode("/", $product['properties']);
     echo "<div class='prodBox'>";
-    echo "<h1>" . $product['title'] . "</h1>";
+    //var_dump($product);
+    printf('<h1><a href="'.URLrewrite::BaseURL().'product/'.$product['pid'].'/'.$product['variant_id'].'">'. $product['title'] . "</a></h1>");
+    //printf('<h3><a href="'.URLrewrite::BaseURL().'product/'.$product['product_id'].'/'.$product['variant_id'].'">' . $product['title'] . '</a></h3>');
     printf("<img class='prodImg' alt='%s' src='%s'>", $product['title'], $product['img_url']);
     echo "<ul>";
     foreach ($properties as $value) {
         printf("<li>%s</li>", ucfirst($value));
     }
+    echo "<li>".$product['price']." SEK</li>";
     echo "</ul>";
-    /*
-    printf("<form method='POST' action='<?php echo URLrewrite::BaseURL().'cart'; ?>'>");
-    printf("<input type='hidden' name='cartItem' value='<?php echo htmlentities(serialize(%s)); ?>'/>", $product[0]);
+    printf("<form method='POST' action='
+    <?php echo URLrewrite::BaseURL().'cart'; ?>'");
     printf("<button class='btn btn-success' type='submit'>Köp</button>");
     printf("</form>");
     echo "</div>";
-    */
+    } 
 }
-
-// printf("<form>");
-// printf("<ul><li>Product name: %s</li></ul>", $data['title']);
-// printf("<ul><li>Information: %s</li></ul>", $data['info']);
-// printf("<ul><li'>Brand: %s</li></ul>", $data['manufacturer']);
-// print("</form>");
 ?>
