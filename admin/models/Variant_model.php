@@ -115,16 +115,16 @@ class Variant_model extends Base_model
     }
 
     // query DB for all option values (option_id, value_id, value_name)
-    public function getOptionValues()
-    {
-        $this->sql = "SELECT * FROM option_values";
+    // public function getOptionValues()
+    // {
+    //     $this->sql = "SELECT * FROM option_values";
 
-        $this->prepQuery($this->sql);
+    //     $this->prepQuery($this->sql);
 
-        $data = $this->getAll();
+    //     $data = $this->getAll();
         
-        return $data;
-    }
+    //     return $data;
+    // }
     
     //This method updates the variant value in (manageProduct/editVariant)
     public function editVariantOption($pid, $option_id, $vid)
@@ -139,11 +139,28 @@ class Variant_model extends Base_model
         if ($this->prepQuery($this->sql, $paramBinds)) {
             Registry::setStatus(['editVariantOption' => true]);            
             return true;
-            //header('Location: '.URLrewrite::BaseAdminURL("manageProduct/editVariant/$pid/$vid"));
         } else {
             Registry::setStatus(['editVariantOption' => false]);
             return false;            
         }
         
     }
+
+    public function removeVariantOption($pid, $option_id)
+    {
+        $this->sql = "DELETE FROM `projekt_klon`.`variant_values` WHERE `product_id`= :pid and`option_id`= :option_id;
+        ";
+
+        $paramBinds = [':pid' => $pid, ":option_id" => $option_id,];
+
+        // set registry status on query execution
+        if ($this->prepQuery($this->sql, $paramBinds)) {
+            Registry::setStatus(['removeVariantOption' => 'true']);            
+            return true;
+        } else {
+            Registry::setStatus(['removeVariantOption' => 'false']);
+            return false;            
+        }
+    }
+
 }

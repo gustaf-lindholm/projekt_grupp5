@@ -8,10 +8,10 @@ session_start();
 
 require_once '../app/init.php';
 
-// instansierar varukorgen så att den är tillgänglig över hela sidan
-if (!$_SESSION['cart'] instanceof SessionCart) {
-	$_SESSION['cart'] = new SessionCart();
-}
+//instansierar varukorgen så att den är tillgänglig över hela sidan
+// if (!$_SESSION['cart'] instanceof SessionCart) {
+// 	$_SESSION['cart'] = new SessionCart();
+// }
 
 // include header
 include '../app/views/header.php';

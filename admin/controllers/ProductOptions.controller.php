@@ -11,7 +11,7 @@ class ProductOptions extends Base_controller
         $data['products'] = $this->modelObj->getProducts();
         
         // get options for chosen product     
-        $data['options'] = $this->modelObj->getOptions();
+        $data['options'] = $this->modelObj->getSpecificOptions();
 
         // get all options available in option_type in DB
         $data['optionType'] = $this->modelObj->getOptionType();
@@ -26,10 +26,10 @@ class ProductOptions extends Base_controller
         $this->initModel('ProdOptions_model');
 
         // Insert new option
-        $this->modelObj->insertOption();
+        $this->modelObj->insertOptionType();
 
         // Redirect back to index method in this controller
-        header('Location:'.URLrewrite::BaseAdminURL('productoptions'));
+        header('Location:'.$_SERVER['HTTP_REFERER']);
 
     }
 
@@ -61,5 +61,6 @@ class ProductOptions extends Base_controller
 
         $this->index();
     }
+
 
 }

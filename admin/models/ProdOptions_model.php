@@ -28,7 +28,7 @@ class ProdOptions_model extends Base_model
     }
     
     // fetch options and types for specific (chosen) product
-    public function getOptions()
+    public function getSpecificOptions()
     {
         $this->sql = 
         "SELECT title, product_id, product_options.option_id, option_name FROM product_options
@@ -61,8 +61,7 @@ class ProdOptions_model extends Base_model
 
     public function getOptionValues()
     {
-        $this->sql = "SELECT option_values.option_id, option_values.value_id, option_values.value_name FROM projekt_klon.option_values
-        JOIN option_type ON option_values.option_id = option_type.option_id";
+        $this->sql = "SELECT * FROM option_values";
 
         $this->prepQuery($this->sql);
 
@@ -71,8 +70,25 @@ class ProdOptions_model extends Base_model
         return $data;
     }
 
+    // add new option value to db
+    public function addOptionValue($optionId, $valueName)
+    {
+        $this->sql = "INSERT INTO `projekt_klon`.`option_values` (`option_id`, `value_name`) VALUES (:optionId, :valueName)";
+
+        $paramBinds = [':optionId' => $optionId, ':valueName' => $valueName];
+
+        // set status depending on sql query result
+        if ($this->prepQuery($this->sql, $paramBinds)) {
+            Registry::setStatus(['addOptionValue' => true]);            
+            return true;
+        } else {
+            Registry::setStatus(['addOptionValue' => false]);
+            return false;            
+        }
+    }
+
     // insert new option
-    public function insertOption()
+    public function insertOptionType()
     {
         $value = isset($_POST['optiontype']['new']) ? $_POST['optiontype']['new'] : null;
         $this->sql = "INSERT INTO option_type (option_name) VALUES (:option_name)";
@@ -81,6 +97,7 @@ class ProdOptions_model extends Base_model
         $this->prepQuery($this->sql, $paramBinds) ? $_POST['optiontype']['status'] = 'true' : $_POST['optiontype']['status'] = 'false';
 
     }
+    
 
     public function insertProductOption()
     {
