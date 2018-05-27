@@ -43,6 +43,13 @@ class Variants extends Base_controller
 
         $this->modelObj->updateVariant();
 
-        
+
+    }
+
+    public function addVariantValue()
+    {
+        $this->initModel('Variant_model');
+
+        $this->modelObj->addVariantValue();
     }
 }

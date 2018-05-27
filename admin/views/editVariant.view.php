@@ -47,7 +47,7 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 </div>
 
 <div class="form-container">
-<h1 class="prod-title">Edit option values</h1>
+<h1 class="prod-title">Edit <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']?></strong> option values</h1>
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>
@@ -94,6 +94,86 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
                 <?php echo $optionInfo ?>
         </tbody>
     </table>
+</div>
+<div class="form-container">
+<h1 class="prod-title">Add option and value to <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']; ?></h1>
+
+<form style="display: contents;">
+<table class="grid-table table-striped table-bordered">
+<thead class="thead-light">
+    <tr>
+        <th scope="col">Option</th>
+        <th scope="col">Value</th>
+    </tr>
+</thead>
+<tbody class="">
+    <?php
+        // variable to hold option info output
+        $output = "";
+        // loop trough $data and create a table                
+        foreach ($data['optionType'] as $k => $v) {
+            
+            // row start
+            $output .= "<tr><td>";
+
+            $output .= $v['option_name'];
+            $output .= "</td>";
+            $output .= "<td>";
+                
+
+            //td for option and hidden inputs with pid and vid
+            foreach ($data['optionValues'] as $key => $value) {
+                
+                if ($v['option_id'] == $value['option_id']) {
+                    $output .= "<input type='hidden' value='".$data['variantInfo']['variant_id']."'>";        
+                    $output .= "<input type='hidden' value='".$data['variantInfo']['pid']."'>";        
+        
+                    // radio buttons
+                    $output .= "<label class='radio-inline' style='margin: 5px;'>";            
+                    $output .= "<input type='radio' value='".$value['value_id']."'>".$value['value_name'];
+                    $output .= "</label>";
+                }
+
+                
+            }
+
+
+            // td with save button and end row tag
+            $output .= "</td></tr>";
+            
+            
+                               
+        }
+        
+        echo $output
+        
+        ?>
+        
+</tbody>
+</table>
+<button type="submit" class="btn btn-primary">Save</button>
+
+</form>
+
+<?php
+
+$variantVal = new Form();
+// hidden product id and variant id
+$variantVal->hiddenInput('addVariantValue[pid]', $data['variantInfo']['pid']);
+$variantVal->hiddenInput('addVariantValue[vid]', $data['variantInfo']['variant_id']);
+// select option
+$optionValueindex = ['option_id', 'option_name'];
+$variantVal->select('Options','Select Option', 'addVariantValueForm', $data['optionType'], $optionValueindex);
+
+//select value
+$valueindex = ['value_id', 'value_name'];
+$variantVal->InlineRadio('addVariantValueForm', $data['optionValues'], $valueindex);
+
+
+// submit and render
+$variantVal->button('Save');
+$variantVal->render('#', 'Add variant value', 'g-form', 'addVariantValueForm');
+?>
 </div>
 <div class="form-container">
 <h1 class="prod-title">Manage Options</h1>
@@ -170,6 +250,6 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 </div>
 
 <?php
-// echo "<pre>";
-// var_dump($data['variantOptions']);
-// var_dump($data['optionType']);
+echo "<pre>";
+var_dump($data);
+//var_dump($data['optionType']);

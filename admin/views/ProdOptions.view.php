@@ -7,40 +7,40 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 <div class="form-container">
 
 <?php
-    // // display message if insert of new option was succssessful or not
-    // if(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] === 'true')
-    // {
-    //     echo "<h4>New option type successfully added!</h4>";
+    // display message if insert of new option was succssessful or not
+    if(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] === 'true')
+    {
+        echo "<h4>New option type successfully added!</h4>";
 
-    // } elseif(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] = 'false')
-    // {
-    //     echo "<h4 class='prod-title'>Failed to insert new option type, try again or contact site administrator</h4>";
-    // }
+    } elseif(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] = 'false')
+    {
+        echo "<h4 class='prod-title'>Failed to insert new option type, try again or contact site administrator</h4>";
+    }
     
-    // // instantiate new form object
-    // $optionform = new Form;
+    // instantiate new form object
+    $optionform = new Form;
     
-    // // output existing options from db:
-    // // $data is queried in the model, sent to controller and the to the view.
-    // // valueindex is the $data array key names so the form-class can identify
-    // // which values in the data array is given to the select's option element's
-    // // value and text output = <option value="option_id">option_name</option> 
+    // output existing options from db:
+    // $data is queried in the model, sent to controller and the to the view.
+    // valueindex is the $data array key names so the form-class can identify
+    // which values in the data array is given to the select's option element's
+    // value and text output = <option value="option_id">option_name</option> 
 
-    // $valueindex = ['option_id', 'option_name'];
-    // $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
+    $valueindex = ['option_id', 'option_name'];
+    $optionform->select('Options','Available Options', 'optionform', $data['optionType'], $valueindex);
 
         
-    // // input of new option
-    // $optionform->textInput('optiontype[new]', 'Option', 'Add Option'); 
+    // input of new option
+    $optionform->textInput('optiontype[new]', 'Option', 'Add Option'); 
 
-    // // form action
-    // $action = URLrewrite::adminURL('productoptions/addoption');
+    // form action
+    $action = URLrewrite::adminURL('productoptions/addoption');
 
-    // // submit button
-    // $optionform->button('Save New Option');
+    // submit button
+    $optionform->button('Save New Option');
     
-    // // render and output complete form element
-    // $optionform->render($action, 'Options', 'g-form', 'optionform');
+    // render and output complete form element
+    $optionform->render($action, 'Options', 'g-form', 'optionform');
 
 
 ?>
@@ -58,8 +58,6 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
     $products = $data['products'];
-    echo "<pre>";
-    var_dump($products);
     $options = $data['optionType'];
     $productsList = new Form;
     $productIndex = ['pid', 'title'];
@@ -129,5 +127,26 @@ if(isset($data['options'][0]['title']))
 }
 ?>
 </div>
-<?php } ?>
+<?php }
+var_dump(Registry::getStatus(['addOptionValue']))
+?>
+<div class="form-container">
+<?php
+
+$optionValForm = new Form();
+
+$optionValForm->select('optionValues[option_id]','Select option', 'addOptionValue', $data['optionType'], ['option_id', 'option_name']);
+$optionValForm->textInput('optionValues[value_name]', 'Type option value', 'Value Name');
+$optionValForm->button('Save');
+$action = URLrewrite::BaseAdminURL('ProductOptions/addOptionValue');
+$optionValForm->render($action, 'Add option values', 'g-form', 'addOptionValue');
+?>
+</div>
+
+
+<?php
+var_dump($_POST);
+echo "<pre>";
+var_dump($data);
+?>
 

@@ -114,17 +114,6 @@ class Variant_model extends Base_model
         echo $this->sql;
     }
 
-    // query DB for all option values (option_id, value_id, value_name)
-    // public function getOptionValues()
-    // {
-    //     $this->sql = "SELECT * FROM option_values";
-
-    //     $this->prepQuery($this->sql);
-
-    //     $data = $this->getAll();
-        
-    //     return $data;
-    // }
     
     //This method updates the variant value in (manageProduct/editVariant)
     public function editVariantOption($pid, $option_id, $vid)
@@ -152,6 +141,24 @@ class Variant_model extends Base_model
         ";
 
         $paramBinds = [':pid' => $pid, ":option_id" => $option_id,];
+
+        // set registry status on query execution
+        if ($this->prepQuery($this->sql, $paramBinds)) {
+            Registry::setStatus(['removeVariantOption' => 'true']);            
+            return true;
+        } else {
+            Registry::setStatus(['removeVariantOption' => 'false']);
+            return false;            
+        }
+    }
+
+    public function addVariantValue()
+    {
+        $this->sql = 
+            "INSERT INTO `projekt_klon`.`variant_values` (product_id, variant_id, option_id, value_id) 
+            VALUES (:product_id, :variant_id, :option_id, :value_id)";
+
+        //$paramBinds = [':product_id' =>, ':variant_id' =>, ':option_id' =>, ':value_id' =>];
 
         // set registry status on query execution
         if ($this->prepQuery($this->sql, $paramBinds)) {

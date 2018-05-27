@@ -71,8 +71,10 @@ class ProdOptions_model extends Base_model
     }
 
     // add new option value to db
-    public function addOptionValue($optionId, $valueName)
+    public function addOptionValue()
     {
+        $optionId = isset($_POST['optionValues']['option_id']) ? $_POST['optionValues']['option_id'] : null;
+        $valueName = isset($_POST['optionValues']['value_name']) ? $_POST['optionValues']['value_name'] : null;
         $this->sql = "INSERT INTO `projekt_klon`.`option_values` (`option_id`, `value_name`) VALUES (:optionId, :valueName)";
 
         $paramBinds = [':optionId' => $optionId, ':valueName' => $valueName];

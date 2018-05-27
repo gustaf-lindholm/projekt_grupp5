@@ -16,6 +16,8 @@ class ProductOptions extends Base_controller
         // get all options available in option_type in DB
         $data['optionType'] = $this->modelObj->getOptionType();
 
+        $data['option_values'] = $this->modelObj->getOptionValues();
+
         $this->reqView('ProdOptions', $data);
     }
 
@@ -58,6 +60,15 @@ class ProductOptions extends Base_controller
         $this->initModel('ProdOptions_model');
 
         $this->modelObj->removeProductOption($pid, $product_id);
+
+        $this->index();
+    }
+
+    public function addOptionValue()
+    {
+        $this->initModel('ProdOptions_model');
+
+        $this->modelObj->addOptionValue();
 
         $this->index();
     }

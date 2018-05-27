@@ -45,6 +45,22 @@ class Form
         }       
         $this->output[] = $element.'</select>';
     }
+
+    public function InlineRadio($name, $data, $valueindex = [], $inputclass = 'form-control')
+    {
+
+        // <label class="radio-inline">
+        // <input type="radio" name="inlineRadioOptions" value="option1"> 1
+        // </label>
+        $element = '';
+        foreach ($data as $key => $value) {
+            $element .= "<label class='radio-inline'>";
+            $element .= "<input type='radio' name='$name' value=".$value[$valueindex[0]].">";
+            $element .= $value[$valueindex[1]]."</lable>";
+            
+        }       
+        $this->output[] = $element;
+    }
     
     public function numInput($name, $pholder="", $label, $inputClass = "form-control", $value="")
     {
