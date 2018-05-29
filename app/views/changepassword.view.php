@@ -19,20 +19,21 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 ?>
 
-<a class="btn btn-primary" href="/projekt_grupp5/public/account/">My details</a> <a class="btn btn-primary" href="/projekt_grupp5/public/orderhistory">My Order History</a> <!-- here is the options between the users account and order history -->
+<a  href="<?php echo URLrewrite::BaseURL(). 'account'?>"><button id="" class="btn btn-primary">My details</button></a> 
+<a  href="<?php echo URLrewrite::BaseURL().'orderhistory'?>"><button id="" class="btn btn-primary">My Order History</button></a><!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
-<a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
+<a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a><br>
 
 <!--- Change password form -->
 
 <?php
+    $uid = $_SESSION['loggedIn']['uid'];
 
-if ($_POST['submit']) { //using this tutorial https://www.youtube.com/watch?v=IC_H-91DnVs
+if (isset($_POST['submit'])) { //using this tutorial https://www.youtube.com/watch?v=IC_H-91DnVs
 
     //echo "test";
 
     //check fields
-
     $oldpassword = md5($_POST['oldpassword']);
     $newpassword = md5($_POST['newpassword']);
     $repeatnewpassword = md5($_POST['repeatnewpassword']);
@@ -70,7 +71,7 @@ if ($_POST['submit']) { //using this tutorial https://www.youtube.com/watch?v=IC
     }
 
     else {
-        die("Old password doesn't match!");
+        die("Old password is incorrect, try again!");
     }
 
 
@@ -82,7 +83,7 @@ echo"
 <h3 class='text-center'>Change password </h3> <br>
 
 <div class='form-group'>
-    <form action='".URLrewrite::BaseURL().'changePassword/changeUserPassword'."'method='POST'>
+    <form action='".URLrewrite::BaseURL().'changepassword/changeUserPassword/'.$uid."'method='POST'>
     <label for=''>Old password</label>
     <input type='text' class='form-control' id='' name='oldpassword'>
     <label for=''>New password</label>
