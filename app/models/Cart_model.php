@@ -9,8 +9,14 @@ class Cart_model extends Base_model
 	public function showCart()
 	{
 		// Hämta alla produkter som finns i $_SESSION['cart']
-		$_SESSION['cart']->getProdList($sku, $amount);
-		//var_dump($_SESSION['cart']);
+		//$_SESSION['cart']->getProdList($sku, $amount);
+		$sessionArray = (array)$_SESSION['cart'];
+		foreach ($sessionArray as $SessionCartSkus => $skus) {
+			foreach ($skus as $sku => $amount) {
+				print_r($sku." ".$amount."st : ");
+			}
+		}
+		//var_dump($sku);
 		
 		$this->sql = 
         "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
@@ -20,7 +26,7 @@ class Cart_model extends Base_model
        INNER JOIN product ON product.pid = variant_values.product_id
        INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
        WHERE product_variants.variant_id = variant_values.variant_id
-       AND product_variants.sku IN (':sku')
+       AND product_variants.sku IN (:sku)
        GROUP BY product_variants.sku";
 
 		/*"SELECT * FROM projekt_klon.product INNER JOIN projekt_klon.product_variants
