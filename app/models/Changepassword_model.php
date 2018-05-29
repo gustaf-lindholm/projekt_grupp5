@@ -21,12 +21,13 @@ class Changepassword_model extends Base_model {
     public function changeUserPassword($uid) {
  
         $newpassword = md5($_POST['newpassword']);
-        $this->sql = "UPDATE `projekt_klon`.`account` SET password = ':newpassword' WHERE uid= :uid";
-        $parambinds = [':uid' => $uid, ':newpassword' => $newpassword];
+
+        $this->sql = "UPDATE `projekt_klon`.`account` SET password = :newpassword WHERE uid = :uid";
+        $parambinds = [':newpassword' => $newpassword, ':uid' => $uid];
         $this->prepQuery($this->sql, $parambinds);
          die("Your password has been changed");
             session_destroy();
-            header('Location:'.URLrewrite::baseURL());
+            header('Location:'.URLrewrite::BaseURL());
     } 
 
 
