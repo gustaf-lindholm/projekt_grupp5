@@ -1,11 +1,12 @@
-<div>
-<?php var_dump($_POST);
-?>
-</div>
+<?php 
+var_dump($_POST);
+if(isset($product['sku'])){
+ echo "<h2>Best selling products: ".$_POST['chosenItem']."</h2>";
+}
+ ?>
 
-<h2>Best selling products: <?php echo $_POST['chosenItem'];?></h2>
-
-<!-- <table class="table table-hover">
+<!--
+<table class="table table-hover">
 <thead>
   <tr>
     <th scope="col">#</th>
