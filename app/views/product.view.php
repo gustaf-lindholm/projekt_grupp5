@@ -1,5 +1,6 @@
 <?php
-var_dump($data);
+//var_dump($data);
+//var_dump($_SESSION['cart']);
 ?>
 
 <div class="single-prod-container">
@@ -23,18 +24,11 @@ var_dump($data);
             ?>
             <?php
             // inte den bästa lösningen men för att det ska funka för stunden
-            foreach ($data[0] as $key => $value) {
-
-               if($key == 'info' || $key == 'img_url' || $key == 'pid' || $key == 'cid' || $key == 'variant_id' || $key == 'option_id' || $key == 'property' || $key == 'title' || $key == 'manufacturer' || $key == 'price'){
-                   continue;
-               }
-             }
-             ?>
-                <form method="POST" action="<?php echo URLrewrite::BaseURL()."cart"; ?>">
-                  <?php
-                printf('<input type="hidden" name="%s" value="%s" />', $key, $value );
-                printf('<input type="submit" name="submit" value="BUY"/>');
-                ?>
-                </form>
+            //var_dump($data[0]['sku']);
+            printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
+            printf("<button class='btn btn-success' type='submit'>Köp</button>");
+            printf('<input type="hidden" name="sku" value="%s" />', $data[0]['sku']);
+            printf("</form>");
+              ?>
         </div>
 </div>

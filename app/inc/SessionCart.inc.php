@@ -15,6 +15,11 @@ class SessionCart {
 		}
 	}	
 
+	public function getProdList($sku)
+	{
+		return $this->products;
+	}
+
 	public function remove($sku) 
 	{
 		unset($this->products[$sku]);

@@ -6,7 +6,7 @@
 class Cart extends Base_Controller
 {
 	
-	public function index($sku) 
+	public function index() 
 	{
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Cart_model');
@@ -20,14 +20,23 @@ class Cart extends Base_Controller
 
 	public function add() {
 		
+		$this->initModel('Cart_model');
 		
-		$this->modelObj->add($sku);
+		$this->modelObj->add();
 
-		header("Location: {$_SERVER['HTTP_REFERER']}");
+		//We instansiate cartItems method where we save the new array from session
+        $data = $this->modelObj->showCart();
+
+		//This will be shown on our cart page
+        $this->reqView('Cart');
+
+		//header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
 	public function removeItem()
 	{
+		$this->initModel('Cart_model');
+
 		//We instansiate cartItems method where we save the new array from session
         $data = $this->modelObj->removeItem();
 
@@ -36,6 +45,8 @@ class Cart extends Base_Controller
 
 	public function emptyCart()
 	{
+		$this->initModel('Cart_model');
+
 		//We instansiate cartItems method where we save the new array from session
         $this->modelObj->emptyCart();
 

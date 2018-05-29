@@ -13,7 +13,6 @@ require_once '../app/init.php';
  if (empty($_SESSION['cart']) && !$_SESSION['cart'] instanceof SessionCart) {
  	$_SESSION['cart'] = new SessionCart();
  }
-//unset($_SESSION['cart']);
 
 // include header
 include '../app/views/header.php';
@@ -24,7 +23,7 @@ $app = new App;
 // include footer
 include '../app/views/footer.php';
 
-var_dump($_SESSION['cart']);
+//var_dump($_SESSION['cart']);
 
 
 
