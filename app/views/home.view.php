@@ -3,6 +3,9 @@ var_dump($_POST);
 if(isset($product['sku'])){
  echo "<h2>Best selling products: ".$_POST['chosenItem']."</h2>";
 }
+else{
+  echo "<h2>Welcome to Mobile website</h2>";
+}
  ?>
 
 <!--

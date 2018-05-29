@@ -40,7 +40,7 @@
 <!-- The second Div -->
 <div class="col-md-6" style="float:right;">
 <h2>Change Address on Contact Page</h2>
-<form method="post" name="newContentContact" action="<?php echo URLrewrite::BaseURL()?>" enctype="multipart/form-data">
+<form method="post" name="newContentContact" action="<?php echo URLrewrite::BaseURL().'/contactus'?>" enctype="multipart/form-data">
   <div class="form-row">
   <div class="form-group col-md-12">
       <label for="inputHeader">Opening Hours: </label>
