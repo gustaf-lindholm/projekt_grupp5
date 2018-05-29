@@ -20,5 +20,12 @@ class changepassword extends base_controller
         
     }
 
+    public function changeUserPassword($uid)
+    {
+        $this->initModel('Changepassword_model');
+
+        $this->modelObj->changeUserPassword($uid);
+    }
+
 
 }
