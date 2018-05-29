@@ -1,14 +1,15 @@
 <div>
-<?php var_dump($data);
+<?php var_dump($_POST);
 ?>
 </div>
 
-<h2>Best selling products</h2>
-<table class="table table-hover">
+<h2>Best selling products: <?php echo $_POST['chosenItem'];?></h2>
+
+<!-- <table class="table table-hover">
 <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
+    <th scope="col">Something</th>
     <th scope="col">Model</th>
     <th scope="col">Price</th>
   </tr>
@@ -33,7 +34,7 @@
     <td>10 000 SEK</td>
   </tr>
 </tbody>
-</table>
+</table> -->
 
 
 
