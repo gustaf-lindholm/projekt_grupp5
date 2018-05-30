@@ -1,6 +1,6 @@
 <?php 
 echo "<h2>".$_POST['manufacturer']."</h2>";
-echo "<pre>";
+//echo "<pre>";
 //var_dump($_POST);
 //var_dump($data);
 //var_dump($data['variants']);

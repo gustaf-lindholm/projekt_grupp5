@@ -28,7 +28,7 @@
 <?php
         foreach ($data as $product) {
             if(isset($product['title'])){
-                //var_dump($product);
+                //var_dump($products);
             $properties = explode("/", $product['properties']);
             echo "<div class='prodBox'>";
             //printf('<h1>Mobiles<a href="'.URLrewrite::BaseURL().'/product">' . $data['brand'] . '</a></h1>');
@@ -40,9 +40,9 @@
             }
             echo "<li>".$product['price']." SEK</li>";
             echo "</ul>";
-            printf("<form method='POST' action='
-            <?php echo URLrewrite::BaseURL().'cart'; ?>'");
+            printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
             printf("<button class='btn btn-success' type='submit'>Köp</button>");
+            printf('<input type="hidden" name="sku" value="%s" />', $product['sku']);
             printf("</form>");
             echo "</div>";
             } 

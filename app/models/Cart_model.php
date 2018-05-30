@@ -6,11 +6,18 @@
 class Cart_model extends Base_model
 {
 	
-	public function showCart($sku)
+	public function showCart()
 	{
 		// Hämta alla produkter som finns i $_SESSION['cart']
-		$_SESSION['cart']->getProdList($sku);
-
+		//$_SESSION['cart']->getProdList($sku, $amount);
+		$sessionArray = (array)$_SESSION['cart'];
+		foreach ($sessionArray as $SessionCartSkus => $skus) {
+			foreach ($skus as $sku => $amount) {
+				print_r($sku." ".$amount."st : ");
+			}
+		}
+		//var_dump($sku);
+		
 		$this->sql = 
         "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
        product_variants.price, group_concat(DISTINCT value_name order by option_values.option_id separator '/') AS properties, product_variants.sku, product_variants.img_url
@@ -19,19 +26,16 @@ class Cart_model extends Base_model
        INNER JOIN product ON product.pid = variant_values.product_id
        INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
        WHERE product_variants.variant_id = variant_values.variant_id
-       AND product_variants.sku IN (':sku')
+       AND product_variants.sku IN (:sku)
        GROUP BY product_variants.sku";
 
 		/*"SELECT * FROM projekt_klon.product INNER JOIN projekt_klon.product_variants
 		WHERE product.pid = :pid AND product_variants.variant_id = :vid
 		AND product_variants.product_id = :pid";*/
 
-        // params to be bound, is sent to the prepQuery method
         $paramBinds = [':sku' => $sku];
-        
         $this->prepQuery($this->sql, $paramBinds);
-
-        $this->getAll();
+        $data = $this->getAll();
 
         //returns an array of the data from the database which is then printed to the client in the view
         return self::$data;
@@ -40,22 +44,27 @@ class Cart_model extends Base_model
 	
 	}
 
-	public function add($sku, $amount = 1) {
-
-		$this->sql = "SELECT count(*) FROM products WHERE sku = ':sku'";
+	public function add($amount = 1) {
+		// binder post-datan till variabeln
+		$sku = $_POST['sku'];
+		//ställer sql fråga till db för att kolla om sku'n finns i db
+		$this->sql = "SELECT count(*) FROM projekt_klon.product_variants WHERE product_variants.sku = :sku";
+		$paramBinds = [':sku' => $sku];
+        $this->prepQuery($this->sql, $paramBinds);
+        $data = $this->getAll();
 
 		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
-		if ($sku > 0) {
-			$_SESSION['cart']->addProduct($sku, $amount);
+		if ($data > 0) {
+			$_SESSION['cart']->addProduct($sku);
 		}
 	}
-/*
-	public function removeItem($sku)
+
+	public function removeItem()
 	{
 		// delete one item from session array
-		unset($_SESSION['cart']->deleteProduct($sku));
+		$_SESSION['cart']->remove($sku);
 	}
-*/
+
 	public function emptyCart() 
 	{
 		// empty cartarray

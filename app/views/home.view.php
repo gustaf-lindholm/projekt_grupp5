@@ -1,14 +1,16 @@
-<div>
-<?php var_dump($data);
-?>
-</div>
+<?php 
+var_dump($_POST);
+if(isset($product['sku'])){
+ echo "<h2>Best selling products: ".$_POST['chosenItem']."</h2>";
+}
+ ?>
 
-<h2>Best selling products</h2>
+<!--
 <table class="table table-hover">
 <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
+    <th scope="col">Something</th>
     <th scope="col">Model</th>
     <th scope="col">Price</th>
   </tr>
@@ -33,7 +35,7 @@
     <td>10 000 SEK</td>
   </tr>
 </tbody>
-</table>
+</table> -->
 
 
 
