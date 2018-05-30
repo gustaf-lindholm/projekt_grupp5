@@ -154,19 +154,37 @@ class Variant_model extends Base_model
 
     public function addVariantValue()
     {
-        $this->sql = 
-            "INSERT INTO `projekt_klon`.`variant_values` (product_id, variant_id, option_id, value_id) 
-            VALUES (:product_id, :variant_id, :option_id, :value_id)";
+        // echo "<pre>";
+        // var_dump($_POST);
+        $pid = $_POST['variantValues']['pid'];
+        $vid = $_POST['variantValues']['variant_id'];
 
-        //$paramBinds = [':product_id' =>, ':variant_id' =>, ':option_id' =>, ':value_id' =>];
+        foreach ($_POST['variantValues']['options'] as $key => $value) {
 
-        // set registry status on query execution
-        if ($this->prepQuery($this->sql, $paramBinds)) {
-            Registry::setStatus(['removeVariantOption' => 'true']);            
-            return true;
-        } else {
-            Registry::setStatus(['removeVariantOption' => 'false']);
-            return false;            
+            // if values are set for an option, loop trough it
+            if (isset($value['value_id'])) {                
+                $this->sql = 
+                "INSERT INTO `projekt_klon`.`variant_values` (product_id, variant_id, option_id, value_id) 
+                VALUES (:product_id, :variant_id, :option_id, :value_id)";
+
+                $paramBinds = [
+                    ':product_id' => $pid,
+                    ':variant_id' => $vid,
+                    ':option_id' => $value['option_id'],
+                    ':value_id' => $value['value_id'],
+                ];
+
+                // echo $this->sql;
+                // var_dump($paramBinds);
+                // set registry status on query execution
+                if ($this->prepQuery($this->sql, $paramBinds)) {
+                    Registry::setStatus(['addVariantValue' => true]);            
+                    return true;
+                } else {
+                    Registry::setStatus(['addVariantValue' => false]);
+                    return false;            
+                }
+            }
         }
     }
 

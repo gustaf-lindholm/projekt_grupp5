@@ -4,9 +4,6 @@
         <div id="cartContainer">
             <?php
             //var_dump($sku);
-            foreach ($_SESSION['cart'] as $key => $value) {
-                //var_dump($key);
-            }
             ?>
         </div>
             <div id="orderInfo">

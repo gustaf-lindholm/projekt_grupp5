@@ -1,6 +1,5 @@
 <?php
 include ADMIN_VIEW.'tempAdminMenu.php';
-
 $pid = $data['variantInfo']['pid'];
 $vid = $data['variantInfo']['variant_id'];
 
@@ -15,6 +14,8 @@ $vid = $data['variantInfo']['variant_id'];
             header('Refresh:5;'.URLrewrite::BaseAdminURL("manageProduct/editVariant/$pid/$vid"));            
             echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to update option value!</div>';
         }
+
+
     
         // alert with feedback on removing option
 
@@ -63,6 +64,7 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
                 // loop trough $data and create a table                
                 foreach ($data['variantOptions'] as $key => $value) {
                     // td for the current variant options
+                    
                     $optionInfo .= "<tr><td>".$value['option_name']."</td>"."<td>".$value['value_name']."</td><td>".
                     "<form method='POST' action='".URLrewrite::BaseAdminURL('manageProduct/editVariantOption')
                     .'/'.$value['product_id'].'/'.$value['option_id'].'/'.$value['variant_id']."'>".
@@ -96,9 +98,21 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
     </table>
 </div>
 <div class="form-container">
+<?php
+// alert with feedback on adding variant values    
+    if(Registry::getStatus('addVariantValue') === true)
+        {
+            echo '<div class="alert alert-success grid-alert" role="alert"><strong>Variant Value added!</strong></div>';
+
+        } 
+        if(Registry::getStatus('addVariantValue') === false) {
+            echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add variant value!
+            Check that the option(s) is added to <a href="'.URLrewrite::BaseAdminURL('productOptions').'">'. $data['variantInfo']['title']. '</a></div>';
+        }
+?>
 <h1 class="prod-title">Add option and value to <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']; ?></h1>
 
-<form style="display: contents;">
+<form id="variantValues" class="g-form" method="POST" action="<?php echo URLrewrite::BaseAdminURL('Variants/addVariantValue/'.$pid.'/'.$vid); ?>" style="display: contents;">
 <table class="grid-table table-striped table-bordered">
 <thead class="thead-light">
     <tr>
@@ -108,10 +122,37 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 </thead>
 <tbody class="">
     <?php
+
+
+        // current options for variant
+        $variantOptions = [];
+        // all options
+        $allOptions = [];
+        $options;
+
+        // Looping trough all options and options which are set to a variant
+        // in order to only show options which are not yet added to a variant
+        foreach ($data['optionType'] as $key => $aoptions) {
+            foreach ($data['variantOptions'] as $k => $vOptions) {
+                $variantOptions['option_id'][$k] = $vOptions['option_id'];
+                $variantOptions['option_name'][$k] = $vOptions['option_name'];
+            }
+            $allOptions['option_id'][$key] = $aoptions['option_id'];
+            $allOptions['option_name'][$key] = $aoptions['option_name'];
+            
+        }
+        $optionIds = array_diff($allOptions['option_id'], $variantOptions['option_id']);
+        $optionNames = array_diff($allOptions['option_name'], $variantOptions['option_name']);
+        foreach ($optionIds as $key => $value) {
+        $options[] = ['option_id' => $value, 'option_name' => $optionNames[$key]];
+        }
+
+        /**** Table for adding options and values to current variant ****/
+
         // variable to hold option info output
         $output = "";
         // loop trough $data and create a table                
-        foreach ($data['optionType'] as $k => $v) {
+        foreach ($options as $k => $v) {
             
             // row start
             $output .= "<tr><td>";
@@ -123,58 +164,35 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 
             //td for option and hidden inputs with pid and vid
             foreach ($data['optionValues'] as $key => $value) {
-                
+
                 if ($v['option_id'] == $value['option_id']) {
-                    $output .= "<input type='hidden' value='".$data['variantInfo']['variant_id']."'>";        
-                    $output .= "<input type='hidden' value='".$data['variantInfo']['pid']."'>";        
+                    $output .= "<input type='hidden' name='variantValues[variant_id]' value='".$data['variantInfo']['variant_id']."'>";        
+                    $output .= "<input type='hidden' name='variantValues[pid]' value='".$data['variantInfo']['pid']."'>";        
+                    $output .= "<input type='hidden' name='variantValues[options][".$k."][option_id]' value='".$v['option_id']."'>";        
         
                     // radio buttons
-                    $output .= "<label class='radio-inline' style='margin: 5px;'>";            
-                    $output .= "<input type='radio' value='".$value['value_id']."'>".$value['value_name'];
+                    $output .= "<label style='margin: 5px;'>";            
+                    $output .= "<input type='checkbox' name='variantValues[options][".$k."][value_id]' value='".$value['value_id']."'>".$value['value_name'];
                     $output .= "</label>";
-                }
-
-                
+                }   
             }
-
-
             // td with save button and end row tag
-            $output .= "</td></tr>";
-            
-            
-                               
+            $output .= "</td></tr>";              
         }
         
         echo $output
-        
-        ?>
+?>
         
 </tbody>
 </table>
-<button type="submit" class="btn btn-primary">Save</button>
 
 </form>
+<div class="form-container">
+<button type="submit" form="variantValues" class="btn btn-primary">Save</button>
 
-<?php
-
-$variantVal = new Form();
-// hidden product id and variant id
-$variantVal->hiddenInput('addVariantValue[pid]', $data['variantInfo']['pid']);
-$variantVal->hiddenInput('addVariantValue[vid]', $data['variantInfo']['variant_id']);
-// select option
-$optionValueindex = ['option_id', 'option_name'];
-$variantVal->select('Options','Select Option', 'addVariantValueForm', $data['optionType'], $optionValueindex);
-
-//select value
-$valueindex = ['value_id', 'value_name'];
-$variantVal->InlineRadio('addVariantValueForm', $data['optionValues'], $valueindex);
-
-
-// submit and render
-$variantVal->button('Save');
-$variantVal->render('#', 'Add variant value', 'g-form', 'addVariantValueForm');
-?>
 </div>
+</div>
+
 <div class="form-container">
 <h1 class="prod-title">Manage Options</h1>
 <?php 
@@ -213,28 +231,6 @@ $variantVal->render('#', 'Add variant value', 'g-form', 'addVariantValueForm');
 
     } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
-    }
-
-    // current options for variant
-    $variantOptions = [];
-    // all options
-    $allOptions = [];
-    $options;
-
-    // dont know how but its working. Only showing options which can be added
-    foreach ($data['optionType'] as $key => $aoptions) {
-        foreach ($data['variantOptions'] as $k => $vOptions) {
-            $variantOptions['option_id'][$k] = $vOptions['option_id'];
-            $variantOptions['option_name'][$k] = $vOptions['option_name'];
-        }
-        $allOptions['option_id'][$key] = $aoptions['option_id'];
-        $allOptions['option_name'][$key] = $aoptions['option_name'];
-           
-    }
-    $optionIds = array_diff($allOptions['option_id'], $variantOptions['option_id']);
-    $optionNames = array_diff($allOptions['option_name'], $variantOptions['option_name']);
-    foreach ($optionIds as $key => $value) {
-       $options[] = ['option_id' => $value, 'option_name' => $optionNames[$key]];
     }
 
     // create and render form for adding option to variant
