@@ -18,6 +18,12 @@ function autoloader($className)
     {
         include CORE_PATH . $className . '.php';    
     }
+
+    // admin controllers
+    if (file_exists(ADMIN_CONTROLLER . $className . '.controller.php'))
+    {
+        include ADMIN_CONTROLLER . $className . '.controller.php';    
+    }
     
 }
 

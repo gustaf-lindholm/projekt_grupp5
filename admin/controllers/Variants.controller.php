@@ -46,10 +46,16 @@ class Variants extends Base_controller
 
     }
 
-    public function addVariantValue()
+    public function addVariantValue($pid, $vid)
     {
         $this->initModel('Variant_model');
 
         $this->modelObj->addVariantValue();
+
+        $controller = New manageProduct();
+        $controller->editVariant($pid, $vid);
+        //header('Location:'.URLrewrite::BaseAdminURL('manageProduct/editVariant/').$pid.'/'.$vid);
+
+        
     }
 }
