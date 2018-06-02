@@ -23,7 +23,7 @@ $app = new App;
 // include footer
 include '../app/views/footer.php';
 
-//var_dump($_SESSION['cart']);
+var_dump($_SESSION['cart']);
 
 
 
