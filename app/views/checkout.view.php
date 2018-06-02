@@ -37,17 +37,15 @@ if(isset($_SERVER['HTTP_REFERER'])) {
 	<div id="paymentMethod" class="col-md-6">
 		
 		<h1> Betalningsalternativ </h1>
-			  <div style="flex: inline;">
+			  <div>
       
         <label>
-        <input type="radio" class="option-input radio" name="example" value="payPal" checked> PayPal
+        <input type="radio" class="option-input radio" name="radio" value="payPal" checked> PayPal
             </label><br>
-
         <label>
-        <input type="radio" class="option-input radio" name="example" value="klarna"> Klarna</label><br>
+        <input type="radio" class="option-input radio" name="radio" value="klarna"> Klarna</label><br>
         <label>
-        <input type="radio" class="option-input radio" name="example" value="KreditKort"> Kreditkort</label>
-		 
+        <input type="radio" class="option-input radio" name="radio" value="KreditKort"> Kreditkort</label>
           </div>
        
 
