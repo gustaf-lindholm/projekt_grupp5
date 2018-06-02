@@ -9,14 +9,15 @@ class Cart_model extends Base_model
 	public function showCart()
 	{
 		// Hämta alla produkter som finns i $_SESSION['cart']
-		//$_SESSION['cart']->getProdList($sku, $amount);
+		//$_SESSION['cart']->getProdList($sku);
 		$sessionArray = (array)$_SESSION['cart'];
-		foreach ($sessionArray as $SessionCartSkus => $skus) {
+		foreach ($sessionArray as $SessionCartproducts => $skus) {
 			foreach ($skus as $sku => $amount) {
-				print_r($sku." ".$amount."st : ");
+				print_r($amount.":st ".$sku." ");
 			}
 		}
-		//var_dump($sku);
+		var_dump($sessionArray);
+		//var_dump($_SESSION['cart']);
 		
 		$this->sql = 
         "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,

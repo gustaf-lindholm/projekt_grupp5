@@ -3,7 +3,8 @@
        <h2 class="titleCart">Varukorg</h2>
         <div id="cartContainer">
             <?php
-            //var_dump($sku);
+            //var_dump($_SESSION['cart']->getProdList());
+            //$_SESSION['cart']->getProdList($data);
             ?>
         </div>
             <div id="orderInfo">
