@@ -18,7 +18,7 @@
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header col-md-1">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Mobile website</span>
         <span class="icon-bar active">Model</span>
@@ -27,10 +27,9 @@
     </div>
 
   
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse col-md-7" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo URLrewrite::BaseURL().'products'?>">Products<span class="sr-only">(current)</span></a></li>
-
+        <li><a href="<?php echo URLrewrite::BaseURL().'products'?>">Products</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -38,29 +37,39 @@
           </ul>
         </li>
       </ul>
-    
+    </div>
 
-
-      <form class="navbar-form navbar-left">
+    <form class="navbar-form navbar-left" action="<?php echo URLrewrite::BaseURL().'searchProducts'?>" method="post">
         <div class="form-group">
-          <input type="text" id="search" autocomplete="off" class="form-control" placeholder="Search" onkeyup="searchMobile();">
+          <input type="text" id="search" name="search-database" autocomplete="off" class="form-control" placeholder="Search" onkeyup="searchMobile();">
+          <button type="submit" class="btn btn-success" type="btn" >Search</button>
           <div class="display"></div>
         </div>
       </form>
+
    
+      <?php
+       if (isset($_SESSION['loggedIn']['username'])) { ?>
+      <form class= "navbar-form navbar-right">
+      <a href="<?php echo URLrewrite::BaseURL().'account'?>"><button class="btn btn-success" type="btn">My account</button></a>
+      </form>
+      <?php }?>
 
       <form class= "navbar-form navbar-right">
-          <ul class="nav navbar-nav">
+          <ul class="navbar-nav" style="list-style-type: none;">
               <li class="dropdown">
               <a href="<?php echo URLrewrite::BaseURL().'login'?>"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-success" type="btn">Login</button></a>
           
           <ul class="dropdown-menu">
             <?php
               if (isset($_SESSION['loggedIn']['username'])) { ?>
-              <li><a href="<?php echo URLrewrite::BaseURL().'login/logout'?>">Logout</a></li>
+              <li><a href="<?php echo URLrewrite::BaseURL().'login/logout'?>">Log out</a></li>
             <?php }?>
-
-              <li><a href="<?php echo URLrewrite::BaseURL().'login'?>" >Account</a></li>
+              
+            <?php
+              if (!isset($_SESSION['loggedIn']['username'])) { ?>
+             <li><a href="<?php echo URLrewrite::BaseURL().'login'?>" >Log in</a></li>
+            <?php }?>
               <li><a href="<?php echo URLrewrite::BaseURL().'signup'?>" >Sign Up</a></li>
               <li><a href="<?php echo URLrewrite::BaseURL().'companysignup'?>" >Company</a></li>
           </ul>
@@ -68,7 +77,7 @@
           </ul>
       </form>
 
-          </div><!-- End for .navbar-collapse -->
+ 
 </div><!-- End for -navbar-header-->
 </div><!-- End for .container-fluid -->
 </nav>
