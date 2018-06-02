@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/bootstrap.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/account.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/product.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/products.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/grid_table.css';?>" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/home.css';?>" type="text/css"/>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -23,7 +25,7 @@
         <span class="sr-only">Mobile website</span>
         <span class="icon-bar active">Model</span>
       </button>
-      <a class="navbar-brand" href="<?php echo URLrewrite::BaseURL()?>">MOBILE</a>
+      <a class="navbar-brand" href="<?php echo URLrewrite::BaseURL()?>">IM’MOBILÉ</a>
     </div>
 
   
@@ -51,14 +53,14 @@
       <?php
        if (isset($_SESSION['loggedIn']['username'])) { ?>
       <form class= "navbar-form navbar-right">
-      <a href="<?php echo URLrewrite::BaseURL().'account'?>"><button class="btn btn-success" type="btn">My account</button></a>
+      <a href="<?php echo URLrewrite::BaseURL().'account'?>"><button class="btn" type="btn">My account</button></a>
       </form>
       <?php }?>
 
       <form class= "navbar-form navbar-right">
           <ul class="navbar-nav" style="list-style-type: none;">
               <li class="dropdown">
-              <a href="<?php echo URLrewrite::BaseURL().'login'?>"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-success" type="btn">Login</button></a>
+              <a href="<?php echo URLrewrite::BaseURL().'login'?>"class="dropdown-toggle signup" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn signup" type="btn">Log in / Sign Up</button></a>
           
           <ul class="dropdown-menu">
             <?php
@@ -75,6 +77,9 @@
           </ul>
               </li>
           </ul>
+
+      
+          <a href="<?php echo URLrewrite::BaseURL().'cart'?>"><button class="btn btn-default btn-sm" type="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</button></a>
       </form>
 
  

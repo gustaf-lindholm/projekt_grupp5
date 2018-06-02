@@ -1,12 +1,24 @@
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:50px">Welcome to IM’MOBILÉ</h1>
+    <p>We offer best quality mobile products.</p>
+    <button><a href="<?php echo URLrewrite::BaseURL().'products'?>">Explore our products</a></button>
+  </div>
+</div>
+
 <?php 
-var_dump($_POST);
+//var_dump($_POST);
 if(isset($product['sku'])){
  echo "<h2>Best selling products: ".$_POST['chosenItem']."</h2>";
 }
 else{
-  echo "<h2>Welcome to Mobile website</h2>";
+echo "<div><p>Featured product of the month: Coming soon</p>";
 }
  ?>
+
+</div>
+
+
 
 <!--
 <table class="table table-hover">

@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class User extends Base_Controller
 {
     
@@ -12,7 +9,8 @@ class User extends Base_Controller
         $this->initModel('User_model');
 
         //We request modelObjs from the database
-        $data = $this->modelObj->getAllUsers();
+        $data = $this->modelObj->getAllProducts();
+        
     }
 
     public function getUser() 

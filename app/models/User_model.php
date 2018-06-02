@@ -33,9 +33,12 @@ class User_model extends Base_model
         $this->getOne();
         return self::$data;
     }
-
-    public function getAllProducts(){
-        $this->sql =   "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
+    
+    public function getAllProducts()
+    {
+        
+        $this->sql = 
+        "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
         product_variants.price, group_concat(DISTINCT value_name order by option_values.option_id separator '/') AS properties, title, product_variants.sku, product_variants.price,product_variants.img_url 
         FROM projekt_klon.option_values
         INNER JOIN variant_values ON variant_values.value_id = option_values.value_id 
@@ -43,42 +46,13 @@ class User_model extends Base_model
         INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
         WHERE product_variants.variant_id = variant_values.variant_id
         GROUP BY product_variants.sku";
-         $this->prepQuery($this->sql);
-         $this->getOne();
-         return self::$data;
+
+        $this->prepQuery($this->sql);
+        $this->getAll();
+
+        return self::$data;
     }
 
     
-    public function searchDatabase()
-    {
-        if (isset($_POST['search'])) {
-            $this->sql = "SELECT title FROM product WHERE title LIKE '%$title%' LIMIT 5;";
-            //$title = $_POST['search'];
-            $title = $_POST['search'];
-            $paramBinds = [':title' => $title];
-            $this->prepQuery($this->sql, $paramBinds);
-            $data = $this->getAll();
-    
-            return $data;
-
-         echo '<ul>';
- 
-        while ($data) {
- 
-       ?>
-         <li onclick='fill("<?php echo $data['title']; ?>")'>
-        <a><?php echo $data['title']; ?></li></a>
- 
-   <?php
- 
-}}
- 
- 
-?>
- 
-</ul>
-
-    <?php
-    }
 }
 ?>

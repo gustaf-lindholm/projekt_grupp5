@@ -14,6 +14,7 @@ require_once '../app/init.php';
  	$_SESSION['cart'] = new SessionCart();
  }
 
+
 // include header
 include '../app/views/header.php';
 

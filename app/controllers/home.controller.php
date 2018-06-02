@@ -7,20 +7,14 @@ class Home extends base_controller
         //var_dump($this->modelObj);
         $this->modelObj->name = $name;
 
-        $this->reqView('home', ['name' => $this->modelObj->name]);
+        $data['products'] = $this->modelObj->getAllProducts();
+        $this->reqView('home', $data);
+
+        //$this->reqView('home', ['name' => $this->modelObj->name]);
         
         //var_dump($this->modelObj);
     }
 
-    public function searchDatabase()
-    {
-        if(isset($_POST['search']))
-        {
-        $this->initModel('User_model');
-        $data['search'] = $this->modelObj->searchDatabase();
-        $this->reqView('home');
-        }
-    }
 
     public function createNewPosts() {
         if(isset($_POST['submit'])){
