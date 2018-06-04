@@ -40,10 +40,7 @@
             }
             echo "<li>".$product['price']." SEK</li>";
             echo "</ul>";
-            printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
-            printf("<button class='btn btn-success' type='submit'>Köp</button>");
-            printf('<input type="hidden" name="sku" value="%s" />', $product['sku']);
-            printf("</form>");
+            printf('<a href="'.URLrewrite::BaseURL().'product/'.$product['product_id'].'/'.$product['variant_id'].'">' . '<button class="btn btn-success" type="submit">Välj</button></a>');
             echo "</div>";
             } 
         }

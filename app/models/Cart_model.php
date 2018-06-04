@@ -8,18 +8,12 @@ class Cart_model extends Base_model
 	
 	public function showCart()
 	{
-		// Hämta alla produkter som finns i $_SESSION['cart']
-		//$_SESSION['cart']->getProdList($sku);
-		$sessionArray = (array)$_SESSION['cart'];
-		foreach ($sessionArray as $SessionCartproducts => $skus) {
-			foreach ($skus as $sku => $amount) {
-				print_r($amount.":st ".$sku." ");
-			}
-		}
-		var_dump($sessionArray);
-		//var_dump($_SESSION['cart']);
-		
-		$this->sql = 
+		//var_dump($_SESSION['cart']->getProdList());
+		var_dump($_SERVER);
+		$prodList = $_SESSION['cart']->getProdList();
+		$count = count($prodList);
+        $i = 0;
+        $this->sql = 
         "SELECT variant_values.product_id, variant_values.variant_id, product.title, product.info, product.manufacturer,
        product_variants.price, group_concat(DISTINCT value_name order by option_values.option_id separator '/') AS properties, product_variants.sku, product_variants.img_url
        FROM projekt_klon.option_values
@@ -27,22 +21,28 @@ class Cart_model extends Base_model
        INNER JOIN product ON product.pid = variant_values.product_id
        INNER JOIN product_variants ON product_variants.product_id = variant_values.product_id
        WHERE product_variants.variant_id = variant_values.variant_id
-       AND product_variants.sku IN (:sku)
-       GROUP BY product_variants.sku";
+       AND product_variants.sku IN (";
+        
+        //loop trough the submitted vaulues to create an sql-query string
+        foreach ($prodList as $sku => $amount) {
+            
+            $this->sql .= "'".$sku."'";
 
-		/*"SELECT * FROM projekt_klon.product INNER JOIN projekt_klon.product_variants
-		WHERE product.pid = :pid AND product_variants.variant_id = :vid
-		AND product_variants.product_id = :pid";*/
+            //skip the , after the last element in the $data['variant] array
+            if (++$i === $count) {
+                $this->sql .= " ";
+            } else {
+                $this->sql .= ", ";
+                
+            }
 
-        $paramBinds = [':sku' => $sku];
+        }
+        $this->sql .= ") GROUP BY product_variants.sku";
+		$paramBinds = [':sku' => $sku];
         $this->prepQuery($this->sql, $paramBinds);
-        $data = $this->getAll();
-
-        //returns an array of the data from the database which is then printed to the client in the view
-        return self::$data;
-
-//		$sql = SELECT * FROM products WHERE pid, vid IN ($_SESSION['cart']->getProdList());
-	
+		$this->getAll();
+		//return self::$data;
+		//echo $this->sql;
 	}
 
 	public function add($amount = 1) {
@@ -63,7 +63,7 @@ class Cart_model extends Base_model
 	public function removeItem()
 	{
 		// delete one item from session array
-		$_SESSION['cart']->remove($sku);
+		$_SESSION['cart']->removeItem($sku);
 	}
 
 	public function emptyCart() 

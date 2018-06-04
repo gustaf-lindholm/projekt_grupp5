@@ -15,9 +15,9 @@ class SessionCart {
 		}
 	}	
 
-	public function getProdList($sku)
+	public function getProdList()
 	{
-		return $this->products[$sku];
+		return $this->products;
 	}
 
 	public function remove($sku) 
