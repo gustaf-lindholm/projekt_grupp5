@@ -7,7 +7,7 @@
 <a  href="<?php echo URLrewrite::BaseURL().'orderhistory'?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
-</div>
+</div><br>
 
     <p>Below you can see all orders you made at our store. If you don't see some of the orders you might
      have more than one account or you were not logged in when you placed the order.

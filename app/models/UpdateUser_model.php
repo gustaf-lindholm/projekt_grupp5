@@ -22,15 +22,28 @@ class UpdateUser_model extends Base_model
     
     public function UpdateUser($uid) {
 
-        var_dump($_POST);
-		
+        $fname = ($_POST['fname']);
+        $lname = ($_POST['lname']);
+        $phone = ($_POST['phone']);
+        $email = ($_POST['email']);
+
+
+        $this->sql = "UPDATE `projekt_klon`.`user` SET user.fname = :fname, user.lname = :lname, user.phone = :phone, user.email = :email WHERE uid = :uid";
+        $parambinds = [':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email, ':uid' => $uid];
+        if($this->prepQuery($this->sql, $parambinds)){
+         Registry::setStatus(['UpdateUser' => true]); //alert for if the database got the sql string or not
+            //header('Location:'.URLrewrite::BaseURL());
+        } else {
+         Registry::setStatus(['UpdateUser' => false]);
+            
+        }
     
             /*if (!preg_match('/^[a-zA-Z]*$/', $_POST['user']['fname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['user']['lname']) {
                 echo "fel tecken";
             } else {
                 if (!filter_var($_POST['user']['email'], FILTER_VALIDATE_EMAIL)) {
                     echo "invalid email";
-                } else { */
+                } else { 
                     $fname = $_POST['user']['fname'];
                     $lname = $_POST['user']['lname'];
                     $email = $_POST['user']['email'];
@@ -47,7 +60,7 @@ class UpdateUser_model extends Base_model
 
 
                    // }
-                //}
+                //} */
             }
         
        

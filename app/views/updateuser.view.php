@@ -12,23 +12,54 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 <h3>Update <?php echo $data[0] ['fname'] ?>'s Information </h3>
 
 
-<section class="main-container">
-		<form class="update-form" action="<?php echo URLrewrite::BaseURL().'UpdateUser'?>" method="POST">
-			<label id="" for="firstname-input">Firstname <span class="text-danger"></span></label>
-			<input type="text" name="user[fname]" placeholder="<?php echo $data[0] ['fname'] ?>">
-			<label id="" for="lastnamename-input">Lastname <span class="text-danger"></span></label>
-			<input type="text" name="user[lname]" placeholder="<?php echo $data[0] ['lname'] ?>">
-			<label id="" for="email-input">Email <span class="text-danger"></span></label>
-			<input id="emailID" type="text" name="user[email]" placeholder="<?php echo $data[0] ['email'] ?>">
-			<label for="telephone-input">Telephone <span class="text-danger"></span></label>
-			<input id="phoneID" type="text" name="user[phone]" placeholder="<?php echo $data[0] ['phone'] ?>">
-			<button type="submit" class="btn btn-warning" name="submit">Update</button>
-		</form>
-	</div>
-</section>
-
-
 <?php 
+
+if(Registry::getStatus() !== null && Registry::getStatus('UpdateUser') == true)
+   {
+       echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">User updated!</div>';
+
+   } elseif (Registry::getStatus('UpdateUser') == false) {
+       echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to update user!</div>';
+   } 
+
+	$uid = $_SESSION['loggedIn']['uid'];
+	
+	//var_dump($data);
+
+if (isset($_POST['submit'])) { 
+    //echo "test";
+
+    //check fields
+    $fname = ($_POST['fname']);
+    $lname = ($_POST['lname']);
+	$phone = ($_POST['phone']);
+	$email = ($_POST['email']);
+
+	//echo "$fname/$lname/$phone/$email";
+
+
+}
+
+	else {
+
+	echo 
+	"<div class='form-group'>
+    <form action='".URLrewrite::BaseURL().'updateuser/Update/'.$uid."' method='POST'>
+    <label for=''>Firstname</label>
+    <input type='text' class='form-control' id='' name='fname' placeholder='". $data[0]['fname']."'>
+    <label for=''>Lastname</label>
+    <input type='text' class='form-control' id='' name='lname' placeholder='". $data[0]['lname']."'>
+    <label for=''>Phonenumber</label>
+	<input type='text' class='form-control' id='' name='phone' placeholder='". $data[0]['phone']."'>
+	<label for=''>Email</label>
+	<input type='text' class='form-control' id='' name='email' placeholder='". $data[0]['email']."'>
+  <input type='submit' class='btn btn-primary' name='submit' value='Update'>
+  </div>
+  </form>";
+	}
+
+
+
 
         
         /* $UserForm = new Form();
@@ -39,5 +70,6 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
         $UserForm->button('Save');
         $action = URLrewrite::BaseURL('UpdateUser');
         $UserForm->render($action,'Change User Information', 'g-form'); 
-        
-        ?>  */
+		*/
+		
+        ?>  
