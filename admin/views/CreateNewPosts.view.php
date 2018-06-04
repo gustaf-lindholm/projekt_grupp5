@@ -25,10 +25,6 @@
 </select>
 </div>
 
-<div class="form-group col-md-10">
-<label for="upload">Upload a file</label>
-<input type="file" name="file" id="upload">
-</div>
 
 <button type="submit" class="btn btn-primary col-md-10" name="submit">Submit</button>
 
@@ -53,11 +49,11 @@
     <textarea class="form-control rounded-0" name="contact_list" id="textArea" rows="3" placeholder="Did you move your office? :)"></textarea>
     </div>
 
-
-<div class="form-group col-md-12">
+<div class="form-group col-md-10">
 <label for="upload">Upload a lovely picture of Us</label>
 <input type="file" name="file" id="upload">
 </div>
+
 
 <button type="submit" class="btn btn-primary col-md-10" name="submitFor2">Submit</button>
 
