@@ -1,25 +1,32 @@
 <div class="prod-container">
 
-        <div class="col-xs-12">
-        <form action="
-            <?php 
+        <div>
+<form action="
+    <?php 
+            //Loop for the mobile brands
             foreach($data['brands'] as $key => $value) {
                 $result = $value["manufacturer"];
             };
             
             echo URLrewrite::BaseURL().'productFilter/';
         
-            ?>" method="POST">
+    ?>" class="col-md-12" method="POST">
 
-        <select class="form-control" name="manufacturer">
-        <?php
-        foreach($data['brands'] as $key => $value) {
+
+
+<select class="form-control" name="manufacturer">
+    <?php
+            foreach($data['brands'] as $key => $value) {
+            
             echo '<option name="manufacturer" value="'.$value["manufacturer"].'">'.$value["manufacturer"].'</option>';
         };
-        ?>
+    ?>
 
-    </select>
-     <button class="btn btn-success" type="submit">Search</button>
+</select>
+    <button type="submit" class="btn btn-info">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+
     </form>
 
 
@@ -41,7 +48,7 @@
             echo "<li>".$product['price']." SEK</li>";
             echo "</ul>";
             printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
-            printf("<button class='btn btn-success' type='submit'>Köp</button>");
+            printf("<button class='btn btn-success' type='submit'>Buy</button>");
             printf('<input type="hidden" name="sku" value="%s" />', $product['sku']);
             printf("</form>");
             echo "</div>";

@@ -5,18 +5,18 @@
 
   <div class="form-group col-md-5">
       <label for="inputHeader">Header: </label>
-      <input type="text" name="name" class="form-control" id="inputHeader" placeholder="Subject">
+      <input type="text" name="header_Title" class="form-control" id="inputHeader" placeholder="Subject">
     </div>
 
  
     <div class="form-group col-md-10">
     <label for="textArea">Body: </label>
-    <textarea class="form-control rounded-0" name="contact_list" id="textArea" rows="3" placeholder="Write here :)"></textarea>
+    <textarea class="form-control rounded-0" name="header_Content" id="textArea" rows="3" placeholder="Write here :)"></textarea>
     </div>
 
 <div class="form-group col-md-10">
 <label for="textArea">Chosen Feature Product: </label>
-<select name="chosenItem">
+<select name="chosen_Item">
       <?php
       foreach ($data as $post) {
           echo '<option name="'.$post["sku"].'" value="'.$post['sku'].'">'.$post['title'].' : '.$post['sku'].'</option>';
