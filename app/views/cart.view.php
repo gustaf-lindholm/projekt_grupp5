@@ -3,7 +3,8 @@
        <h2 class="titleCart">Varukorg</h2>
         <div id="cartContainer">
             <?php
-            //var_dump($sku);
+            //var_dump($_SESSION['cart']->getProdList());
+            //$_SESSION['cart']->getProdList($data);
             ?>
         </div>
             <div id="orderInfo">
@@ -11,7 +12,7 @@
                     <span>TOTALT:</span><span id="showSum"></span>
                 </div>
                 <div id="confirmCart">
-                    <button type="button">GÅ TILL KASSAN</button>
+                    <button type="button"><a href="<?php echo URLrewrite::BaseURL().'checkout'?>">GÅ TILL KASSAN</a></button>
                     <article>
                        Terms & conditions
                     </article>

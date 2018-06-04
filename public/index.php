@@ -14,6 +14,7 @@ require_once '../app/init.php';
  	$_SESSION['cart'] = new SessionCart();
  }
 
+
 // include header
 include '../app/views/header.php';
 
@@ -23,7 +24,7 @@ $app = new App;
 // include footer
 include '../app/views/footer.php';
 
-//var_dump($_SESSION['cart']);
+var_dump($_SESSION['cart']);
 
 
 

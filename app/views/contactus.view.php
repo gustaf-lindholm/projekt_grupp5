@@ -30,4 +30,6 @@
   
 </form>
 
-<div class="col-md-12"><h1>Here the admin can edit posts</h1></div>
+<div class="col-md-12"><h1>Here the admin can edit posts</h1>
+<?php var_dump($_POST);?>
+</div>
