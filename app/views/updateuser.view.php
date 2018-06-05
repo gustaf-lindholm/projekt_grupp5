@@ -46,30 +46,16 @@ if (isset($_POST['submit'])) {
 	"<div class='form-group'>
     <form action='".URLrewrite::BaseURL().'updateuser/Update/'.$uid."' method='POST'>
     <label for=''>Firstname</label>
-    <input type='text' class='form-control' id='' name='fname' placeholder='". $data[0]['fname']."'>
+    <input type='text' class='form-control' id='' name='fname' required value ='". $data[0]['fname']."'>
     <label for=''>Lastname</label>
-    <input type='text' class='form-control' id='' name='lname' placeholder='". $data[0]['lname']."'>
+    <input type='text' class='form-control' id='' name='lname' required value ='". $data[0]['lname']."'>
     <label for=''>Phonenumber</label>
-	<input type='text' class='form-control' id='' name='phone' placeholder='". $data[0]['phone']."'>
+	<input type='text' class='form-control' name='phone' required value='". $data[0]['phone']."'>
 	<label for=''>Email</label>
-	<input type='text' class='form-control' id='' name='email' placeholder='". $data[0]['email']."'>
+	<input type='text' class='form-control' id='' name='email' required value ='". $data[0]['email']."'>
   <input type='submit' class='btn btn-primary' name='submit' value='Update'>
   </div>
   </form>";
 	}
-
-
-
-
-        
-        /* $UserForm = new Form();
-        $UserForm->textInput('updateU[firstname]','Firstname');
-        $UserForm->textAreaInput('updateU[lastname]','Lastname');
-        $UserForm->numInput('updateU[phone]','Phonenumber');
-        $UserForm->emailInput('updateU[email]','Email');
-        $UserForm->button('Save');
-        $action = URLrewrite::BaseURL('UpdateUser');
-        $UserForm->render($action,'Change User Information', 'g-form'); 
-		*/
 		
         ?>  
