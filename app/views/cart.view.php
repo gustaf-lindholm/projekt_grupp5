@@ -6,7 +6,7 @@
             //var_dump($_SESSION['cart']->getProdList());
             //$_SESSION['cart']->getProdList($data);
             //var_dump($data);
-            var_dump($_SESSION['cart']);
+            //var_dump($_SESSION['cart']);
             ?>
             <?php
             foreach ($data as $products => $product) {
