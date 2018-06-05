@@ -1,40 +1,101 @@
 <?php
+//var_dump($data);
+echo "<br>";
+//var_dump($_SESSION);
 if(isset($_SERVER['HTTP_REFERER'])) {
-  echo $_SERVER['HTTP_REFERER'];
+  //echo $_SERVER['HTTP_REFERER'];
 }
+//var_dump($_SESSION);
+if(isset($_SESSION['loggedIn']))
+{
+  $first_name = $data[0]['fname'];
+  $last_name = $data[0]['lname'];
+  $telephone_Number = $data[0]['phone'];
+  $email_Address = $data[0]['email'];
+?>
+
+<div><h1>Hi, <?php 
+  echo $_SESSION['loggedIn']['username']?>
+  ! <br>The total amount of your order:
+</h1></div>
+
+<?php
+}
+else
+{
+printf("<div><h1>Hi, Customer!<br>The total amount of your order:</h1></div>");
+$first_name = "";
+$last_name = "";
+$telephone_Number = "";
+$email_Address = "";
+}
+
+var_dump($_SESSION['cart']);
+if($_SESSION['cart']) {
+  echo "You have items in your cart!";
+}else {
+  echo "Please select a product of purchase first";
+}
+?>
+
+<?php
+var_dump($_POST);
+
 ?>
 
 <div id="paymentContainer">
         
 <div id="flexContainer">
-    <div id="yourInformation" class="col-md-6">
-	       <form method="POST" action="#">
-	        <h1>Ange Leverans Adress</h1>
+    <div id="yourInformation" class="col-md-12">
+	       <form method="POST" action="#" name="first">
+	        <h1>Fill in Your Information</h1>
                         <div class="form-group">
-                        <label for="FullName">First Name: </label>
-                        <input type="text" name="FullName" class="form-control"  id="resultOfFirstName" placeholder="Förnamn" required>
+                        <label for="first_Name">First Name: </label>
+                        <input type="text" name="first_Name" class="form-control" value="<?php echo $first_name?>" id="resultOfFirstName" placeholder="<?php echo $first_name?>"  required>
                         </div>
 
                         <div class="form-group">
-                        <label for="FullName">Sur Name: </label>
-                        <input type="text" class="form-control"  id="lastName" placeholder="Efternamn" required>
+                        <label for="last_Name">Sur Name: </label>
+                        <input type="text" class="form-control"  name="last_Name" id="lastName" value="<?php echo $last_name?>" placeholder="<?php echo $last_name?>"  required>
                         </div>
                         
                         <div class="form-group">
-                        <label for="FullName">Telephone: </label>
-                        <input type="tel" class="form-control" name="telephoneNumber" placeholder="Telefon nummer" id="resultOfPhoneNumber" size="50" required/>
+                        <label for="telephone_Number">Telephone: </label>
+                        <input type="tel" class="form-control" name="telephone_Number" value="<?php echo $telephone_Number?>" placeholder="<?php echo $telephone_Number?>"  id="resultOfPhoneNumber" size="50" required/>
                         </div>
                         
                         <div class="form-group">
-                        <label for="FullName">Email Adress: </label>
-                        <input type="email" class="form-control" placeholder="E-mail address" name="email" id="resultOfEmailAddress" size="50" required/>
+                        <label for="email_Address">Email Adress: </label>
+                        <input type="email" class="form-control" name="email_Address"  value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
                         </div>
-
-                        <button type="submit" value="submit" class="btn btn-default btn-success">Next</button>
+                        <input type="checkbox" name="new_Account" value="consent">Create an account</input>
+                        <br>
+                        <button type="submit" value="first" name="first_form" class="btn btn-default btn-success">Next</button>
       </form>
 		</div>
     
-	<div id="paymentMethod" class="col-md-6">
+
+    <?php
+      if(isset($_POST['new_Account'])) {
+    ?>
+      <div id="yourAccountInformation" class="col-md-12">
+	    <form method="POST" action="#" name="second">
+	    <h1>Fill in Your account Information</h1>
+      <label for="username-input">Username <span class="text-danger">*</span></label>
+			<input type="text" name="user[username]" placeholder="Username">
+			<label for="password-input">Password <span class="text-danger">*</span></label>
+      <input type="password" name="user[password]" placeholder="Password">
+      <button type="submit" value="second" name="second_form" class="btn btn-default btn-success">Next</button>
+      </form>
+      <div>
+      <?php
+      }
+      if(isset($_POST['second_form']) )
+     {
+      ?>
+
+  
+	<div id="paymentMethod" class="col-md-12">
 		
 		<h1> Betalningsalternativ </h1>
 			  <div>
@@ -76,4 +137,9 @@ if(isset($_SERVER['HTTP_REFERER'])) {
     </div>
    
   </div>
-  </div>
+
+  <?php
+    }
+    ?>
+
+</div>
