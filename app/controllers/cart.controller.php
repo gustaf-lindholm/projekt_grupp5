@@ -24,6 +24,8 @@ class Cart extends Base_Controller
 		
 		$this->modelObj->add();
 
+		$this->modelObj->showCart();
+
 		$this->reqView('Cart');
 	}
 

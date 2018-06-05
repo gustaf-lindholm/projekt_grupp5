@@ -20,7 +20,7 @@ class SessionCart {
 		return $this->products;
 	}
 
-	public function remove($sku) 
+	public function removeItem() 
 	{
 		unset($this->products[$sku]);
 	}
