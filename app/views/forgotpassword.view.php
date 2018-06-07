@@ -2,6 +2,10 @@
 
 if (isset($_POST['submit']))
 
+//$message = 'Email:' . $_POST['email'];
+
+//echo $message;
+
 
 ?>
 
@@ -10,7 +14,7 @@ if (isset($_POST['submit']))
 
 <div class='form-group text-center'>
 
-<form action='".URLrewrite::BaseURL().'forgotpassword/SendEmail/'"'  method='POST'>
+<form action="<?php URLrewrite::BaseURL().'forgotpassword/SendEmail/'?>"  method='POST'>
 <input type='email' name='email' required placeholder='Please enter your email'>
 <div class='send-button'>
 <br>
