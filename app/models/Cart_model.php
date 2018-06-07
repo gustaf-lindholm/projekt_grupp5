@@ -9,7 +9,7 @@ class Cart_model extends Base_model
 	public function showCart()
 	{
 		//var_dump($_SESSION['cart']->getProdList());
-		var_dump($_SERVER);
+		//var_dump($_SERVER);
 		$prodList = $_SESSION['cart']->getProdList();
 		$count = count($prodList);
         $i = 0;
@@ -39,9 +39,11 @@ class Cart_model extends Base_model
         }
         $this->sql .= ") GROUP BY product_variants.sku";
 		$paramBinds = [':sku' => $sku];
+        
         $this->prepQuery($this->sql, $paramBinds);
+		
 		$this->getAll();
-		//return self::$data;
+		return self::$data;
 		//echo $this->sql;
 	}
 
@@ -56,7 +58,7 @@ class Cart_model extends Base_model
 
 		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
 		if ($data > 0) {
-			$_SESSION['cart']->addProduct($sku);
+			$_SESSION['cart']->addProduct($sku, $amount);
 		}
 	}
 
