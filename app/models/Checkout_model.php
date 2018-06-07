@@ -47,4 +47,53 @@ class Checkout_model extends Base_model
 
         return self::$data;
     }
+
+    public function signupUser()
+    {
+		var_dump($_POST);
+		
+    	    if (empty($_POST['user']['first_Name']) || empty($_POST['user']['last_Name']) || empty($_POST['user']['email']) || empty($_POST['user']['phone']) || empty($_POST['user']['username']) || empty($_POST['user']['password'])) {
+				echo "Please enter value";
+				
+            } else {
+            	if (!preg_match('/^[a-zA-Z]*$/', $_POST['user']['first_Name']) || !preg_match('/^[a-zA-Z]*$/', $_POST['user']['last_Name'])) {
+            		echo "Please review";
+            	} else {
+            		if (!filter_var($_POST['user']['email_Address'], FILTER_VALIDATE_EMAIL)) {
+            			echo "Please enter a valid email";
+            		} else {
+            			$level_id = $_POST['user']['level_id'];
+            			$fname = $_POST['user']['first_Name'];
+            			$lname = $_POST['user']['last_Name'];
+            			$email = $_POST['user']['email_Address'];
+            			$phone = $_POST['user']['telephone_Number'];
+            			$username = $_POST['user']['username'];
+            			$sql = "SELECT FROM account WHERE username = ':username'";
+                        $paramBinds = [':username' => $username];
+                        $this->prepQuery($sql, $paramBinds);
+            			$resultCheck = $this->getAll();
+                        var_dump($resultCheck);
+            			if (!empty($resultCheck)) {
+            				echo "username already taken";
+                            var_dump($resultCheck);
+            			} else {
+            				$hashedPassword = md5($_POST['user']['password']);
+            				$sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
+            				$paramBinds = [':level_id' => $level_id, ':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
+					        $this->prepQuery($sql, $paramBinds);
+					        $userId = $this->lastInsertId;
+                            echo $userId;
+					        
+					       $sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
+					        $paramBinds = [':userId' => $userId, ':username' => $username, ':hashedPassword' => $hashedPassword,];
+					        $this->prepQuery($sql, $paramBinds);
+                            echo "Success new account";
+
+
+						}
+            		}
+            	}
+            }
+    }
 }
+

@@ -1,3 +1,6 @@
+<h1>Thank You</h1>
+<p>Thank you for your comments. We'll be in touch if necessary.</p>
+
 <div class="prod-container">
 
         <div>

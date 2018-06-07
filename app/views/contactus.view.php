@@ -1,63 +1,82 @@
-<h1>Do not hesitate to contact us</h1>
-
-<form method="post" action="#">
-  <div class="form-row">
-
-  <div class="form-group col-md-6">
-      <label for="inputName4">Subject</label>
-      <input type="text" class="form-control" id="inputName4" name="subject" placeholder="Enter the topic of interest">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="from" id="inputEmail4" placeholder="Your Email">
-    </div>
- 
-    <div class="form-group col-md-12">
-    <label for="exampleFormControlTextarea2">Question</label>
-    <textarea class="form-control rounded-0" name="message" id="exampleFormControlTextarea2" placeholder="Share your thoughs with us" rows="3"></textarea>
-</div>
-
-  <div class="form-group col-md-4">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Remember Me
-      </label>
-    </div>
-  </div>
-  </div>
-  <button type="submit" class="btn btn-primary col-md-12">Send</button>
-  
-</form>
-</div>
-
-
 <?php
-//https://stackoverflow.com/questions/14456673/sending-email-with-php-from-an-smtp-server
-var_dump($_POST);
-$to = 'sarangua97@gmail.com';
-$subject = $_POST['subject'];
-$message = $_POST['message']; 
-$from = $_POST['from'];
- 
-/*
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->CharSet = 'UTF-8';
-
-$mail->Host       = "mail.example.com"; // SMTP server example
-$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-$mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
-$mail->Username   = "username"; // SMTP account username example
-$mail->Password   = "password";        // SMTP account password example
-*/
-
-// Sending email
-if(mail($to, $subject, $message)){
-    echo 'Your mail has been sent successfully.';
-} else{
-    echo 'Unable to send email. Please try again.';
+$errors = [];
+$missing = [];
+//If POST send is set, please save the following variables
+if (isset($_POST['send'])) {
+    $expected = ['name', 'email', 'comments'];
+    $required = ['name', 'comments'];
+    $to = 'Sarangua <sarangua97@gmail.com>';
+    $subject = 'Feedback from online form';
+    $headers = [];
+    $headers[] = 'From: webmaster@example.com';
+    $headers[] = 'Cc: gustaf@backers.fi';
+    $headers[] = 'Content-type: text/plain; charset=utf-8';
+    $authorized = '-fsarangua97@gmail.com';
+    require 'process_mail.php';
+    if ($mailSent) {
+        header('Location:'.URLrewrite::BaseURL());
+        exit;
+        // echo "Message: \n\n";
+        // echo htmlentities($message);
+        // echo "Headers: \n\n";
+        // echo htmlentities($headers);
+        // echo htmlentities($to);
+    }
 }
 ?>
+
+<h1>Contact Us</h1>
+<?php if ($_POST && ($suspect || isset($errors['mailfail']))) : ?>
+<p class="warning">Sorry, your mail couldn't be sent.</p>
+<?php elseif ($errors || $missing) : ?>
+<p class="warning">Please fix the item(s) indicated</p>
+<?php endif; ?>
+
+
+<form method="post" action="#">
+  <p>
+    <label for="name">Name:
+    <?php if ($missing && in_array('name', $missing)) : ?>
+        <span class="warning">Please enter your name</span>
+    <?php endif; ?>
+    </label>
+    <input type="text" name="name" id="name"
+        <?php
+        if ($errors || $missing) {
+            echo 'value="' . htmlentities($name) . '"';
+        }
+        ?>
+        >
+  </p>
+  <p>
+    <label for="email">Email:
+        <?php if ($missing && in_array('email', $missing)) : ?>
+            <span class="warning">Please enter your email address</span>
+        <?php elseif (isset($errors['email'])) : ?>
+            <span class="warning">Invalid email address</span>
+        <?php endif; ?>
+    </label>
+    <input type="email" name="email" id="email"
+        <?php
+        if ($errors || $missing) {
+            echo 'value="' . htmlentities($email) . '"';
+        }
+        ?>
+        >
+  </p>
+  <p>
+    <label for="comments">Comments:
+        <?php if ($missing && in_array('comments', $missing)) : ?>
+            <span class="warning">You forgot to add any comments</span>
+        <?php endif; ?>
+    </label>
+      <textarea name="comments" id="comments"><?php
+          if ($errors || $missing) {
+              echo htmlentities($comments);
+          }
+          ?></textarea>
+  </p>
+  <p>
+    <input type="submit" name="send" id="send" value="Send Comments">
+  </p>
+</form>

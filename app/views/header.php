@@ -10,9 +10,12 @@
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/products.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/grid_table.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/home.css';?>" type="text/css"/>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="<?php echo URLrewrite::BaseURL().'javascript/ajax.js';?>"></script>
     
 </head>
@@ -52,12 +55,13 @@
    
       <?php
        if (isset($_SESSION['loggedIn']['username'])) { ?>
-      <form class= "navbar-form navbar-right">
-      <a href="<?php echo URLrewrite::BaseURL().'account'?>"><button class="btn" type="btn">My account</button></a>
-      </form>
+      <div class= "navbar-form navbar-right">
+      <a href="
+      <?php echo URLrewrite::BaseURL().'account'?>"><button class="btn" type="btn">My account</button></a>
+       </div>
       <?php }?>
 
-      <form class= "navbar-form navbar-right">
+      <div class= "navbar-form navbar-right">
           <ul class="navbar-nav" style="list-style-type: none;">
               <li class="dropdown">
               <a href="<?php echo URLrewrite::BaseURL().'login'?>"class="dropdown-toggle signup" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn signup" type="btn">Log in / Sign Up</button></a>
@@ -80,7 +84,7 @@
 
       
           <a href="<?php echo URLrewrite::BaseURL().'cart'?>"><button class="btn btn-default btn-sm" type="btn"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</button></a>
-      </form>
+              </div>
 
  
 </div><!-- End for -navbar-header-->
