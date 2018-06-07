@@ -9,7 +9,7 @@ if (!isset($status) || $status != 'edit' )
 *   SHOW ALL PRODUCTS
 */
 ?>
-<div class="form-container">
+<div class="form-container table-responsive">
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>

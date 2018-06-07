@@ -24,4 +24,9 @@ class Registry
             return self::$status;
         }
     }
+
+    public static function getAllStatus()
+    {
+        return self::$status;
+    }
 }

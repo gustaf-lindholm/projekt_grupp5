@@ -2,7 +2,7 @@
 <!-- <div class="form-container"> -->
 <?php
     // Print response on product option insert
-    if(Registry::getStatus() !== null && Registry::getStatus('deleteUser') == true)
+    if(Registry::getStatus('deleteUser') !== null && Registry::getStatus('deleteUser') == true)
     {
         echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">User deleted!</div>';
 
@@ -26,6 +26,7 @@
                 <th scope="col">Level</th>
                 <th scope="col">Username</th>
                 <th scope="col">Registration date</th>
+                <th scope="col">Edit info</th>
                 <th scope="col">remove</th>
             </tr>
         </thead>
@@ -37,7 +38,11 @@
                     $optionInfo .= "<td>".$value['level_type']."</td>";
                     $optionInfo .= "<td>".$value['username']."</td>";
                     $optionInfo .= "<td>".$value['creation_time']."</td>";
-                    // $optionInfo .= "<td>".$value['password']."</td>";
+                    
+                    //edit button
+                    $optionInfo .= '<td><a href="'
+                    .URLrewrite::BaseAdminURL('manageUsers/getUserInfo').'/'.$value['uid']
+                    .'"<span class="glyphicon glyphicon-pencil"></span></a></td>';
                     
                     // delete button
                     $optionInfo .= '<td><a href="'
