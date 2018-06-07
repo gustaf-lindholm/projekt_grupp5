@@ -1,13 +1,8 @@
-<?php
-//var_dump(URLrewrite::BaseURL().'signup/createNewAccount');
-//var_dump($_POST['user']);
-?>
-
 <section class="main-container">
 
 	<div class="main-wrapper">
-		<h2>Fill in the form</h2>
-		<form class="signup-form" action="<?php echo URLrewrite::BaseAdminURL('manageUsers/createUser');?>" method="POST">
+		<h2>Signup for Company</h2>
+		<form class="signup-form" action="<?php echo URLrewrite::BaseAdminURL('Manageusers/createUser')?>" method="POST">
 			<input type="hidden" name="user[level_id]" value="1">
 			<label for="firstname-input">Firstname <span class="text-danger">*</span></label>
 			<input type="text" name="user[fname]" placeholder="Firstname">

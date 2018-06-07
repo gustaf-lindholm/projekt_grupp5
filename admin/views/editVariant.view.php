@@ -244,8 +244,3 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
     $productsList->render($action, 'Add option to <strong>'.$data['variantInfo']['title'].'</strong>', 'g-form', 'newOption');
 ?>
 </div>
-
-<?php
-echo "<pre>";
-var_dump($data);
-//var_dump($data['optionType']);
