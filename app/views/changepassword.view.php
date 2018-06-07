@@ -87,7 +87,7 @@ echo"
     <label for=''>Old password</label>
     <input type='text' class='form-control' id='' name='oldpassword'>
     <label for=''>New password</label>
-    <input type='password' class='form-control' id='' name='newpassword'>
+    <input type='password' class='form-control' id='' name='newpassword' required>
     <label for=''>Repeat new password</label>
     <input type='password' class='form-control' id='' name='repeatnewpassword'>
   <input type='submit' class='btn btn-primary' name='submit' value='Change password'>
