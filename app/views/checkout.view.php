@@ -84,8 +84,8 @@ var_dump($_POST);
 </div>
 
                         <div  class="checkbox">
-                        <label for="consent_Checkbox">
-                        <input type="checkbox" id="consent_Checkbox" data-toggle="toggle">
+                        <label for="user[consent_Checkbox]">
+                        <input type="checkbox" name="user[consent_Checkbox]" id="consent_Checkbox" data-toggle="toggle">
                         Create an account
                         </label>
                         </div>
@@ -120,7 +120,7 @@ var_dump($_POST);
       <?php
       }
 
-      if(isset($_POST['member']['second_form']) )
+      if(isset($_POST['member']['second_form']) || isset($_POST['user']['first_form']))
      {
       ?>
 

@@ -46,6 +46,10 @@ a {
     border: 1px grey;
 }
 
+.navbar {
+  margin-bottom: 0px;
+}
+
 /** Other CSS **/
 /* 
 #consent_Checkbox {
@@ -61,4 +65,35 @@ a {
 
 #consent_Checkbox:checked + #newmemberInformation {
   display:block;
+}
+
+#send_My_Comments {
+	cursor:pointer;
+	width:100%;
+	border:none;
+	background:grey;
+	color:#FFF;
+	margin:0 0 5px;
+	padding: 10px;
+	border-radius:5px;
+}
+
+#send_My_Comments:hover {
+    transition:border-color 0.3s ease-in-out;
+	border:2px solid seagreen; 
+    background-color: lightseagreen;
+}
+
+.main_Contact
+{
+   /*background: #000000 url("../pictures/background.jpeg");*/
+   padding: 0%;
+   margin: 0%;
+}
+
+.wrapper {
+max-width:500px;
+width:95%;
+margin:0 auto;
+position:relative;
 }
