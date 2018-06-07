@@ -127,9 +127,7 @@ if(isset($data['options'][0]['title']))
 }
 ?>
 </div>
-<?php }
-var_dump(Registry::getStatus(['addOptionValue']))
-?>
+<?php } ?>
 <div class="form-container">
 <?php
 
@@ -142,11 +140,4 @@ $action = URLrewrite::BaseAdminURL('ProductOptions/addOptionValue');
 $optionValForm->render($action, 'Add option values', 'g-form', 'addOptionValue');
 ?>
 </div>
-
-
-<?php
-var_dump($_POST);
-echo "<pre>";
-var_dump($data);
-?>
 

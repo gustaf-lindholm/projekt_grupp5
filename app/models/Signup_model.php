@@ -23,7 +23,7 @@ class Signup_Model extends base_model
             			$email = $_POST['user']['email'];
             			$phone = $_POST['user']['phone'];
             			$username = $_POST['user']['username'];
-            			$sql = "SELECT FROM account WHERE username = ':username'";
+            			$sql = "SELECT * FROM `projekt_klon`.`account` WHERE username = ':username'";
                         $paramBinds = [':username' => $username];
                         $this->prepQuery($sql, $paramBinds);
             			$resultCheck = $this->getAll();
@@ -37,13 +37,11 @@ class Signup_Model extends base_model
             				$paramBinds = [':level_id' => $level_id, ':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email];
 					        $this->prepQuery($sql, $paramBinds);
 					        $userId = $this->lastInsertId;
-                            echo $userId;
 					        
-					       $sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
+					       	$sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
 					        $paramBinds = [':userId' => $userId, ':username' => $username, ':hashedPassword' => $hashedPassword,];
 					        $this->prepQuery($sql, $paramBinds);
-                            URLrewrite::BaseAdminURL('account/index');
-
+							return true;
 
 						}
             		}

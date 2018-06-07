@@ -8,8 +8,6 @@
     } elseif (Registry::getStatus('addVariantValues') !== null && Registry::getStatus('addVariantValues') == 'fail') {
         echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option values!</div>';
     }
-// echo "<pre>";
-// var_dump($data);
 
 // new form
 $form = new Form(); ?>

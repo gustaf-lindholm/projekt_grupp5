@@ -16,8 +16,10 @@ class manageUsers extends Base_controller
         $this->initModel('manageUsers_model');
 
         $this->modelObj->deleteUser($uid);
-
+        
         $this->Index();
+
+        header('Refresh:2;'.URLrewrite::BaseAdminURL('manageUsers'));
     }
 
     public function getUserInfo($uid)
@@ -67,9 +69,23 @@ class manageUsers extends Base_controller
         header('Refresh:3;'.URLrewrite::baseAdminUrl('ManageUsers/getUserInfo/').$uid);
     }
 
+    public function createUserForm()
+    {
+        $this->reqView('createUser');
+    }
+
     public function createUser()
     {
-        //var_dump($_SERVER['REQUEST_URI']);
         $this->initModel('Signup_model');
+
+        if($this->modelObj->signupUser())
+        {
+            echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">User created!</div>';              
+            header('Refresh:3;'.URLrewrite::BaseAdminURL('ManageUsers'));
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">User created!</div>';              
+            header('Refresh:3;'.URLrewrite::BaseAdminURL('Manageusers'));
+        }
+
     }
 }

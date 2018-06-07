@@ -3,6 +3,7 @@
 <?php
 echo "<h1 class='page-header'>User: ". $data['userInfo']['username']. "</h1>";
 echo "<div class='form-container'>";
+echo "<a href=".URLrewrite::BaseAdminURL('manageusers')."><button>Go back</button></a>";
 $form = new Form();
 
 $form->textInput('accountInfo[username]', $data['userInfo']['username'], 'Username', 'form-control', $data['userInfo']['username']);
@@ -49,5 +50,3 @@ $passForm->render($action, 'Change User Password', 'g-form', 'userPass');
 
 ?>
 </div>
-<?php
-var_dump(Registry::getAllStatus());

@@ -13,8 +13,7 @@ class Base_controller
 
         if(file_exists(ADMIN_MODEL . $model . '.php'))
         {
-            require_once ADMIN_MODEL . $model . '.php';
-            
+            require_once ADMIN_MODEL . $model . '.php';         
         } else {
             require_once MODEL_PATH . $model . '.php'; 
         }
