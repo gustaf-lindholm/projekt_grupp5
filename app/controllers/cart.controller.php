@@ -24,13 +24,9 @@ class Cart extends Base_Controller
 		
 		$this->modelObj->add();
 
-		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->showCart();
+		$data = $this->modelObj->showCart();
 
-		//This will be shown on our cart page
-        $this->reqView('Cart');
-
-		//header("Location: {$_SERVER['HTTP_REFERER']}");
+		$this->reqView('Cart', $data);
 	}
 
 	public function removeItem()

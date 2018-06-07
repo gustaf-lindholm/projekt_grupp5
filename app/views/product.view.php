@@ -23,10 +23,9 @@
            }
             ?>
             <?php
-            // inte den bästa lösningen men för att det ska funka för stunden
             //var_dump($data[0]['sku']);
             printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
-            printf("<button class='btn btn-success' type='submit'>Köp</button>");
+            printf("<button class='btn btn-success' type='submit'>Checkout</button>");
             printf('<input type="hidden" name="sku" value="%s" />', $data[0]['sku']);
             printf("</form>");
               ?>
