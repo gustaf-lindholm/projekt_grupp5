@@ -65,6 +65,11 @@ class manageUsers extends Base_controller
         }
 
         header('Refresh:3;'.URLrewrite::baseAdminUrl('ManageUsers/getUserInfo/').$uid);
-//        $this->getUserInfo($uid);
+    }
+
+    public function createUser()
+    {
+        //var_dump($_SERVER['REQUEST_URI']);
+        $this->initModel('Signup_model');
     }
 }
