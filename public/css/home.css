@@ -47,3 +47,18 @@ a {
 }
 
 /** Other CSS **/
+/* 
+#consent_Checkbox {
+  display:none;
+}  */
+
+#newMemberInformation {
+  display: none;
+  background: #ccc;
+  width: 200px;
+  height: 200px;
+}
+
+#consent_Checkbox:checked + #newmemberInformation {
+  display:block;
+}
