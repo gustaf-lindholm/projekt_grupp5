@@ -25,6 +25,8 @@ if (isset($_POST['send'])) {
 }
 ?>
 
+<div class="main_Contact">
+
 <h1>Contact Us</h1>
 <?php if ($_POST && ($suspect || isset($errors['mailfail']))) : ?>
 <p class="warning">Sorry, your mail couldn't be sent.</p>
@@ -32,9 +34,11 @@ if (isset($_POST['send'])) {
 <p class="warning">Please fix the item(s) indicated</p>
 <?php endif; ?>
 
-
+<div class="wrapper">
 <form method="post" action="#">
-  <p>
+
+<div class="form-row">
+  <div class="form-group">
     <label for="name">Name:
     <?php if ($missing && in_array('name', $missing)) : ?>
         <span class="warning">Please enter your name</span>
@@ -47,8 +51,9 @@ if (isset($_POST['send'])) {
         }
         ?>
         >
-  </p>
-  <p>
+    </div>
+
+   <div class="form-group">
     <label for="email">Email:
         <?php if ($missing && in_array('email', $missing)) : ?>
             <span class="warning">Please enter your email address</span>
@@ -63,8 +68,11 @@ if (isset($_POST['send'])) {
         }
         ?>
         >
-  </p>
-  <p>
+    </div>
+
+    </div>
+    
+  <div class="form-group">
     <label for="comments">Comments:
         <?php if ($missing && in_array('comments', $missing)) : ?>
             <span class="warning">You forgot to add any comments</span>
@@ -75,8 +83,13 @@ if (isset($_POST['send'])) {
               echo htmlentities($comments);
           }
           ?></textarea>
-  </p>
-  <p>
-    <input type="submit" name="send" id="send" value="Send Comments">
-  </p>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" name="send" id="send_My_Comments" value="Send Comments">
+        </div>
+
 </form>
+
+        </div>
+        </div>
