@@ -71,19 +71,8 @@ class Cart_model extends Base_model
 
 	public function removeItem()
 	{
-		$sku = $_POST['sku'];
-		$amount = $_POST['amount'];
-		//ställer sql fråga till db för att kolla om sku'n finns i db
-		$this->sql = "SELECT count(*) FROM projekt_klon.product_variants WHERE product_variants.sku = :sku";
-		$paramBinds = [':sku' => $sku];
-        $this->prepQuery($this->sql, $paramBinds);
-        $data = $this->getAll();
-
-		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
-		if ($data > 0) {
-			$_SESSION['cart']->removeItem($sku, $amount);
-		}
 		
+		$_SESSION['cart']->removeItem($sku, $amount);
 		//header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 

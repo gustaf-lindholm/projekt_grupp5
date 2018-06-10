@@ -37,6 +37,8 @@ class Cart extends Base_Controller
 		//We instansiate cartItems method where we save the new array from session
         $data = $this->modelObj->removeItem();
 
+        $data = $this->modelObj->showCart();
+
         header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
