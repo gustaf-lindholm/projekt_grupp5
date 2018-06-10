@@ -7,7 +7,7 @@ if(isset($_POST['user']['consent_Checkbox']) && $_POST['user']['consent_Checkbox
 
 
 <h2>Create an account with us, friends!</h2>
-
+                            <input type="hidden" name="member[level_id]" value="1">
                             <label for="member[username]">Username <span class="text-danger">*</span></label>
                             <input type="text" name="member[username]" placeholder="Username">
                             <label for="member[username]t">Password <span class="text-danger">*</span></label>

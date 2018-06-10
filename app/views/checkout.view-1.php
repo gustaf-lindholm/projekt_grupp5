@@ -1,6 +1,15 @@
 <form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
 <?php include __DIR__."/checkout_details.view.php"; ?>
 
+<?php
+/* Validation */
+//Email address validation
+$email = filter_input(INPUT_POST, 'user[email_Address]', FILTER_VALIDATE_EMAIL);
+if ($email === false) {
+    print "Enter correct email";
+}
+
+?>
 <h1>Fill in Your Information</h1>
 <div class="form-row">
                         <div class="form-group col-md-6">

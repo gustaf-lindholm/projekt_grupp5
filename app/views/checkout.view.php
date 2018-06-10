@@ -9,7 +9,7 @@ if(($_SERVER['REQUEST_METHOD'] == 'GET') || (! isset($_POST['stage']))) {
 
 //Make sure stage isn't too big or too small
 $stage = max($stage, 1);
-$stage = min($stage, 5);
+$stage = min($stage, 6);
 
 //Save any submitted data
 if ($stage > 1) {
