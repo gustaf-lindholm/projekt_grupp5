@@ -26,7 +26,7 @@
                     printf("</form>");
                     printf("</div>");
                     printf("</div>");
-                   var_dump($data);
+                   //var_dump($data);
                 } 
             ?>
         </div>

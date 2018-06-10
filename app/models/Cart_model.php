@@ -41,16 +41,14 @@ class Cart_model extends Base_model
         $this->prepQuery($this->sql, $paramBinds);
 		
 		$this->getAll();
-		$x = 0;
-		foreach ($prodList as $skus => $amount) {
-			//var_dump($skus);
-			if (self::$data[$x]['sku'] === $skus) {
-					//var_dump($sku);
-					self::$data[$x]['amounts'] = $amount;
-					++$x;
-				}
+
+		foreach (self::$data as $key => $value) {
+			if (array_key_exists($value['sku'], $prodList)) {
+				self::$data[$key]['amounts'] = $prodList[$value['sku']];
+			}
 		}
-		//var_dump(self::$data[0]);
+		echo "<pre>";
+		var_dump(self::$data);
 		return self::$data;
 	}
 
