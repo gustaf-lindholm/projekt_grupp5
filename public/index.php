@@ -3,6 +3,9 @@ ob_start();
 require_once '../app/inc/autoloader.inc.php';
 
 session_start();
+/*
+$_SESSION['token'] = md5(uniqid(mt_rand(), true));
+*/
 
 // includerar init.php som 'startar' sidan
 
@@ -26,6 +29,8 @@ include '../app/views/footer.php';
 
 var_dump($_SESSION['cart']);
 //unset($_SESSION['cart']);
+//session_destroy();
+
 
 
 

@@ -1,63 +1,173 @@
-<h1>Do not hesitate to contact us</h1>
-
-<form method="post" action="#">
-  <div class="form-row">
-
-  <div class="form-group col-md-6">
-      <label for="inputName4">Subject</label>
-      <input type="text" class="form-control" id="inputName4" name="subject" placeholder="Enter the topic of interest">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="from" id="inputEmail4" placeholder="Your Email">
-    </div>
- 
-    <div class="form-group col-md-12">
-    <label for="exampleFormControlTextarea2">Question</label>
-    <textarea class="form-control rounded-0" name="message" id="exampleFormControlTextarea2" placeholder="Share your thoughs with us" rows="3"></textarea>
-</div>
-
-  <div class="form-group col-md-4">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Remember Me
-      </label>
-    </div>
+<!-- Opening Hours information -->
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:50px">CONTACT IM’MOBILÉ</h1>
+    <p>IM'MOBILÉ is ready to assist you. 
+    Please choose from the following options of communication for information about your order, our product information, or returns and more. 
+</p>
   </div>
-  </div>
-  <button type="submit" class="btn btn-primary col-md-12">Send</button>
-  
-</form>
 </div>
-
-
+<br><br>
 <?php
-//https://stackoverflow.com/questions/14456673/sending-email-with-php-from-an-smtp-server
-var_dump($_POST);
-$to = 'sarangua97@gmail.com';
-$subject = $_POST['subject'];
-$message = $_POST['message']; 
-$from = $_POST['from'];
- 
-/*
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->CharSet = 'UTF-8';
 
-$mail->Host       = "mail.example.com"; // SMTP server example
-$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-$mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
-$mail->Username   = "username"; // SMTP account username example
-$mail->Password   = "password";        // SMTP account password example
-*/
+if(isset($_POST['open'])) {
 
-// Sending email
-if(mail($to, $subject, $message)){
-    echo 'Your mail has been sent successfully.';
-} else{
-    echo 'Unable to send email. Please try again.';
+
+$body = '
+<div class="form-group col-md-6">
+<p>Our weekday opening hours are: 08:00-20:00</p>
+<p>Our weekend opening hours are: 10:00-16:00</p>
+';
+
+$weekdays=$_POST['open']['weekdays'];
+$weekend=$_POST['open']['weekend'];
+
+//echo $weekdays." are not as good as ".$weekend;
+
+$words = array('08:00-20:00', '10:00-16:00');
+$replacements = array($weekdays, $weekend);
+
+foreach($words as $i=>$word) {
+    $replacements[]="<span class='$word-$i'>$word</span>";
+}
+
+//Split up the page inot chunks delimited by a reasonable approximation of what an HTML elemnt looks like.
+$parts = preg_split("{(<(?:\"[^\"]*\"|'[^']*'|[^'\">])*>)}",
+$body,
+-1, //Split the given string by a regular expression
+PREG_SPLIT_DELIM_CAPTURE);
+
+foreach($parts as $i=>$part) {
+//Skip if this part is  an HTML element
+if (isset($part[0]) && ($part[0] == '<')) {
+    continue;
+}
+//Wrap the words with <span/>s
+$parts[$i] = str_replace($words, $replacements, $part);
+}
+
+//Reconstruct the body
+$body = implode('', $parts);
+
+print $body;
+}
+else {
+    var_dump($_POST);
+?>
+    <div class="form-group col-md-6">
+    <p>Our weekday opening hours are: 08:00-20:00</p>
+    <p>Our weekend opening hours are: 10:00-16:00</p>
+   
+<?php
+}
+
+if(isset($_POST['contact_list'])){
+    echo '<p>We are currently located in the beautiful city of Stockholm at:';
+    echo '<br>';
+    echo $_POST['contact_list'];
+    echo '</p>
+    <img style="width:500px;height:500px;" src="https://www.poshliving.se/wp-content/uploads/2014/11/sveavagen-41.jpg">
+    </div>';
+}else{
+?>
+    <p>We are currently located in the beautiful city of Stockholm at:
+    <br>
+    Sveavägen 2018, 12345 Stockholm.
+    </p>
+    <img style="width:500px;height:500px;" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sveav%C3%A4gen%2C_Stockholm_%28Palme%29.svg">
+    </div>
+<?php
 }
 ?>
+
+<?php
+$errors = [];
+$missing = [];
+//If POST send is set, please save the following variables
+if (isset($_POST['send'])) {
+    $expected = ['name', 'email', 'comments'];
+    $required = ['name', 'comments'];
+    $to = 'Sarangua <sarangua97@gmail.com>';
+    $subject = 'Feedback from online form';
+    $headers = [];
+    $headers[] = 'From: webmaster@example.com';
+    $headers[] = 'Cc: gustaf@backers.fi';
+    $headers[] = 'Content-type: text/plain; charset=utf-8';
+    $authorized = '-fsarangua97@gmail.com';
+    require 'process_mail.php';
+    if ($mailSent) {
+        header('Location:'.URLrewrite::BaseURL());
+        exit;
+    }
+}
+?>
+
+<div class="main_Contact col-md-6">
+
+<h1>Contact Us</h1>
+<p>We reply within 24 hours.</p>
+<?php if ($_POST && ($suspect || isset($errors['mailfail']))) : ?>
+<p class="warning">Sorry, your mail couldn't be sent.</p>
+<?php elseif ($errors || $missing) : ?>
+<p class="warning">Please fix the item(s) indicated</p>
+<?php endif; ?>
+
+<div class="wrapper">
+<form method="post" action="#">
+
+<div class="form-row">
+  <div class="form-group">
+    <label for="name">Name:
+    <?php if ($missing && in_array('name', $missing)) : ?>
+        <span class="warning">Please enter your name</span>
+    <?php endif; ?>
+    </label>
+    <input type="text" name="name" id="name"
+        <?php
+        if ($errors || $missing) {
+            echo 'value="' . htmlentities($name) . '"';
+}
+        ?>
+        >
+    </div>
+
+   <div class="form-group">
+    <label for="email">Email:
+        <?php if ($missing && in_array('email', $missing)) : ?>
+            <span class="warning">Please enter your email address</span>
+        <?php elseif (isset($errors['email'])) : ?>
+            <span class="warning">Invalid email address</span>
+        <?php endif; ?>
+    </label>
+    <input type="email" name="email" id="email"
+        <?php
+        if ($errors || $missing) {
+            echo 'value="' . htmlentities($email) . '"';
+        }
+        ?>
+        >
+    </div>
+
+    </div>
+    
+  <div class="form-group">
+    <label for="comments">Comments:
+        <?php if ($missing && in_array('comments', $missing)) : ?>
+            <span class="warning">You forgot to add any comments</span>
+        <?php endif; ?>
+    </label>
+      <textarea name="comments" id="comments"><?php
+          if ($errors || $missing) {
+              echo htmlentities($comments);
+          }
+          ?></textarea>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" name="send" id="send_My_Comments" value="Send Comments">
+        </div>
+
+</form>
+
+        </div>
+        </div>

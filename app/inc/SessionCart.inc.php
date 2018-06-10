@@ -20,8 +20,12 @@ class SessionCart {
 		return $this->products;
 	}
 
-	public function removeItem() 
+	public function removeItem($sku, $amount) 
 	{
-		unset($this->products[$sku]);
+		if (array_key_exists($sku, $this->products && $amount < 2)) {
+			unset($this->products[$sku]);
+		} else {
+			--$amount;
+		}
 	}
 }

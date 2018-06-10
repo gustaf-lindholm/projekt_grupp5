@@ -5,5 +5,6 @@
         <a href="<?php echo URLrewrite::BaseAdminURL('variants') ?>"><button id="addVariant" class="btn btn-primary adminButton">Add new variant</button></a>      
         <a href="<?php echo URLrewrite::BaseAdminURL('manageProduct') ?>"><button id="addVariant" class="btn btn-primary adminButton">Manage Products</button></a>      
         <a href="<?php echo URLrewrite::BaseAdminURL('createNewPosts') ?>"><button id="addVariant" class="btn btn-primary adminButton">Create New Posts</button></a>      
-        <a href="<?php echo URLrewrite::BaseAdminURL('manageUsers') ?>"><button id="addVariant" class="btn btn-primary adminButton">Manage Users</button></a>      
+        <a href="<?php echo URLrewrite::BaseAdminURL('manageUsers') ?>"><button id="addVariant" class="btn btn-primary adminButton">Users</button></a>      
+        <a href="<?php echo URLrewrite::BaseAdminURL('manageOrders') ?>"><button id="addVariant" class="btn btn-primary adminButton">Orders</button></a>      
 </div>

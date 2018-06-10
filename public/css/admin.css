@@ -1,0 +1,33 @@
+/* Input forms in admin */
+
+.form-container {
+    display: grid;
+    grid-template-columns: 20% 5% 70% 5%;
+    grid-template-rows: 10% 20% 10%;
+    /* padding-bottom: 5%; */
+    grid-gap: 1%;
+}
+.form-container > * {
+    min-width: 0;
+}
+.g-form {
+    /* display: grid; */
+    grid-column: 3 / 4;
+    /* grid-row: 1 / 2; */
+    margin-top: 5%;
+
+}
+#adminNav {
+    /* display: grid; */
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    background-color: #eee;
+    
+}
+
+.admin-nav-ul {
+    padding-left: 0;
+}
+.admin-nav-item {
+    list-style: none;
+}

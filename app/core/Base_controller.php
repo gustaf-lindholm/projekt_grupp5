@@ -11,11 +11,11 @@ class Base_controller
     {
         $url = (array_filter( explode("/", $_SERVER['REQUEST_URI'])));
 
-        if(in_array('admin', $url))
+        if(file_exists(ADMIN_MODEL . $model . '.php'))
         {
-            require_once ADMIN_MODEL . $model . '.php';
+            require_once ADMIN_MODEL . $model . '.php';         
         } else {
-            require_once MODEL_PATH . $model . '.php';
+            require_once MODEL_PATH . $model . '.php'; 
         }
         $this->modelObj = new $model();
     }

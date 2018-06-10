@@ -52,7 +52,7 @@ else {
            
             }?>
 
-            <?php echo $productInfo; ?>
+            <?php echo isset($productInfo) ? $productInfo : '' ?>
 
 
 

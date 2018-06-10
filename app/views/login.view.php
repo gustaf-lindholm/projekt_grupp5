@@ -1,5 +1,8 @@
 <?php
-
+/*
+session_regenerate_id();
+$_SESSION['loggedIn']= true;
+*/
 var_dump(md5('pass'));
 var_dump($_SESSION);
 
@@ -20,6 +23,7 @@ var_dump($_SESSION);
 			<input type="password" name="login[password]" placeholder="********">
 			<button type="submit">Login</button>
 			<a href="<?php echo URLrewrite::BaseURL().'signup'?>" class="btn btn-link">Not a member? Signup here</a>
+			<a href="<?php echo URLrewrite::BaseURL().'forgotpassword'?>" class="btn btn-link">Forgot password?</a>
 		</form>
 	</div>
 </section>

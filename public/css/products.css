@@ -21,19 +21,6 @@ h1 {
     margin: auto;
 }
 
-/* Input forms in admin */
-
-.form-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding-bottom: 5%;
-}
-.g-form {
-    display: grid;
-    grid-column: 2 / 4;
-    margin-top: 5%;
-}
-
 #last-id {
     grid-column: 2 / 4;
     margin: auto;

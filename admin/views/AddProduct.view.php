@@ -1,6 +1,7 @@
 <?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
 
 <div class="form-container">
+<?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
 
         <?php
         

@@ -19,10 +19,14 @@ echo "<h2>".$_POST['manufacturer']."</h2>";
     }
     echo "<li>".$product['price']." SEK</li>";
     echo "</ul>";
-    printf("<form method='POST' action='
-    <?php echo URLrewrite::BaseURL().'cart'; ?>'");
-    printf("<button class='btn btn-success' type='submit'>Köp</button>");
-    printf("</form>");
+    ?>
+    <form method='POST' action="<?php echo URLrewrite::BaseURL().'cart/add'; ?>">
+    <?php
+    printf('<input type="hidden" name="sku" value="%s" />', $data[0]['sku']);
+    ?>
+    <button class='btn btn-success' type='submit'>Add to Basket</button>
+    </form>
+    <?php
     echo "</div>";
     } 
 }

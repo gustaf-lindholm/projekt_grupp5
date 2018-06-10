@@ -25,8 +25,9 @@ class Cart extends Base_Controller
 		$this->modelObj->add();
 
 		$data = $this->modelObj->showCart();
+		header("Location: {$_SERVER['HTTP_REFERER']}");
 
-		$this->reqView('Cart', $data);
+		//$this->reqView('Cart', $data);
 	}
 
 	public function removeItem()

@@ -68,15 +68,6 @@ The iPhone X was a huge gamble from Apple, yet one that really paid off six mont
   <h2>Latest Products</h2>
   
     <?php
-    // rsort($product);
-    // $arrlength = count($product);
-    // for($x = 0; $x < $arrlength; $x++) {
-    //     echo $product[$x];
-    //     echo "<br>";
-    // }
-    
-    //var_dump($data['products']);
-   //while($row = count($data['products'])){
     foreach ($data['products'] as $product) {
     ?>
       <div class="col-md-3">
@@ -97,8 +88,6 @@ The iPhone X was a huge gamble from Apple, yet one that really paid off six mont
   <h2>Recommended Products For You</h2>
   
     <?php
-    //var_dump($data['products']);
-   //while($row = count($data['products'])){
     $shuffled = shuffle($data['products']);
 
     foreach ($data['products'] as $product) {

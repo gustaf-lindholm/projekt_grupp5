@@ -7,9 +7,7 @@ class Cart_model extends Base_model
 {
 	
 	public function showCart()
-	{
-		//var_dump($_SESSION['cart']->getProdList());
-		//var_dump($_SERVER);
+	{	
 		$prodList = $_SESSION['cart']->getProdList();
 		$count = count($prodList);
         $i = 0;
@@ -43,8 +41,17 @@ class Cart_model extends Base_model
         $this->prepQuery($this->sql, $paramBinds);
 		
 		$this->getAll();
+		$x = 0;
+		foreach ($prodList as $skus => $amount) {
+			//var_dump($skus);
+			if (self::$data[$x]['sku'] === $skus) {
+					//var_dump($sku);
+					self::$data[$x]['amounts'] = $amount;
+					++$x;
+				}
+		}
+		//var_dump(self::$data[0]);
 		return self::$data;
-		//echo $this->sql;
 	}
 
 	public function add($amount = 1) {
@@ -64,8 +71,20 @@ class Cart_model extends Base_model
 
 	public function removeItem()
 	{
-		// delete one item from session array
-		$_SESSION['cart']->removeItem($sku);
+		$sku = $_POST['sku'];
+		$amount = $_POST['amount'];
+		//ställer sql fråga till db för att kolla om sku'n finns i db
+		$this->sql = "SELECT count(*) FROM projekt_klon.product_variants WHERE product_variants.sku = :sku";
+		$paramBinds = [':sku' => $sku];
+        $this->prepQuery($this->sql, $paramBinds);
+        $data = $this->getAll();
+
+		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
+		if ($data > 0) {
+			$_SESSION['cart']->removeItem($sku, $amount);
+		}
+		
+		//header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
 	public function emptyCart() 

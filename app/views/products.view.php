@@ -47,7 +47,6 @@
             }
             echo "<li>".$product['price']." SEK</li>";
             echo "</ul>";
-            printf('<a href="'.URLrewrite::BaseURL().'product/'.$product['product_id'].'/'.$product['variant_id'].'">' . '<button class="btn btn-success" type="submit">Choose</button></a>');
             echo "</div>";
             } 
         }
