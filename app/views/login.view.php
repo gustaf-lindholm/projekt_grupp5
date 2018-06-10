@@ -1,5 +1,8 @@
 <?php
-
+/*
+session_regenerate_id();
+$_SESSION['loggedIn']= true;
+*/
 var_dump(md5('pass'));
 var_dump($_SESSION);
 
