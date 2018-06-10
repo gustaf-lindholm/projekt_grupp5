@@ -12,13 +12,6 @@ class Checkout_model extends Base_model
         $this->getAll();
 
         return self::$data;
-        // $this->sql = 
-        // "SELECT * FROM projekt_klon.order JOIN product_variants ON projekt_klon.order.pid = product_variants.product_id 
-        // AND projekt_klon.order.variant_id = product_variants.variant_id WHERE projekt_klon.order.uid = :uid";
-        // $binds = [':uid' => $uid];
-        // $this->prepQuery($this->sql, $binds);
-        // $data = $this->getAll();
-        // return $data;
     }
 
     public function getUser($uid) 
@@ -34,24 +27,10 @@ class Checkout_model extends Base_model
         return self::$data;
     }
 
-    public function getAllUsers()
-    {
-        $this->sql ="SELECT user.uid, user.level_id, user_levels.level_type, fname, lname, phone, username, creation_time, modification_time, password
-        FROM projekt_klon.user JOIN account
-        ON user.uid = account.uid JOIN user_levels
-        ON user.level_id = user_levels.level_id";
-
-        $this->prepQuery($this->sql);
-
-        $this->getAll();
-
-        return self::$data;
-    }
 
     public function signupUser()
     {
-		var_dump($_POST);
-		
+		/*
     	    if (empty($_POST['user']['first_Name']) || empty($_POST['user']['last_Name']) || empty($_POST['user']['email']) || empty($_POST['user']['phone']) || empty($_POST['user']['username']) || empty($_POST['user']['password'])) {
 				echo "Please enter value";
 				
@@ -62,6 +41,7 @@ class Checkout_model extends Base_model
             		if (!filter_var($_POST['user']['email_Address'], FILTER_VALIDATE_EMAIL)) {
             			echo "Please enter a valid email";
             		} else {
+                        
             			$level_id = $_POST['user']['level_id'];
             			$fname = $_POST['user']['first_Name'];
             			$lname = $_POST['user']['last_Name'];
@@ -94,6 +74,59 @@ class Checkout_model extends Base_model
             		}
             	}
             }
+            */
     }
+
+    public function logInToAccount() {
+        /*Initialize an array for filtered data*/
+        $clean = array();
+
+        /* Hash the passwords */
+        $hashed_password = password_hash($_POST['member']['password'], PASSWORD_DEFAULT);
+
+        /* Allow alphanumeric usernames */
+        if(ctype_alnum($_POST['member']['username'])) {
+            $clean['username']= $_POST['member']['username'];
+        }else {
+            /*Error*/
+        }
+
+        $sql ="SELECT password FROM projekt_klon.account WHERE username = :username";
+        $paramBinds =[':username' => $clean['username']];
+        $this->prepQuery($sql, $paramBinds);
+
+        if(password_verify($_POST['member']['password'], $hashed_password)) {
+            /*Login Succeeds*/
+            print "Login succeeds";
+        } else {
+            /*Login fails */
+        }
+    }
+
+    public function placeOrder() {
+
+    }
+
+    
+    public function UpdateUser($uid) {
+        //Update user's latest
+        $fname = ($_POST['fname']);
+        $lname = ($_POST['lname']);
+        $phone = ($_POST['phone']);
+        $email = ($_POST['email']);
+
+
+        $this->sql = "INSERT INTO `projekt_klon`.`user` SET user.fname = :fname, user.lname = :lname, user.phone = :phone, user.email = :email WHERE uid = :uid";
+        $parambinds = [':fname' => $fname, ':lname' => $lname, ':phone' => $phone, ':email' => $email, ':uid' => $uid];
+        if($this->prepQuery($this->sql, $parambinds)){
+         Registry::setStatus(['UpdateUser' => true]); //alert for if the database got the sql string or not
+            //header('Location:'.URLrewrite::BaseURL());
+        } else {
+         Registry::setStatus(['UpdateUser' => false]);
+            
+        }
+    
+    }
+
 }
 

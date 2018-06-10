@@ -1,25 +1,30 @@
 <form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
 <?php include __DIR__."/checkout_details.view.php"; ?>
-     
+<?php
+//Zip input must be a number
+$zip = filter_input(INPUT_POST, 'order[zip]', FILTER_VALIDATE_INT);
+if($zip == false) {
+	print "Submitted zip is wrong";
+}
+?>
     			<div class="control-group">
-    				<label for="client[address]" class="control-label">	
+    				<label for="order[street_address]" class="control-label">	
     					Street Address
-    				
-    				<input name="client[address]"  type="text"  id="address"/>
+    				<input name="order[street_address]"  type="text"  id="address"/>
     				</label>
     			</div>
      
     			<div class="control-group">
-    				<label for="client[zip]" class="control-label">	
+    				<label for="order[zip]" class="control-label">	
     					Zip Code
-    			<input name="client[zip]" type="text" id="zip"/>
+    			<input name="order[zip]" type="text" id="zip"/>
                 </label>
     			</div>
      
     			<div class="control-group">
-    				<label for="client[city]" class="control-label">	
+    				<label for="order[city]" class="control-label">	
     					City
-    				<input name="client[city]" type="text" id="city">
+    				<input name="order[city]" type="text" id="city">
     				</label>
     			</div>
     			

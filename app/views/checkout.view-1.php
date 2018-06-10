@@ -1,6 +1,15 @@
 <form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
 <?php include __DIR__."/checkout_details.view.php"; ?>
 
+<?php
+/* Validation */
+//Email address validation
+$email = filter_input(INPUT_POST, 'user[email_Address]', FILTER_VALIDATE_EMAIL);
+if ($email === false) {
+    print "Enter correct email";
+}
+
+?>
 <h1>Fill in Your Information</h1>
 <div class="form-row">
                         <div class="form-group col-md-6">
@@ -27,14 +36,27 @@
 </div>
 
 
-<!-- <div  class="checkbox">
+
+<?php 
+if(isset($_SESSION['loggedIn'])) {
+?>
+    <input type="hidden" name="stage" value="<?= $stage + 2 ?>"/>
+    <input type="submit" value="Next"/>
+    </form>
+<?php
+}else{
+?>
+                         <div class="form-group col-md-12">
                         <label for="user[consent_Checkbox]">
-                        <input type="checkbox" name="user[consent_Checkbox]" id="consent_Checkbox" data-toggle="toggle">
+                        <input type="checkbox" name="user[consent_Checkbox]" class="form-control" value="new_Member">
                         Create an account
                         </label>
-</div> -->
+                        </div>
+</div>
 
 <input type="hidden" name="stage" value="<?= $stage + 1 ?>"/>
 <input type="submit" value="Next"/>
 </form>
-
+<?php 
+}
+?>

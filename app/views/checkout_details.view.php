@@ -27,4 +27,5 @@ $last_name = "";
 $telephone_Number = "";
 $email_Address = "";
 }
+echo "</pre>";
 ?>

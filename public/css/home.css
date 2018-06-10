@@ -56,7 +56,7 @@ a {
   display:none;
 }  */
 
-#newMemberInformation {
+/* #newMemberInformation {
   display: none;
   background: #ccc;
   width: 200px;
@@ -65,7 +65,7 @@ a {
 
 #consent_Checkbox:checked + #newmemberInformation {
   display:block;
-}
+} */
 
 #send_My_Comments {
 	cursor:pointer;
