@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/products.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/grid_table.css';?>" type="text/css"/>
     <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/home.css';?>" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo URLrewrite::BaseURL().'css/admin.css';?>" type="text/css"/>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
