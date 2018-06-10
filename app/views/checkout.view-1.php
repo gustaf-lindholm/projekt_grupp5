@@ -27,12 +27,6 @@
 </div>
 
 
-<!-- <div  class="checkbox">
-                        <label for="user[consent_Checkbox]">
-                        <input type="checkbox" name="user[consent_Checkbox]" id="consent_Checkbox" data-toggle="toggle">
-                        Create an account
-                        </label>
-</div> -->
 
 <?php 
 if(isset($_SESSION['loggedIn'])) {
@@ -43,6 +37,14 @@ if(isset($_SESSION['loggedIn'])) {
 <?php
 }else{
 ?>
+                         <div class="form-group col-md-12">
+                        <label for="user[consent_Checkbox]">
+                        <input type="checkbox" name="user[consent_Checkbox]" class="form-control" value="new_Member">
+                        Create an account
+                        </label>
+                        </div>
+</div>
+
 <input type="hidden" name="stage" value="<?= $stage + 1 ?>"/>
 <input type="submit" value="Next"/>
 </form>
