@@ -30,26 +30,26 @@ class Cart extends Base_Controller
 		//$this->reqView('Cart', $data);
 	}
 
-	public function removeItem()
+	public function removeItem($sku, $amount)
 	{
 		$this->initModel('Cart_model');
 
 		//We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->removeItem();
+        $this->modelObj->removeItem($sku, $amount);
 
         $data = $this->modelObj->showCart();
-
-        header("Location: {$_SERVER['HTTP_REFERER']}");
+		header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
-	public function emptyCart()
+	public function emptyCart($sku, $amount)
 	{
 		$this->initModel('Cart_model');
 
 		//We instansiate cartItems method where we save the new array from session
-        $this->modelObj->emptyCart();
+        $this->modelObj->emptyCart($sku, $amount);
 
-        header("Location: {$_SERVER['HTTP_REFERER']}");
+        $data = $this->modelObj->showCart();
+		header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 }
 

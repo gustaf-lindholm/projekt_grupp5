@@ -22,10 +22,11 @@ class SessionCart {
 
 	public function removeItem($sku, $amount) 
 	{
-		if (array_key_exists($sku, $this->products && $amount < 2)) {
-			unset($this->products[$sku]);
-		} else {
-			--$amount;
-		}
+		unset($this->products[$sku]);
+	}
+
+	public function emptyCart($sku, $amount) 
+	{
+		unset($this->products[$sku]);
 	}
 }

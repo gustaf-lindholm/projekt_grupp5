@@ -47,8 +47,7 @@ class Cart_model extends Base_model
 				self::$data[$key]['amounts'] = $prodList[$value['sku']];
 			}
 		}
-		echo "<pre>";
-		var_dump(self::$data);
+		var_dump($_POST);
 		return self::$data;
 	}
 
@@ -67,16 +66,15 @@ class Cart_model extends Base_model
 		}
 	}
 
-	public function removeItem()
+	public function removeItem($sku, $amount)
 	{
-		
 		$_SESSION['cart']->removeItem($sku, $amount);
-		//header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
 
-	public function emptyCart() 
+	public function emptyCart($sku, $amount) 
 	{
 		// empty cartarray
-		unset($_SESSION['cart']);
+		$_SESSION['cart']->emptyCart($sku, $amount);
+		//unset($_SESSION['cart']);
 	}
 }
