@@ -14,8 +14,8 @@ if (isset($_POST['submit']))
 
 <div class='form-group text-center'>
 
-<form action="<?php URLrewrite::BaseURL().'forgotpassword/SendEmail/'?>"  method='POST'>
-<input type='email' name='email' required placeholder='Please enter your email'>
+<form action="<?php echo URLrewrite::BaseURL().'forgotpassword/resetPassword/'?>"  method='POST'>
+<input type='email' name='forgot[email]' required placeholder='Please enter your email'>
 <div class='send-button'>
 <br>
 <input type='submit' class='btn btn-primary' name='submit' value='RESET'>

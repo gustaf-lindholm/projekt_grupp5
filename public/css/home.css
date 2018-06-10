@@ -97,3 +97,11 @@ width:95%;
 margin:0 auto;
 position:relative;
 }
+
+/* RESET PASSWORD*/
+.resetPass {
+width: 100%;
+max-width: 420px;
+padding: 15px;
+margin: auto;
+}

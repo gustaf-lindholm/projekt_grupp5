@@ -24,6 +24,16 @@ function autoloader($className)
     {
         include ADMIN_CONTROLLER . $className . '.controller.php';    
     }
+    // public controllers
+    if (file_exists(CONTROLLER_PATH . $className . '.controller.php'))
+    {
+        include CONTROLLER_PATH . $className . '.controller.php';    
+    }
+    // public models
+    if (file_exists(MODEL_PATH . $className . '.controller.php'))
+    {
+        include MODEL_PATH . $className . '.controller.php';    
+    }
     
 }
 
