@@ -47,8 +47,7 @@ class Cart_model extends Base_model
 				self::$data[$key]['amounts'] = $prodList[$value['sku']];
 			}
 		}
-		echo "<pre>";
-		var_dump(self::$data);
+		var_dump($_POST);
 		return self::$data;
 	}
 
@@ -67,27 +66,15 @@ class Cart_model extends Base_model
 		}
 	}
 
-	public function removeItem()
+	public function removeItem($sku, $amount)
 	{
-		$sku = $_POST['sku'];
-		$amount = $_POST['amount'];
-		//ställer sql fråga till db för att kolla om sku'n finns i db
-		$this->sql = "SELECT count(*) FROM projekt_klon.product_variants WHERE product_variants.sku = :sku";
-		$paramBinds = [':sku' => $sku];
-        $this->prepQuery($this->sql, $paramBinds);
-        $data = $this->getAll();
-
-		// Om svaret > 0 så finns produkten i databasen, lägg då till den i carten!
-		if ($data > 0) {
-			$_SESSION['cart']->removeItem($sku, $amount);
-		}
-		
-		//header("Location: {$_SERVER['HTTP_REFERER']}");
+		$_SESSION['cart']->removeItem($sku, $amount);
 	}
 
-	public function emptyCart() 
+	public function emptyCart($sku, $amount) 
 	{
 		// empty cartarray
-		unset($_SESSION['cart']);
+		$_SESSION['cart']->emptyCart($sku, $amount);
+		//unset($_SESSION['cart']);
 	}
 }

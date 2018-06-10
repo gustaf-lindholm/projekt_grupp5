@@ -1,15 +1,17 @@
 <body>    
     <div id="mainContainer">
+        <?php 
+        foreach ($data as $products => $product) {
+            printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/emptyCart/'.$product['sku'].'/'.
+                        $product['amounts']);
+            printf("<button class='btn btn-danger' type='submit'>Clear cart</button>");
+            printf('<input type="hidden" name="sku" value="%s" />', $product['sku']);
+            printf("</form>");
+        }
+        ?>
        <h2 class="titleCart">Shopping Cart</h2>
         <div id="cartContainer">
             <?php
-            //var_dump($_SESSION['cart']->getProdList());
-            //$_SESSION['cart']->getProdList($data);
-            //var_dump($data['amounts']);
-            //var_dump($_SESSION['cart']);
-            ?>
-            <?php
-            //var_dump($data);
             foreach ($data as $products => $product) {
                     printf("<div class='col-md-8' id='%s'>", $product['sku']);
                     printf('<div class="col-md-4" id="imgUrl">');
@@ -19,21 +21,14 @@
                     printf('<span>%s<br> %s<br> %s<br> %s<br> %s SEK<br> %s :st</span>', $product['manufacturer'], $product['title'], $product['info'], $product['properties'], $product['price'], $product['amounts']);
                     printf("</div>");
                     printf("<div class='col-md-4' 'removeItem' id='%s'>", $product['sku']);
-                    printf("<form method='POST' action='%s'>", URLrewrite::BaseURL()."Cart/removeItem/".$product['sku']);
-                    printf('<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>');
-                    printf('<input type="hidden" name="sku" value="%s" />', $product['sku']);
-                    printf('<input type="text" name="amount" value="1" />');
-                    printf("</form>");
                     printf("</div>");
                     printf("</div>");
-                   //var_dump($data);
                 } 
             ?>
         </div>
     </div>
             <div id="orderInfo">
                 <div id="totalAmount">
-                    </form>
                     <span>TOTAL:<?php echo $product['price'] * $product['amounts']." SEK"; ?></span>
                 </div>
                 <div id="confirmCart">
