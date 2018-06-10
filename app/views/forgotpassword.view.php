@@ -1,25 +1,19 @@
-<?php
-
-if (isset($_POST['submit']))
-
-//$message = 'Email:' . $_POST['email'];
-
-//echo $message;
-
-
-?>
-
-
 <h3 class ='text-center'>Enter the Email of Your Account to Reset New Password</h3><br>
 
-<div class='form-group text-center'>
+<!-- <div id="body-b"> -->
+    <div class="reset-container">
+    
+    <form method="POST" class="resetPass reset-form" action="<?php echo URLrewrite::BaseURL().'forgotpassword/resetPassword/'?>">
+      <div class="">
+        <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+        <h1 class="h3 mb-3 font-weight-normal">Request password</h1>
+      </div>
 
-<form action="<?php echo URLrewrite::BaseURL().'forgotpassword/resetPassword/'?>"  method='POST'>
-<input type='email' name='forgot[email]' required placeholder='Please enter your email'>
-<div class='send-button'>
-<br>
-<input type='submit' class='btn btn-primary' name='submit' value='RESET'>
+      <div class="form-label-group">
+        <input id="email" class="form-control" type='email' name='forgot[email]' required placeholder='Please enter your email'>
+        <label for="email">Email</label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" value="RESET" type="submit">Send</button>
+    </form>
 </div>
-
-</form>
-</div>
+<!-- </div> -->

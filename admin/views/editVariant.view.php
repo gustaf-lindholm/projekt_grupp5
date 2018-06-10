@@ -1,5 +1,4 @@
 <?php
-include ADMIN_VIEW.'tempAdminMenu.php';
 $pid = $data['variantInfo']['pid'];
 $vid = $data['variantInfo']['variant_id'];
 
@@ -34,6 +33,8 @@ $vid = $data['variantInfo']['variant_id'];
 ?>
 <div class="form-container">
 <?php
+include ADMIN_VIEW.'adminPanelNav.view.php';
+
 // new form
 $variantForm = new Form();
 
@@ -45,9 +46,7 @@ $variantForm->button('Save');
 $action = URLrewrite::BaseAdminURL('Variants/updateVariant');
 $variantForm->render($action, 'Edit variant info', 'g-form');
 ?>
-</div>
 
-<div class="form-container">
 <h1 class="prod-title">Edit <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']?></strong> option values</h1>
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
@@ -96,8 +95,7 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
                 <?php echo $optionInfo ?>
         </tbody>
     </table>
-</div>
-<div class="form-container">
+
 <?php
 // alert with feedback on adding variant values    
     if(Registry::getStatus('addVariantValue') === true)
@@ -187,13 +185,8 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 </table>
 
 </form>
-<div class="form-container">
-<button type="submit" form="variantValues" class="btn btn-primary">Save</button>
+<button id="weird-button" type="submit" form="variantValues" class="btn btn-primary">Save</button>
 
-</div>
-</div>
-
-<div class="form-container">
 <h1 class="prod-title">Manage Options</h1>
 <?php 
     // Available options and adding of new option

@@ -1,6 +1,5 @@
-<?php include ADMIN_VIEW.'tempAdminMenu.php'; ?>
 <div class="form-container">
-<?php
+<?php include ADMIN_VIEW.'adminPanelNav.view.php';
 // tanken är att visa en 'alert' efter att ny variant lagts till
 if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'success')
 {
