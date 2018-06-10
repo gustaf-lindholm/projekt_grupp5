@@ -25,11 +25,9 @@
             <?php
             //var_dump($data[0]['sku']);
             printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/add');
-<<<<<<< HEAD
             printf("<button class='btn btn-success' type='submit'>Add to cart</button>");
-=======
             printf("<button class='btn btn-success' type='submit'>Add to Basket</button>");
->>>>>>> 55b828ffc054753fe410be934b024bd72911be00
+            printf("<button class='btn btn-success' type='submit'>Add to Basket</button>");
             printf('<input type="hidden" name="sku" value="%s" />', $data[0]['sku']);
             printf("</form>");
               ?>
