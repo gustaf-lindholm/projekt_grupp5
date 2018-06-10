@@ -95,5 +95,32 @@ class Checkout_model extends Base_model
             	}
             }
     }
+
+    public function createAccount() {
+        /*Initialize an array for filtered data*/
+        $clean = array();
+
+        /* Hash the passwords */
+        $hashed_password = password_hash($_POST['member']['password'], PASSWORD_DEFAULT);
+
+        /* Allow alphanumeric usernames */
+        if(ctype_alnum($_POST['member']['username'])) {
+            $clean['username']= $_POST['member']['username'];
+        }else {
+            /*Error*/
+        }
+
+        $sql ="SELECT password FROM projekt_klon.account WHERE username = :username";
+        $paramBinds =[':username' => $clean['username']];
+        $this->prepQuery($sql, $paramBinds);
+
+        if(password_verify($_POST['member']['password'], $hashed_password)) {
+            /*Login Succeeds*/
+            print "Login succeeds";
+        } else {
+            /*Login fails */
+        }
+       
+    }
 }
 

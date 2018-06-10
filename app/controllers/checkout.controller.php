@@ -26,5 +26,7 @@ class Checkout extends Base_Controller
         $this->modelObj->signupUser();
         //$this->reqView('login');
     }
+
+    
     
 }

@@ -1,4 +1,4 @@
-<br><footer id="footer" style='padding:100px;' class="footer"><!--Footer-->
+<br><footer id="footer" style='padding:100px;' class="footer col-md-12"><!--Footer-->
 	<div>
 			<div class="container">
 				<div class="row">
