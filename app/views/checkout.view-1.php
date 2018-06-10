@@ -34,7 +34,18 @@
                         </label>
 </div> -->
 
+<?php 
+if(isset($_SESSION['loggedIn'])) {
+?>
+    <input type="hidden" name="stage" value="<?= $stage + 2 ?>"/>
+    <input type="submit" value="Next"/>
+    </form>
+<?php
+}else{
+?>
 <input type="hidden" name="stage" value="<?= $stage + 1 ?>"/>
 <input type="submit" value="Next"/>
 </form>
-
+<?php 
+}
+?>

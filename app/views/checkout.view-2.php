@@ -8,7 +8,6 @@
                             <input type="password" name="member[password]" placeholder="Password">
 
 
-
 <input type="hidden" name="stage" value="<?= $stage + 1 ?>"/>
 <input type="submit" value="Create"/>
 </form>
