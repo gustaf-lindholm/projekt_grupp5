@@ -38,6 +38,12 @@
     grid-column: 2/3;
 }
 
+.status-alert {
+
+    grid-column: 2 / 4;
+
+}
+
 @media only screen and (max-width: 768px) {
 
     #adminNav{

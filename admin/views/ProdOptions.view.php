@@ -51,10 +51,10 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
     // Print response on product option insert
     if(Registry::getStatus() !== null && Registry::getStatus('addProdStatus') == 'success')
     {
-        echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
+        echo '<div class="status-alert alert alert-success alert-dismissible grid-alert" role="alert">New product option added!</div>';
 
     } elseif (Registry::getStatus('addProdStatus') !== null && Registry::getStatus('addProdStatus') == 'fail') {
-        echo '<div class="alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
+        echo '<div class="status-alert alert alert-danger alert-dismissible grid-alert" role="alert">Failed to add option type!</div>';
     }
     $products = $data['products'];
     $options = $data['optionType'];
@@ -86,7 +86,7 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 
 if(isset($data['options'][0]['title']))
 {
-    echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
+    echo '<div class ="status-alert alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
     '<h1 class=""><small> PID:'.$data['options'][0]['product_id']."</small></h1></div>";?>
 
 <!-- Table with info for chosen product -->
@@ -115,7 +115,7 @@ if(isset($data['options'][0]['title']))
     
     <!-- Error message if no options for chosen product  -->
     <?php } elseif (isset(($_POST['products']))) {
-    echo '<div class="alert alert-warning"><h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1></div>';
+    echo '<div class="status-alert alert alert-warning"><h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1></div>';
     }
 }
 
