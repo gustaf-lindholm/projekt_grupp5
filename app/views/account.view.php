@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
 <div class="container">
+<?php var_dump($data) ?>
 
 <?php
 
@@ -20,7 +21,7 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 ?>
 
 <a  href="<?php echo URLrewrite::BaseURL().'account'?>"><button id="" class="btn btn-primary">My details</button></a> 
-<a  href="<?php echo URLrewrite::BaseURL().'orderhistory'?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
+<a  href="<?php echo URLrewrite::BaseURL().'orderhistory/'.$data[0]['uid']?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
 

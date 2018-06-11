@@ -4,7 +4,7 @@
 
 <div class="text-center">
 <a  href="<?php echo URLrewrite::BaseURL().'account'?>"><button id="" class="btn btn-primary">My details</button></a> 
-<a  href="<?php echo URLrewrite::BaseURL().'orderhistory'?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
+<a  href="<?php echo URLrewrite::BaseURL().'orderhistory/'?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
 </div><br>
@@ -26,16 +26,15 @@ if ($data['orderInfo'] == false) {
 else {
     ?>
 
-    <div class="form-container">
-    <table class="grid-table table-striped table-bordered">
+    <div class="container">
+    <table class="table table-striped table-bordered">
         <thead class="thead-light">
             <tr>
                 <th scope="col">Ordernumber</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Date</th>
-                <th scope="col">Image</th>
+                <th scope="col">Inspect</th>
+
 
             </tr>
         </thead>
@@ -44,9 +43,9 @@ else {
             
             $productInfo = "";
             foreach($data['orderInfo'] as $key => $value) {
-                $productInfo .= "<tr><td>".$value['order_id']."</td>"."<td>".$value['antal']."</td>".
-                "<td>".$value['product_id']."</td>"."<td>".$value['price']."</td>"."<td>".
-                $value['order_time']."</td>"."<td class='col-md-2'><img class='img-responsive' src='".$value['img_url']."'/></td>";
+                $productInfo .= "<tr><td>".$value['order_id']."</td>"."<td>".$value['total_amount']."</td>".
+                "<td>".$value['order_time']."</td>".'<td><a href="'.URLrewrite::BaseURL('').'/'.$value['order_id'].'"<span class="glyphicon 
+                glyphicon-arrow-right"></span></a></td>';
                 
              }
            
