@@ -76,7 +76,5 @@ if (isset($data['order_items'])) {
             </tbody>
         </table>
     </div>
-    
     <?php
     }
-var_dump($data);
