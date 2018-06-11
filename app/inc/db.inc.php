@@ -30,6 +30,7 @@ class Db
             $this->connection = new PDO("mysql:host=$this->host;dbname=$this->database",$this->username, $this->password);
             // Prevents empty string insertion in database 
             //$this->connection->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_NATURAL);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "connection established";
         }
         catch(PDOException $e){
