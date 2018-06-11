@@ -1,3 +1,5 @@
+<?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
+
 <section class="main-container">
 
 	<div class="main-wrapper">

@@ -20,7 +20,8 @@ if ($stage > 1) {
 
 include __DIR__."/checkout.view-$stage.php";
 
-echo "<pre>";
+
+echo "<div class='col-md-12'><pre>";
 var_dump($_SESSION);
-echo "</pre>";
+echo "</pre></div>";
 

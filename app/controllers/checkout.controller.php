@@ -20,13 +20,17 @@ class Checkout extends Base_Controller
 
     public function createNewAccount() {
 
-    	// här kallar vi på vår model 
-        $this->initModel('Signup_model');
-        // här kallar vi på metoder i den instanserade modeln
-        $this->modelObj->signupUser();
-        //$this->reqView('login');
+        $this->initModel('Checkout_model');
+    
+        $this->modelObj->CreateUser();
+    
     }
 
+    public function placeOrder() {
+        
+        $this->initModel('Checkout_model');
     
+        $this->modelObj->placeOrder();
+    }
     
 }

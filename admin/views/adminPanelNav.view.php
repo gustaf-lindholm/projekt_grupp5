@@ -1,4 +1,5 @@
 <div id="adminNav">
+  <h3 class="text-center">Admin Nav</h3>
 <ul class="admin-nav-ul">
               <li class="admin-nav-item">
                 <a class="nav-link active" href="<?php echo URLrewrite::BaseAdminURL('adminpanel') ?>">
