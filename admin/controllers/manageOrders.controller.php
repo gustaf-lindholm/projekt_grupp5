@@ -8,6 +8,15 @@ class manageOrders extends base_controller
 
         $data['orders'] = $this->modelObj->getAllOrders();
 
-        $this->reqView('manageOrders', $data['orders']);
+        $this->reqView('manageOrders', $data);
+    }
+
+    public function orderDetails($oid)
+    {
+        $this->initModel('manageOrders_model');
+
+        $data['order_items'] = $this->modelObj->getOrderItems($oid);
+
+        $this->reqView('manageOrders', $data);
     }
 }
