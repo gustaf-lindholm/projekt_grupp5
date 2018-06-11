@@ -5,7 +5,6 @@
     <h1>Hallå</h1>
     </div>
 <?php
-echo md5('abc');
 } else {
     echo "You do not have permission";
 }
