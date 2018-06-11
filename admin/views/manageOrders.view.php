@@ -22,7 +22,7 @@ if (isset($data['orders'])) {
                     $tabel .= "
                     <tr>
                     <td>".$value['order_id']."</td>".
-                    "<td>".$value['total_amount']."</td>".
+                    "<td>".$value['total_amount']." kr</td>".
                     "<td>".$value['order_time']."</td>".
                     "<td>".$value['payment_status']."</td>"
                     .'<td><a href="'
