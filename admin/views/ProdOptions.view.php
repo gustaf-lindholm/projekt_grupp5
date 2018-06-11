@@ -1,10 +1,11 @@
-<?php include ADMIN_VIEW.'tempAdminMenu.php'; 
-
+<?php
 $pid = isset($_POST['products']) ? $_POST['products'] : null;
 
 ?>
 
 <div class="form-container">
+<?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
+
 
 <?php
     // display message if insert of new option was succssessful or not
@@ -43,12 +44,10 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
     $optionform->render($action, 'Options', 'g-form', 'optionform');
 
 
-?>
-</div>
 
-<div class="form-container">
-<!-- Form to choose product and option to add -->
-<?php
+
+//  Form to choose product and option to add
+
     // Print response on product option insert
     if(Registry::getStatus() !== null && Registry::getStatus('addProdStatus') == 'success')
     {
@@ -68,14 +67,9 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
     $productsList->button('Add option');
     $action = URLrewrite::BaseAdminURL('productoptions/addProductOption');
     $productsList->render($action, 'Add option to product', 'g-form', 'newOption');
-?>
 
-</div>
+// <!-- Output <select> element with all products -->
 
-
-<div class="form-container">
-<!-- Output <select> element with all products -->
-<?php
     $products = $data['products'];
     $productsList = new Form;
     $valueIndex = ['pid', 'title'];
@@ -83,22 +77,20 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
     $productsList->button('Show info');
     $action = URLrewrite::BaseAdminURL('productoptions');
     $productsList->render($action, 'Product Option Info', 'g-form', 'prodInfo');
-?>
 
-</div>
-<?php if (isset($_POST['products'])) { ?>
-<div>
+    if (isset($_POST['products'])) {
 
-<!-- Output title and info for chosen product if the product have options -->
-<?php
+
+// <!-- Output title and info for chosen product if the product have options -->
+
 
 if(isset($data['options'][0]['title']))
 {
     echo '<div class ="alert alert-success"><h1 class="prod-title">Available Options for: '.$data['options'][0]['title']."</h1>".
     '<h1 class=""><small> PID:'.$data['options'][0]['product_id']."</small></h1></div>";?>
-</div>
+
 <!-- Table with info for chosen product -->
-<div class="form-container">
+
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>
@@ -124,12 +116,8 @@ if(isset($data['options'][0]['title']))
     <!-- Error message if no options for chosen product  -->
     <?php } elseif (isset(($_POST['products']))) {
     echo '<div class="alert alert-warning"><h1 class="prod-title">No options in database for PID: '.$_POST['products'].'</h1></div>';
+    }
 }
-?>
-</div>
-<?php } ?>
-<div class="form-container">
-<?php
 
 $optionValForm = new Form();
 
@@ -139,5 +127,4 @@ $optionValForm->button('Save');
 $action = URLrewrite::BaseAdminURL('ProductOptions/addOptionValue');
 $optionValForm->render($action, 'Add option values', 'g-form', 'addOptionValue');
 ?>
-</div>
 

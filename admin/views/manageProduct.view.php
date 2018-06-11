@@ -1,5 +1,6 @@
+<div class="form-container">
 <?php
-include ADMIN_VIEW.'tempAdminMenu.php'; 
+include ADMIN_VIEW.'adminPanelNav.view.php';
 
 $status = Registry::getStatus('editProduct');
 if (!isset($status) || $status != 'edit' )
@@ -9,7 +10,7 @@ if (!isset($status) || $status != 'edit' )
 *   SHOW ALL PRODUCTS
 */
 ?>
-<div class="form-container table-responsive">
+
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>
@@ -47,15 +48,20 @@ if (!isset($status) || $status != 'edit' )
     *
     *   SHOW ALL VARIANTS OF SELECTED PRODUCT
     */
-    printf("<h2>%s</h2>", $data['product']['title']);
-    var_dump(Registry::getStatus());
     ?>
-    <div class="form-container">
+    <!-- <div class="form-container"> -->
     <table class="grid-table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+            <?php printf("<th colspan='4'>%s variants</th>", $data['product']['title']); ?>
+        </tr>
+        </thead>
         <thead class="thead-light">
             <tr>
                 <th scope="col">SKU</th>
                 <th scope="col">Variant Id</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Remove</th>
             </tr>
         </thead>
         <tbody class="">
@@ -77,4 +83,5 @@ if (!isset($status) || $status != 'edit' )
     </table>
 
     <a href="<?php echo URLrewrite::BaseAdminURL('manageProduct');  ?>"><button>Go back</button></a>
-<?php }} ?> 
+<?php }} ?>
+</div>
