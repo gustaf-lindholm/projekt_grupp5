@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
 <div class="container">
-<?php var_dump($data) ?>
-
 <?php
 
 if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, return to index-page

@@ -18,16 +18,40 @@ class Changepassword_model extends Base_model {
         return self::$data;
     }
 
-    public function changeUserPassword($uid) {
+    public function changeUserPassword($data)
+    {
  
+        $oldpassword = md5($_POST['oldpassword']);
         $newpassword = md5($_POST['newpassword']);
+        $repeatnewpassword = md5($_POST['repeatnewpassword']);
 
-        $this->sql = "UPDATE `projekt_klon`.`account` SET password = :newpassword WHERE uid = :uid";
-        $parambinds = [':newpassword' => $newpassword, ':uid' => $uid];
-        $this->prepQuery($this->sql, $parambinds);
-         die("Your password has been changed");
-            session_destroy();
-            header('Location:'.URLrewrite::BaseURL());
+        $oldpassworddb = $data[0]['password'];
+         //check password
+
+        if ($oldpassword==$oldpassworddb){
+
+            //check two new passwords
+            if ($newpassword==$repeatnewpassword){
+
+                $this->sql = "UPDATE `projekt_klon`.`account` SET password = :newpassword WHERE uid = :uid";
+                $parambinds = [':newpassword' => $newpassword, ':uid' => $data[0]['uid']];
+                $this->prepQuery($this->sql, $parambinds);
+                echo "Your password has been changed";
+                header('Refresh:2;'.URLrewrite::BaseURL().'account');
+            }
+
+            else {
+
+                Echo 'Passwords doesnt match!';
+                header('Refresh:3;'.URLrewrite::BaseURL().'changepassword');
+            }
+
+            } else {
+                
+                Echo '"Old password is incorrect, try again!"';
+                header('Refresh:3;'.URLrewrite::BaseURL().'changepassword');
+        }
+
     } 
 
 

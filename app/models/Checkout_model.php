@@ -161,6 +161,12 @@ class Checkout_model extends Base_model
     
     }
 
+    public function placeOrder() 
+    {
+        $_SESSION['order'] = $_POST['order'];
+        
+    }
+    
     public function createAccount()
     {
         /* Allow for alphanumeric character usernames */
