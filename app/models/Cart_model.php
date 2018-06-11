@@ -47,7 +47,6 @@ class Cart_model extends Base_model
 				self::$data[$key]['amounts'] = $prodList[$value['sku']];
 			}
 		}
-		var_dump($_POST);
 		return self::$data;
 	}
 

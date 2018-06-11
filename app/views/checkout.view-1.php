@@ -56,7 +56,7 @@ if(! (isset($_POST['user']['last_Name']) && (strlen($_POST['user']['last_Name'])
                         <label for="user[email_Address]">Email Adress: </label>
                         <input type="email" class="form-control" name="user[email_Address]"  value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
                         </div>
-
+                        <input type="hidden" class="form-control" name="user[level_id]"/>
                         <div class="form-group mb-3 ">
                         <label for="user[telephone_Number]">Telephone: </label>
                         <input type="tel" class="form-control" name="user[telephone_Number]" value="<?php echo $telephone_Number?>" placeholder="<?php echo $telephone_Number?>"  id="resultOfPhoneNumber" size="50" required/>
