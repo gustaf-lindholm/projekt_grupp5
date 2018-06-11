@@ -44,12 +44,15 @@ class Account_model extends Base_model
     $city = $_SESSION['order']['city'];
     $address = $address_1."%".$address_2;
     $country="Sverige";
-
-    $sql = "INSERT INTO projekt_klon.privat_Address (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
+    $uid = $_SESSION['loggedIn']['uid'];
+    $sql = "INSERT INTO projekt_klon.private_address (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
     $paramBinds = [':adress'=>$address, ':post_nr'=>$zip, ':stad'=>$city, ':land'=>$country, ':uid'=>$uid];
-    //var_dump($paramBinds);
+    
 
-    echo "<h1>This works</h1>";
+    echo "<h1>This works</h1><p>Your address is:";
+    var_dump($paramBinds);
+    echo "</h1>";
+
 }
  
     /*function getPersonForm($person) {
