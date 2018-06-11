@@ -22,5 +22,6 @@ include __DIR__."/checkout.view-$stage.php";
 
 echo "<pre>";
 var_dump($_SESSION);
+var_dump($_POST['order']);
 echo "</pre>";
 

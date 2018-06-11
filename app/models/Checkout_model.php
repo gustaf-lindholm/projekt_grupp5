@@ -103,8 +103,10 @@ class Checkout_model extends Base_model
         }
     }
 
-    public function placeOrder() {
-
+    public function placeOrder() 
+    {
+        $_SESSION['order'] = $_POST['order'];
+        
     }
 
     

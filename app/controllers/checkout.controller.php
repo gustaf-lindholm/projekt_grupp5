@@ -27,6 +27,16 @@ class Checkout extends Base_Controller
         //$this->reqView('login');
     }
 
+    public function order()
+    {
+        $this->initModel('Checkout_model');
+        
+        $this->modelObj->placeOrder();
+
+        $data = $this->modelObj->index();
+        $this->reqView('checkout', $data);
+    }
+
     
     
 }
