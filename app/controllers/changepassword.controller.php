@@ -12,19 +12,19 @@ class changepassword extends base_controller
 
         $uid = $_SESSION['loggedIn']['uid']; //
 
-        $data = $this->modelObj->getAccount($uid);
-
         //connects controller with the right view
-        $this->reqView('changepassword',$data);
+        $this->reqView('changepassword');
 
         
     }
 
-    public function changeUserPassword($uid)
+    public function changeUserPassword($data)
     {
+        $data = $this->modelObj->getAccount($uid);
+        
         $this->initModel('Changepassword_model');
 
-        $this->modelObj->changeUserPassword($uid);
+        $this->modelObj->changeUserPassword($data);
     }
 
 

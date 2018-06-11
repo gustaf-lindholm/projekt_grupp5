@@ -18,16 +18,42 @@ class Changepassword_model extends Base_model {
         return self::$data;
     }
 
-    public function changeUserPassword($uid) {
+    public function changeUserPassword($data) {
  
-        $newpassword = md5($_POST['newpassword']);
+    $oldpassword = md5($_POST['oldpassword']);
+    $newpassword = md5($_POST['newpassword']);
+    $repeatnewpassword = md5($_POST['repeatnewpassword']);
+
+    $oldpassworddb = $data[0]['password'];
+    //check password
+
+    if ($oldpassword==$oldpassworddb){
+
+        //check two new passwords
+        if ($newpassword==$repeatnewpassword){
+
+            echo "Sucess!";
+        }
+
+        else {
+
+            die("New passwords don't match!");
+        }
+
+    }
+
+    else {
+        die("Old password is incorrect, try again!");
+    }
+
 
         $this->sql = "UPDATE `projekt_klon`.`account` SET password = :newpassword WHERE uid = :uid";
-        $parambinds = [':newpassword' => $newpassword, ':uid' => $uid];
+        $parambinds = [':newpassword' => $newpassword, ':uid' => $data[0]['uid']];
         $this->prepQuery($this->sql, $parambinds);
-         die("Your password has been changed");
-            session_destroy();
-            header('Location:'.URLrewrite::BaseURL());
+            //session_destroy();
+         echo "Your password has been changed";
+            
+            //header('Refresh:5;'.URLrewrite::BaseURL());
     } 
 
 

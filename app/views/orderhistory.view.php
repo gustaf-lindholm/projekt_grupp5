@@ -51,7 +51,7 @@ if (!empty($data['orderInfo'])) { ?>
     </div>
 <?php
 } elseif (empty($data['order_items'])) {
-    echo "You don't have any orders to display";
+    echo "<font size='4'><center>You don't have any orders to display</center></font>";
     
 }
 if (isset($data['order_items'])) {

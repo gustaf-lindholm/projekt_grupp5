@@ -29,55 +29,6 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 <?php
     $uid = $_SESSION['loggedIn']['uid'];
 
-if (isset($_POST['submit'])) { //using this tutorial https://www.youtube.com/watch?v=IC_H-91DnVs
-
-    //echo "test";
-
-    //check fields
-    $oldpassword = md5($_POST['oldpassword']);
-    $newpassword = md5($_POST['newpassword']);
-    $repeatnewpassword = md5($_POST['repeatnewpassword']);
-
-    //echo"$oldpassword/$newpassword/$repeatnewpassword";
-
-    $oldpassworddb = $data[0] ['password'];
-
-    //echo $oldpassworddb."<br>"; only debugg 
-    //echo $oldpassword."<br>"; only debugg 
-
-    //check password
-
-    if ($oldpassword==$oldpassworddb){
-
-        //check two new passwords
-        if ($newpassword==$repeatnewpassword){
-
-            //sucess
-            //change password in db
-
-            echo "Sucess!";
-           /* $querychange = mysql_query("UPDATE account SET password='$newpassword' WHERE uid=:uid");
-
-            die("Your password has been changed");
-            session_destroy();
-            header('Location:'.URLrewrite::baseURL()); */
-        }
-
-        else {
-
-            die("New passwords don't match!");
-        }
-
-    }
-
-    else {
-        die("Old password is incorrect, try again!");
-    }
-
-
-}
-
-else { 
 
 echo"
 <h3 class='text-center'>Change password </h3> <br>
@@ -93,7 +44,6 @@ echo"
   <input type='submit' class='btn btn-primary' name='submit' value='Change password'>
   </div>
   </form>";
-}
   ?>
 
 </div>
