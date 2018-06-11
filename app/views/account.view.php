@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="css/account.css" type="text/css"/>
 </head>
 <div class="container">
-<?php var_dump($data) ?>
+<?php var_dump($_SESSION) ?>
 
 <?php
 

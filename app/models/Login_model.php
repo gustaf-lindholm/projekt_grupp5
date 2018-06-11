@@ -19,7 +19,8 @@ class Login_model extends base_model
 						//$hashedPassword = password_hash($_POST['login']['password'], PASSWORD_DEFAULT);
 						$hashedPassword = md5($_POST['login']['password']);
 						
-						$this->sql = "SELECT username, uid, password FROM account WHERE username = :username AND password = :password";
+						$this->sql = "SELECT username, account.uid, password, level_id FROM account 
+						JOIN user ON account.uid = user.uid WHERE username = :username AND password = :password";
 						$paramBinds = [':username' => $username, ':password' => $hashedPassword];
 						$this->prepQuery($this->sql, $paramBinds);
 						$result = $this->getOne();
@@ -29,6 +30,7 @@ class Login_model extends base_model
 							if ($result['username'] === $username && $result['password'] === $hashedPassword) {
 								$_SESSION['loggedIn']['username'] = $username;
 								$_SESSION['loggedIn']['uid'] = $result['uid'];
+								$_SESSION['loggedIn']['level'] = $result['level_id'];
 								header('Location:'.URLrewrite::BaseURL().'account/index');
 							}
 					}
