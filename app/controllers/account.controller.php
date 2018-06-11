@@ -27,4 +27,12 @@ class Account extends base_controller
         $this->index();
     } 
 
+    public function saveAddress() {
+
+        $this->initModel('Account_model');
+    
+        $this->modelObj->saveAddress();
+    
+    }
+
 }

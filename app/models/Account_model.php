@@ -36,6 +36,21 @@ class Account_model extends Base_model
 
 }
 
+   /* Save address to user's account */
+   public function saveAddress() {
+    $address_1 = $_SESSION['order']['street_address_1'];
+    $address_2 = $_SESSION['order']['street_address_2'];
+    $zip = $_SESSION['order']['zip'];
+    $city = $_SESSION['order']['city'];
+    $address = $address_1."%".$address_2;
+    $country="Sverige";
+
+    $sql = "INSERT INTO projekt_klon.privat_Address (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
+    $paramBinds = [':adress'=>$address, ':post_nr'=>$zip, ':stad'=>$city, ':land'=>$country, ':uid'=>$uid];
+    //var_dump($paramBinds);
+
+    echo "<h1>This works</h1>";
+}
  
     /*function getPersonForm($person) {
         $this->sql =

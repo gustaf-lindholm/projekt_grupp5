@@ -68,26 +68,9 @@ if(! (isset($_POST['user']['last_Name']) && (strlen($_POST['user']['last_Name'])
 
 </div>
 
-
-
-<?php 
-if(isset($_SESSION['loggedIn'])) {
-?>
-    <div class="control-group">			
-    <input type="hidden" name="stage" value="<?= $stage + 2 ?>"/>
-    <input type="submit" class="btn btn-success" value="Continue"/>
-    </div>
-    </form>
-<?php
-}else{
-?>
 <div class="control-group">			
 <input type="hidden" name="stage" value="<?= $stage + 1 ?>"/>
 <input type="submit" class="btn btn-success" value="Continue"/>
 </div>
 </form>
-
-<?php 
-}
-?>
 </div>

@@ -1,15 +1,15 @@
 <?php
 
-//Figure out what stage to use
+//Figure out what stage to use: post or get
 if(($_SERVER['REQUEST_METHOD'] == 'GET') || (! isset($_POST['stage']))) {
     $stage = 1;
 }else {
     $stage = (int) $_POST['stage'];
 }
 
-//Make sure stage isn't too big or too small
+//Make sure the number of stage isn't too big or too small
 $stage = max($stage, 1);
-$stage = min($stage, 6);
+$stage = min($stage, 4);
 
 //Save any submitted data
 if ($stage > 1) {
