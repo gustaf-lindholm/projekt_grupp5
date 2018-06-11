@@ -2,16 +2,18 @@
 <?php include __DIR__."/checkout_details.view.php"; ?>
 
 <?php
-/* Validation */
-//Email address validation
-$email = filter_input(INPUT_POST, 'user[email_Address]', FILTER_VALIDATE_EMAIL);
-if ($email === false) {
-    print "Enter correct email";
-}
-
+/*
+ if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo("$email is a valid email address");
+  } else {
+    echo("$email is not a valid email address");
+  }
+*/
 ?>
+
 <div class=" container">
 <h1>Fill in Your Information</h1>
+
 <div class="form-row">
                         <div class="mb-3 control-group">
                         <label for="user[first_Name]">Firstname: </label>
