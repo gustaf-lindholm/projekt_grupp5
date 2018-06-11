@@ -13,14 +13,12 @@
                     printf('<img src="%s" alt="picture" class="col-md-12", "img-fluid prod_img">', $product['img_url']);
                     printf('</div>');
                     printf('<div class="col-md-4" id="prodInfo">');
-                    printf('<span>%s<br> %s<br> %s<br> %s<br> %s SEK<br> %s :st</span>', $product['manufacturer'], $product['title'], $product['info'], $product['properties'], $product['price'], $product['amounts']);
-                    printf("</div>");
-                    printf("<div class='col-md-4' 'removeItem' id='%s'>", $product['sku']);
-                    printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/removeItem/'.$product['sku'].'/'.
-                                        $product['amounts']);
-                    printf("<button class='btn btn-danger' type='submit'>Delete Item</button>");
-                    printf('<input type="number" name="amounts" value="1"/>');
-                        printf("</form>");
+                    printf('<span>%s<br> %s<br> %s<br> %s<br> %s SEK<br></span>', $product['manufacturer'], $product['title'], $product['info'], $product['properties'], $product['price']);
+                    printf('<form method="POST" action="%s">', URLrewrite::BaseURL().'cart/update');
+                    printf('<input type="text" name="amount" value="%s">', $product['amounts']);
+                    printf('<input type="hidden" name="sku" value="%s"/>', $product['sku']);
+                    printf('<button type="submit">Uppdate</button></form>');
+                    printf("</form>");
                     printf("</div>");
                     printf("</div>");
                 }
@@ -50,7 +48,7 @@
                         printf("<button class='btn btn-success' type='submit'>Checkout</button>");
                         printf('<input type="hidden" name="order[sku]" value="%s" />', $skus);
                         printf('<input type="hidden" name="order[totalPrice]" value="%s" />', $totalPrice);
-                        printf("</form>");
+                        printf("</form>");  
                       ?>
                     <article>
                        Terms & conditions

@@ -25,8 +25,10 @@ class SessionCart {
 		unset($this->products[$sku]);
 	}
 
-	public function emptyCart($sku, $amount) 
+	public function update($sku, $amount) 
 	{
-		unset($this->products[$sku]);
+		if (array_key_exists($sku, $this->products)) {
+			$this->products[$sku] = $amount;
+		}
 	}
 }
