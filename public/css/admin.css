@@ -3,9 +3,7 @@
 .form-container {
     display: grid;
     grid-template-columns: 20% 5% 70% 5%;
-    /* grid-template-rows: repeat(auto-fill, min-max(auto, 400px)); */
     grid-auto-rows: auto;
-    /* padding-bottom: 5%; */
     grid-gap: 1%;
 }
 .form-container > * {
@@ -21,7 +19,7 @@
 #adminNav {
     /* display: grid; */
     grid-column: 1 / 2;
-    grid-row: 1 / -1;
+    /* grid-row: 1 / -1; */
     background-color: #eee;
     
 }
