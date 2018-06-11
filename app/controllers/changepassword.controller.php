@@ -18,11 +18,11 @@ class changepassword extends base_controller
         
     }
 
-    public function changeUserPassword($data)
+    public function changeUserPassword($uid)
     {
-        $data = $this->modelObj->getAccount($uid);
-        
         $this->initModel('Changepassword_model');
+
+        $data = $this->modelObj->getAccount($uid);        
 
         $this->modelObj->changeUserPassword($data);
     }

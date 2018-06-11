@@ -15,7 +15,7 @@ if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, retu
 
 //Users title 
 
-printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . " " . $data[0] ['lname']); //displays the users surname and lastname
+printf("<h1 class='text-uppercase text-center'> %s</h1>", $_SESSION['loggedIn']['username']); //displays the users surname and lastname
 
 ?>
 
@@ -28,7 +28,6 @@ printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . "
 
 <?php
     $uid = $_SESSION['loggedIn']['uid'];
-
 
 echo"
 <h3 class='text-center'>Change password </h3> <br>
