@@ -1,7 +1,4 @@
-
-<!-- <div class="form-container"> -->
 <?php
-include ADMIN_VIEW.'tempAdminMenu.php';
 
     // Print response on product option insert
     if(Registry::getStatus('deleteUser') !== null && Registry::getStatus('deleteUser') == true)
@@ -13,6 +10,8 @@ include ADMIN_VIEW.'tempAdminMenu.php';
     } ?>
 
   <div class="form-container">
+<?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
+
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>

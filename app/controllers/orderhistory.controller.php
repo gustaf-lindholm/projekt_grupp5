@@ -16,4 +16,18 @@ class orderhistory extends base_controller
         $this->reqView('orderhistory',$data);
         
     }
+
+    public function orderInfo($oid){
+        
+        $this->initModel('Orderhistory_model');
+
+        $data['order_items'] = $this->modelObj->getOrderItems($oid);
+
+
+        $data['prodInfo'] = $this->modelObj->getProductVariants($data['order_items']);
+        
+        $this->reqView('orderhistory', $data);
+
+
+    }
 }

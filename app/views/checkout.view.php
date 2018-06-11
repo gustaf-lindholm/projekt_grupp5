@@ -20,8 +20,14 @@ if ($stage > 1) {
 
 include __DIR__."/checkout.view-$stage.php";
 
-echo "<pre>";
+
+echo "<div class='col-md-12'><pre>";
 var_dump($_SESSION);
+<<<<<<< HEAD
 var_dump($_POST['order']);
 echo "</pre>";
+=======
+echo "</pre></div>";
+>>>>>>> 078903cd34e79b1a8bb41baea787e94c73ad62b0
 
+?>

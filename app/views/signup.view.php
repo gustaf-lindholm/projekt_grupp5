@@ -1,8 +1,3 @@
-<?php
-//var_dump(URLrewrite::BaseURL().'signup/createNewAccount');
-//var_dump($_POST['user']);
-?>
-
 <section class="main-container">
 
 	<div class="main-wrapper">
