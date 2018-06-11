@@ -27,7 +27,7 @@ $app = new App;
 // include footer
 include '../app/views/footer.php';
 
-var_dump($_SESSION['cart']);
+//var_dump($_SESSION['cart']);
 //unset($_SESSION['cart']);
 //unset($_SESSION['order']);
 //session_destroy();

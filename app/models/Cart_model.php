@@ -65,15 +65,10 @@ class Cart_model extends Base_model
 		}
 	}
 
-	public function removeItem($sku, $amount)
+	public function update()
 	{
-		$_SESSION['cart']->removeItem($sku, $amount);
-	}
-
-	public function emptyCart($sku, $amount) 
-	{
-		// empty cartarray
-		$_SESSION['cart']->emptyCart($sku, $amount);
-		//unset($_SESSION['cart']);
+		$sku = $_POST['sku'];
+		$amount = $_POST['amount'];
+		$_SESSION['cart']->update($sku, $amount);
 	}
 }

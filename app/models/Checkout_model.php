@@ -30,27 +30,88 @@ class Checkout_model extends Base_model
 
 
     public function placeOrder() {
+        //var_dump($_POST);
+        //var_dump($_SESSION);
+
         $order=array();
-        
-        $address_1 = $_POST['order']['street_address_1'];
-        $address_2 = $_POST['order']['street_address_2'];
-        $zip = $_POST['order']['zip'];
-        $city = $_POST['order']['city'];
-        $address = implode("/",$order);
-        $payment_Type= $_POST['orderPayment']['type'];
 
-        $sql = "INSERT INTO projekt_klon.orders (payment_method, user_id, alternative_address, lname, fname, email) VALUES (:payment_method, :user_id, :alternative_address, :lname, :fname, :email)";
-        $paramBinds = [':payment_method' => $payment_Type, ':user_id' => $_POST['user_id'], ':lname' => $clean['last_Name'], ':phone' => $clean['phone_Number'], ':email' => $clean['email_Address']];
-        $this->prepQuery($sql, $paramBinds);
-        $userId = $this->lastInsertId;
+        $user_id = $_SESSION['loggedIn']['uid'];
+        $fname = $_SESSION['user']['first_Name'];
+        $lname = $_SESSION['user']['last_Name'];
+        $email=$_SESSION['user']['email_Address'];
+        $address_1 = $_SESSION['order']['street_address_1'];
+        $address_2 = $_SESSION['order']['street_address_2'];
+        $zip = $_SESSION['order']['zip'];
+        $city = $_SESSION['order']['city'];
+        $address = $address_1.$address_2.$zip.$city;
 
-        //Saving all data for order: Payment method, Address, Email address if not a member
+        $payment_Type= $_SESSION['orderPayment']['type'];
+        $payment_status="unpaid";
+        $status="pending";
+        $totalAmount="2000";
+    
+        $sql = "INSERT INTO projekt_klon.orders (total_amount, payment_status, payment_method, user_id, alternative_address, lname, fname, email) VALUES (:total_amount, :payment_status, :payment_method, :user_id, :alternative_address, :lname, :fname, :email)";
+        $paramBinds = [':total_amount' => $totalAmount, ':payment_status' => $payment_status,':payment_method' => $payment_Type, ':user_id' => $user_id, ':alternative_address' => $address, ':lname' => $lname, ':fname' => $fname, ':email' => $email];
+        //var_dump($paramBinds);
+        echo "<h1>Thank you for your purchase</h1><div>We will shortly confirm your payment</div>";
+        var_dump($_SESSION);
+
+        if(isset($_SESSION['loggedIn'])) {
+?>
+
+
+    <div class="col-md-6">
+<a href="<?= URLrewrite::BaseURL().'account/saveAddress'?>"/>Save your address in your account</span></a>
+    </div>
+
+<?php
+} else {
+?>
+
+
+<div class="col-md-6">
+    <form method="post" action="<?= URLrewrite::BaseURL().'checkout/createUser'?>">
+
+                <section class="main-container text-center">
+                    <div class="main-wrapper">
+                    <h1 class="h3 mb-3 font-weight-normal">Create an account with us</h1>
+
+                    <input type="hidden" name="member[level_id]" value="1">
+                        <label for="member[username]" class="sr-only">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="member[username]" placeholder="Username"  required autofocus>
+                            <label for="member[password]" class="sr-only">Password <span class="text-danger">*</span></label>
+                            <input type="password" name="member[password]" class="form-control" placeholder="********" required>
+                            <div class="checkbox mb-3">
+                            <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    
+                    </div>
+
+                    <button type="submit">Create an account</button>
+                    </div>
+                </section>
+    </form>
+</div>
+
+<?php
+}
+        if ($this->prepQuery($sql, $paramBinds)) {
+            die("Thank you!!");
+        } else {
+            die("Try again!");
+        }
+        $order_id = $this->lastInsertId;
+
     }
 
     
+
+
+
     public function CreateUser() {
     
-        var_dump($_POST);
+
         /*Initialize an array for filtered data*/
         $clean = array();
 
@@ -103,13 +164,7 @@ class Checkout_model extends Base_model
     
     }
 
-<<<<<<< HEAD
-    public function placeOrder() 
-    {
-        $_SESSION['order'] = $_POST['order'];
-        
-    }
-=======
+    
     public function createAccount()
     {
         /* Allow for alphanumeric character usernames */
@@ -119,7 +174,6 @@ class Checkout_model extends Base_model
             }
 
         $hashed_password = md5($_POST['member']['password']);
->>>>>>> 078903cd34e79b1a8bb41baea787e94c73ad62b0
 
         $sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
         $paramBinds = [':userId' => $userId, ':username' => $clean['username'], ':hashedPassword' => $hashedPassword,];
