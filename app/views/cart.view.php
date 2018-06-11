@@ -20,6 +20,13 @@
                     printf('<button type="submit">Uppdate</button></form>');
                     printf("</form>");
                     printf("</div>");
+                    printf('<div class="col-md-4" id="removeItem">');
+                    printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'cart/deleteItem/');
+                    printf("<button class='btn btn-danger' type='submit'>Delete Item</button>");
+                    printf('<input type="hidden" name="sku" value="%s"/>', $product['sku']);
+                    printf('<input type="hidden" name="amount" value="%s"/>', $product['amounts']);
+                    printf("</form>");
+                    printf("</div>");
                     printf("</div>");
                 }
             ?>

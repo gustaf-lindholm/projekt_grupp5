@@ -40,5 +40,16 @@ class Cart extends Base_Controller
         $this->modelObj->showCart();
 		header("Location: {$_SERVER['HTTP_REFERER']}");
 	}
+
+	public function deleteItem() 
+	{
+		$this->initModel('Cart_model');
+
+		//We instansiate cartItems method where we save the new array from session
+        $this->modelObj->deleteItem();
+
+        $this->modelObj->showCart();
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+	}
 }
 

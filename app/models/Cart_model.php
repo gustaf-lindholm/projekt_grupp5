@@ -71,4 +71,11 @@ class Cart_model extends Base_model
 		$amount = $_POST['amount'];
 		$_SESSION['cart']->update($sku, $amount);
 	}
+
+	public function deleteItem()
+	{
+		$sku = $_POST['sku'];
+		$amount = $_POST['amount'];
+		$_SESSION['cart']->deleteItem($sku, $amount);
+	}
 }
