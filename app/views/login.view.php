@@ -20,7 +20,7 @@ var_dump($_SESSION);
 	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		<form class="signup-form form-signin" action="<?php echo URLrewrite::BaseURL().'login/loginUser'?>" method="POST">
 			<label for="login[username]" class="sr-only">Username <span class="text-danger">*</span></label>
-			<input type="email" class="form-control" name="login[username]" placeholder="Username"  required autofocus>
+			<input type="text" class="form-control" name="login[username]" placeholder="Username"  required autofocus>
 			<label for="login[password]" class="sr-only">Password <span class="text-danger">*</span></label>
 			<input type="password" name="login[password]" class="form-control" placeholder="********" required>
 			<div class="checkbox mb-3">
