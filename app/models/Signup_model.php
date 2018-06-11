@@ -47,5 +47,46 @@ class Signup_Model extends base_model
             		}
             	}
             }
+	}
+	
+
+
+    public function createUserFromOrder() {
+		//var_dump($_SESSION); 
+		//var_dump($_POST);
+		echo "<div class='container'>";
+		echo "<h1>Your accont has been set. A warm welcome to IM'MOBILÉ :D!</h1>";
+		echo "<h2>Please login to your account</h2></div>";
+		//var_dump($_SESSION);
+
+         /* Allow for alphabetical names */
+       $first_Name=$_SESSION['user']['first_Name'];
+       $last_Name=$_SESSION['user']['last_Name'];
+	   $telephone_Number=$_SESSION['user']['telephone_Number'];
+        $email_Address= $_SESSION['user']['email_Address'];
+        $level_id = $_POST['member']['level_id'];
+		$user_Name= $_POST['newmember']['username'];
+		$hashed_password = md5($_POST['newmember']['password']);
+	   
+		if(isset($first_Name)){
+        $sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
+        $paramBinds = [':level_id' => $level_id, ':fname' => $first_Name, ':lname' => $last_Name, ':phone' => $telephone_Number, ':email' => $email_Address];
+	
+
+		$userId = $this->lastInsertId;
+		$this->prepQuery($sql, $paramBinds);
+		return true;
+			echo "<h1>".$userId."</h1>";
+		}
+		$sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
+		$paramBinds = [':userId' => $userId, ':username' => $user_Name, ':hashedPassword' => $hashed_password];
+		
+       	$this->prepQuery($sql, $paramBinds);
+		return true;
+
+		
     }
+
 }
+  
+
