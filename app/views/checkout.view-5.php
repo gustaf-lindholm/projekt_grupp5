@@ -2,6 +2,7 @@
 <?php include __DIR__."/checkout_details.view.php"; ?>
 
 <?php
+/* Credit card */
 if (isset($_POST['orderPayment']['type']) && $_POST['orderPayment']['type'] == 'CreditCard') {
 ?>
 <h2>Credit Card Information</h2>
@@ -42,6 +43,7 @@ if (isset($_POST['orderPayment']['type']) && $_POST['orderPayment']['type'] == '
 <?php
 } 
 
+/* PayPal */
 if (isset($_POST['orderPayment']['type']) && $_POST['orderPayment']['type'] == 'PayPal') {
     ?>
     <h2>Pay with PayPal</h2>
@@ -62,12 +64,19 @@ if (isset($_POST['orderPayment']['type']) && $_POST['orderPayment']['type'] == '
 <?php
 }
 
+/* Klarna */
 if (isset($_POST['orderPayment']['type']) && $_POST['orderPayment']['type'] == 'Klarna') {
 ?>
-  <div class="form-group col-md-6">
+
+<div class="form-group col-md-6">
+                        <label for="">Personnummer: </label>
+                        <input type="text" class="form-control" name="payment[klarna][pnr]" value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
+</div>
+
+<div class="form-group col-md-6">
                         <label for="">Email Adress: </label>
                         <input type="email" class="form-control" name="payment[klarna][email]" value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
-     </div>
+</div>
  
      <div class="control-group">
     				<label for="" class="control-label">	

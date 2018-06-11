@@ -1,5 +1,4 @@
 <?php
-
 echo "<div class='col-md-12'>";
 //If a user is logged in, autofill all her/his info
 if(isset($_SESSION['loggedIn']))
@@ -11,11 +10,12 @@ if(isset($_SESSION['loggedIn']))
   $email_Address = $data[0]['email'];
 ?>
 
-<div>
-    <h1>Hi, <?php 
+<div class="container">
+    <h1>Great to see you, <?php 
       echo $_SESSION['loggedIn']['username']?>
     ! <br>The total amount of your order:
     </h1>
+    <p><?php var_dump($_SESSION['cart']);?></p>
 </div>
 
 <?php
