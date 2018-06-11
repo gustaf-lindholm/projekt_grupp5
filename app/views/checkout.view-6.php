@@ -1,11 +1,9 @@
 <h1>Hahaha, an order has been set</h1>
-<div>You have ordered the following products
-    <br>We will shortly confirm your payment</div>
-<form method="post" action="">
-</form>
 <?php
-// remove all session variables
-session_unset(); 
-
-// destroy the session 
-session_destroy(); 
+var_dump($_SESSION);
+?>
+<form method="post" action="<?= URLrewrite::BaseURL().'payment'?>">
+<p>Please write down your email for a receipt:</p>
+<input type="text" name="receipt"/>
+<button type="submit">Get a receipt</button>
+</form>

@@ -25,3 +25,4 @@ echo "<div class='col-md-12'><pre>";
 var_dump($_SESSION);
 echo "</pre></div>";
 
+?>
