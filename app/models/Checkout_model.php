@@ -103,13 +103,12 @@ class Checkout_model extends Base_model
     
     }
 
-<<<<<<< HEAD
     public function placeOrder() 
     {
         $_SESSION['order'] = $_POST['order'];
         
     }
-=======
+    
     public function createAccount()
     {
         /* Allow for alphanumeric character usernames */
@@ -119,7 +118,6 @@ class Checkout_model extends Base_model
             }
 
         $hashed_password = md5($_POST['member']['password']);
->>>>>>> 078903cd34e79b1a8bb41baea787e94c73ad62b0
 
         $sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
         $paramBinds = [':userId' => $userId, ':username' => $clean['username'], ':hashedPassword' => $hashedPassword,];
