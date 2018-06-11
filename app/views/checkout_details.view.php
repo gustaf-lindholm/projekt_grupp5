@@ -1,5 +1,6 @@
 <?php
-echo "</pre>";
+
+echo "<div class='col-md-12'>";
 //If a user is logged in, autofill all her/his info
 if(isset($_SESSION['loggedIn']))
 {
@@ -27,5 +28,5 @@ $last_name = "";
 $telephone_Number = "";
 $email_Address = "";
 }
-echo "</pre>";
+echo "</div>";
 ?>
