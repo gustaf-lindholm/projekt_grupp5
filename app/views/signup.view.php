@@ -11,7 +11,7 @@
 			<label for="email-input">Email <span class="text-danger">*</span></label>
 			<input type="text" name="user[email]" placeholder="E-mail" required>
 			<label for="telephone-input">Telephone <span class="text-danger">*</span></label>
-			<input type="text" name="user[phone]" placeholder="Telephone" required>
+			<input type="number" name="user[phone]" placeholder="Telephone" required>
 			<label for="username-input">Username <span class="text-danger">*</span></label>
 			<input type="text" name="user[username]" placeholder="Username" required>
 			<label for="password-input">Password <span class="text-danger">*</span></label>

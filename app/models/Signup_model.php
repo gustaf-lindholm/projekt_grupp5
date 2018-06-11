@@ -8,14 +8,14 @@ class Signup_Model extends base_model
 		//var_dump($_POST);
 		
     	    if (empty($_POST['user']['fname']) || empty($_POST['user']['lname']) || empty($_POST['user']['email']) || empty($_POST['user']['phone']) || empty($_POST['user']['username']) || empty($_POST['user']['password'])) {
-				echo "du måste fylla i de tomma fälten";
+				echo "Please, fill out the required fields";
 				
             } else {
             	if (!preg_match('/^[a-zA-Z]*$/', $_POST['user']['fname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['user']['lname']) || !preg_match('/^[a-zA-Z]*$/', $_POST['user']['username'])) {
-            		echo "fel tecken";
+            		echo "Please, check input";
             	} else {
             		if (!filter_var($_POST['user']['email'], FILTER_VALIDATE_EMAIL)) {
-            			echo "invalid email";
+            			echo "The provided email is invalid";
             		} else {
             			$level_id = $_POST['user']['level_id'];
             			$fname = $_POST['user']['fname'];
@@ -29,7 +29,7 @@ class Signup_Model extends base_model
             			$resultCheck = $this->getAll();
                         var_dump($resultCheck);
             			if (!empty($resultCheck)) {
-            				echo "username already taken";
+            				echo "username already taken, please try again";
                             //var_dump($resultCheck);
             			} else {
             				$hashedPassword = md5($_POST['user']['password']);
