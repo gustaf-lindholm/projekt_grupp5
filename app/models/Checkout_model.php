@@ -56,6 +56,12 @@ class Checkout_model extends Base_model
         echo "<h1>Thank you for your purchase</h1><div>We will shortly confirm your payment</div>";
         var_dump($_SESSION);
 
+        //unset session for the order processed
+        //unset($_SESSION["order"]);
+        
+		//destroy the session
+		//session_destroy();
+
         if(isset($_SESSION['loggedIn'])) {
 ?>
 
@@ -70,17 +76,16 @@ class Checkout_model extends Base_model
 
 
 <div class="col-md-6">
-    <form method="post" action="<?= URLrewrite::BaseURL().'checkout/createUser'?>">
-
+    <form method="post" action="<?= URLrewrite::BaseURL().'signup/createUserFromOrder'?>">
                 <section class="main-container text-center">
                     <div class="main-wrapper">
                     <h1 class="h3 mb-3 font-weight-normal">Create an account with us</h1>
 
                     <input type="hidden" name="member[level_id]" value="1">
-                        <label for="member[username]" class="sr-only">Username <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="member[username]" placeholder="Username"  required autofocus>
-                            <label for="member[password]" class="sr-only">Password <span class="text-danger">*</span></label>
-                            <input type="password" name="member[password]" class="form-control" placeholder="********" required>
+                        <label for="newmember[username]" class="sr-only">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="newmember[username]" placeholder="Username"  required autofocus>
+                            <label for="newmember[password]" class="sr-only">Password <span class="text-danger">*</span></label>
+                            <input type="password" name="newmember[password]" class="form-control" placeholder="********" required>
                             <div class="checkbox mb-3">
                             <label>
                         <input type="checkbox" value="remember-me"> Remember me
@@ -98,88 +103,20 @@ class Checkout_model extends Base_model
 }
         if ($this->prepQuery($sql, $paramBinds)) {
             die("Thank you!!");
+            saveOrderItems();
         } else {
             die("Try again!");
         }
         $order_id = $this->lastInsertId;
 
+} //End of Place order function
+
+    public function saveOrderItems() {
+        echo "Here is the list of products ordered in alphabetical order";
+        //var_dump($_SESSION);
     }
 
     
 
-
-
-    public function CreateUser() {
-    
-
-        /*Initialize an array for filtered data*/
-        $clean = array();
-
-        /* Hash the passwords */
-        
-         /* Allow for alphabetical names */
-         if(ctype_alpha($_POST['user']['first_Name'])) {
-        $clean['first_Name']= $_POST['user']['first_Name'];
-        }else { print "Please supervise your text again for first_Name";
-            }
-        
-        if(ctype_alpha($_POST['user']['last_Name'])) {
-                $clean['last_Name']= $_POST['user']['last_Name'];
-                }else { print "Please supervise your text again for last_Name";
-                    }
-
-        /*
-        if(ctype_alnum($_POST['user']['email_Address'])) {
-            $clean['email_Address']= $_POST['user']['email_Address'];
-            }else { print "Please supervise your text again for email_Address";
-            }
-        */
-
-        $clean['email_Address']= $_POST['user']['email_Address'];
-        $clean['level_id'] = $_POST['user']['level_id'];
-
-        /* Allow for numeric telephone number */
-        if(ctype_digit($_POST['user']['telephone_Number'])) {
-            $clean['telephone_Number']= $_POST['user']['telephone_Number'];
-            }else { print "Please supervise your text again";
-            }
-        
-        $sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
-        $paramBinds = [':level_id' => $level_id, ':fname' => $clean['first_Name'], ':lname' => $clean['last_Name'], ':phone' => $clean['phone_Number'], ':email' => $clean['email_Address']];
-        $this->prepQuery($sql, $paramBinds);
-        $userId = $this->lastInsertId;
-            
-
-           
-        if($this->prepQuery($this->sql, $paramBinds)){
-         Registry::setStatus(['CreateUser' => true]); 
-         echo "fungerar";
-         //alert for if the database got the sql string or not
-            //header('Location:'.URLrewrite::BaseURL());
-        } else {
-            echo "fungerar inte";
-         Registry::setStatus(['CreateUser' => false]);
-            
-        }
-    
-    }
-
-    
-    public function createAccount()
-    {
-        /* Allow for alphanumeric character usernames */
-        if(ctype_alnum($_POST['member']['username'])) {
-            $clean['user_Name']= $_POST['member']['username'];
-            }else { print "Please supervise your text again for user_Name";
-            }
-
-        $hashed_password = md5($_POST['member']['password']);
-
-        $sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
-        $paramBinds = [':userId' => $userId, ':username' => $clean['username'], ':hashedPassword' => $hashedPassword,];
-        //$this->prepQuery($sql, $paramBinds);
-        //return true;
-            
-    }
 }
 

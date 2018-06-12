@@ -16,7 +16,6 @@ var_dump($_SESSION);
 
 <section class="main-container text-center">
 	<div class="main-wrapper">
-	<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		<form class="signup-form form-signin" action="<?php echo URLrewrite::BaseURL().'login/loginUser'?>" method="POST">
 			<label for="login[username]" class="sr-only">Username <span class="text-danger">*</span></label>
