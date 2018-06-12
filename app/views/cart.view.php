@@ -18,7 +18,7 @@
                     printf('<form method="POST" action="%s">', URLrewrite::BaseURL().'cart/update');
                     printf('<input type="text" name="amount" value="%s">', $product['amounts']);
                     printf('<input type="hidden" name="sku" value="%s"/>', $product['sku']);
-                    printf('<button type="submit">Uppdate</button></form>');
+                    printf('<button type="submit">Update</button></form>');
                     printf("</form>");
                     printf("</div>");
                     printf('<div class="col-md-4" id="removeItem">');
