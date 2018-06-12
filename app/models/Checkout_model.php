@@ -2,15 +2,16 @@
 class Checkout_model extends Base_model
 {
     //The index function brings user account information which will automatically fill in the form
-    public function index() {
+    public function index($uid) {
         $this->sql ="SELECT user.uid, user.level_id, user_levels.level_type, fname, lname, phone, username, creation_time, modification_time, password
         FROM projekt_klon.user JOIN account
         ON user.uid = account.uid JOIN user_levels
-        ON user.level_id = user_levels.level_id";
+        ON user.level_id = user_levels.level_id WHERE user.uid = :uid";
 
-        $this->prepQuery($this->sql);
+        $paramBinds = [':uid' => $uid];
+        $this->prepQuery($this->sql, $paramBinds);
 
-        $this->getAll();
+        $this->getOne();
 
         return self::$data;
     }
@@ -32,7 +33,7 @@ class Checkout_model extends Base_model
 
     public function placeOrder() {
 
-        var_dump($_SESSION);
+
         $user_id = isset($_SESSION['loggedIn']['uid']) ? $_SESSION['loggedIn']['uid'] : null;
         $fname = $_SESSION['user']['first_Name'];
         $lname = $_SESSION['user']['last_Name'];
@@ -55,9 +56,14 @@ class Checkout_model extends Base_model
         if ($this->prepQuery($sql, $paramBinds)) {
             $order_id = $this->lastInsertId;
             $this->saveOrderItems($order_id);
+            echo "sparade";
         } else {
+            echo "fail";
+
         }
 
+        echo "<pre>";
+        var_dump($_SESSION);
 } //End of Place order function
 
     public function saveOrderItems($order_id) {
@@ -70,7 +76,39 @@ class Checkout_model extends Base_model
         //$paramBinds = [':order_id' => $order_id, ':quantity' => $quantity, ':sku' => $sku];
     }
 
+    public function tempCustomerUserInfo()
+    {
+        $_SESSION['user']['first_Name'] = $_POST['user']['first_Name'];
+        $_SESSION['user']['last_Name'] = $_POST['user']['last_Name'];
+        $_SESSION['user']['email_Address'] = $_POST['user']['email_Address'];
+        $_SESSION['user']['telephone_Number'] = $_POST['user']['telephone_Number'];
+        $_SESSION['user']['level_id'] = $_POST['user']['level_id'];
+
+        $_SESSION['checkout']['step'] = $_POST['step'];
+    }
+
+    public function tempCustomerAccountInfo()
+    {
+        $_SESSION['order']['street_address_1'] = $_POST['order']['street_address_1'];
+        $_SESSION['order']['street_address_2'] = $_POST['order']['street_address_2'];
+        $_SESSION['order']['zip'] = $_POST['order']['zip'];
+        $_SESSION['order']['city'] = $_POST['order']['city'];
+
+        $_SESSION['checkout']['step'] = $_POST['step'];
+
+    }
+
+    public function tempPaymentMethod()
+    {
+        $_SESSION["orderPayment"]["type"] = $_POST["orderPayment"]["type"];
+
+        $_SESSION['checkout']['step'] = $_POST['step'];
+
+    }
+
     
+
+
 
 }
 

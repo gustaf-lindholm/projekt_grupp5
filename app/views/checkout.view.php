@@ -7,14 +7,10 @@ var_dump($_POST);
 //var_dump(unserialize($_POST['order_set']['quantity']));
 echo "<pre>";
 
-if (isset($_POST['order_set']['totalPrice'])){
-$_SESSION['order_set']['total_price'] = $_POST['order_set']['totalPrice'];
-}
-
 
 echo "<div class='col-md-12'>";
 //If a user is logged in, autofill all her/his info
-if(isset($_SESSION['loggedIn']))
+if(isset($data['userInfo']))
 {
   //Attach the data to a variable
   $first_name = $data[0]['fname'];
@@ -24,17 +20,16 @@ if(isset($_SESSION['loggedIn']))
 ?>
 
             <div class="container">
-                    <h1>Great to see you, <?php 
-                    echo $_SESSION['loggedIn']['username']?>
-                    ! <br>The total amount of your order:<br><?php echo $_SESSION['order_set']['total_price'];?> SEK
+                    <h1>Great to see you, 
+                    <?php echo $_SESSION['loggedIn']['username']?>
+                    ! <br>The total amount of your order:<br><?php echo $_SESSION['cart']->getTotalPrice();?> SEK
                     </h1>
             </div>
 
 <?php
-}
-else
+} else
 {
-                printf("<div><h1>Hi, Customer!<br>The total amount of your order:<br>".$_SESSION['order_set']['total_price']." SEK</h1></div>");
+                printf("<div><h1>Hi, Customer!<br>The total amount of your order:<br>".$_SESSION['cart']->getTotalPrice()." SEK</h1></div>");
                     $first_name = "";
                     $last_name = "";
                     $telephone_Number = "";
@@ -43,12 +38,12 @@ else
                 echo "</div>";
 
 
-if(!isset($_POST['step_1'])) {
+if(!isset($_SESSION['checkout']['step']) || $_SESSION['checkout']['step'] < 1) {
 
 ?>
 
 
-<form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
+<form action="<?= URLrewrite::BaseURL().'checkout/tempCustomerUserInfo'?>" method='post'>
 
 <div class="container">
 <h1>Fill in Your Information</h1>
@@ -72,6 +67,7 @@ if(!isset($_POST['step_1'])) {
                         </div>
 
                         <input type="hidden" class="form-control" name="user[level_id]"/>
+                        <input type="hidden" class="form-control" name="step" value="1"/>
 
                         <div class="form-group mb-3 ">
                         <label for="user[telephone_Number]">Telephone: </label>
@@ -81,7 +77,7 @@ if(!isset($_POST['step_1'])) {
 
 
 <div class="control-group">			
-            <input type="submit" class="btn btn-success" name="step_1" value="Continue to Address"/>
+            <input type="submit" class="btn btn-success" value="Continue to Address"/>
 </div>
 </div>
 
@@ -93,15 +89,9 @@ if(!isset($_POST['step_1'])) {
 <?php
 }
 
-if(isset($_POST['step_1']) && (!isset($_SESSION['user']['first_Name']))) {
-    $_SESSION['user']['first_Name'] = $_POST['user']['first_Name'];
-    $_SESSION['user']['last_Name'] = $_POST['user']['last_Name'];
-    $_SESSION['user']['email_Address'] = $_POST['user']['email_Address'];
-    $_SESSION['user']['telephone_Number'] = $_POST['user']['telephone_Number'];
-    $_SESSION['user']['level_id'] = $_POST['user']['level_id'];
-?>
+if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 1) { ?>
 
-<form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
+<form action="<?= URLrewrite::BaseURL().'checkout/tempCustomerAccountInfo'?>" method='post'>
 <div class="container">
 			<div class="mb-3 control-group">
 
@@ -131,7 +121,8 @@ if(isset($_POST['step_1']) && (!isset($_SESSION['user']['first_Name']))) {
 			<div class="control-group col-md-3  mb-3">
 			  <label for="order[city]" class="control-label">	
 				  City </label>
-			  <input name="order[city]" class="form-control" type="text" id="city" required>
+              <input name="order[city]" class="form-control" type="text" id="city" required>
+              <input type="hidden" class="form-control" name="step" value="2"/>              
 			  <div class="invalid-feedback">
                   City required.
                 </div>
@@ -139,7 +130,7 @@ if(isset($_POST['step_1']) && (!isset($_SESSION['user']['first_Name']))) {
 
 
 <div class="control-group">			
-<input type="submit" class="btn btn-success form-control" name="step_2" value="Continue to Payment Options"/>
+<input type="submit" class="btn btn-success form-control" value="Continue to Payment Options"/>
 </div>
 </div>
 </form>
@@ -147,15 +138,10 @@ if(isset($_POST['step_1']) && (!isset($_SESSION['user']['first_Name']))) {
 <?php
 }
 
-if(isset($_POST['step_2']) && (!isset($_SESSION['orderPayment']['type']))) {
-   $_SESSION['order']['street_address_1'] = $_POST['order']['street_address_1'];
-   $_SESSION['order']['street_address_2'] = $_POST['order']['street_address_2'];
-   $_SESSION['order']['zip'] = $_POST['order']['zip'];
-   $_SESSION['order']['city'] = $_POST['order']['city'];
-?>
+if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 2) { ?>
 
 
-<form action="<?= URLrewrite::BaseURL().'checkout'?>" method='post'>
+<form action="<?= URLrewrite::BaseURL().'checkout/tempPaymentMethod'?>" method='post'>
 
   <div id="paymentMethod" class="container col-md-12">
     
@@ -165,27 +151,26 @@ if(isset($_POST['step_2']) && (!isset($_SESSION['orderPayment']['type']))) {
     <label class="radio-inline"><input type="radio" name="orderPayment[type]" value="PayPal">Paypal</label>
     <label class="radio-inline"><input type="radio" name="orderPayment[type]" value="Klarna">Klarna</label>
     <label class="radio-inline"><input type="radio" name="orderPayment[type]" value="CreditCard">Credit Card</label>
+    <input type="hidden" class="form-control" name="step" value="3"/>              
+
     </div>
        
    
     <div class="control-group">			
-    <input type="submit" class="btn btn-success form-control" name="step_3" value="Continue"/>
+    <input type="submit" class="btn btn-success form-control" value="Continue"/>
     </div>
 </div>
     </form>
 
 <?php
 } 
-if(isset($_POST["orderPayment"]["type"])){
-$_SESSION["orderPayment"]["type"] = $_POST["orderPayment"]["type"];
-} 
-if(isset($_POST['step_3']) && (!isset($_SESSION['order']['payment_type']))) {
+if($_SESSION['checkout']['step'] == 3) {
    
 ?>
     <form action="<?= URLrewrite::BaseURL().'checkout/placeOrder'?>" method='post'>
 <?php
 /* Credit card */
-if (isset($_SESSION['orderPayment']['type']) && $_SESSION['orderPayment']['type'] == 'CreditCard') {
+if ($_SESSION['orderPayment']['type'] == 'CreditCard') {
 ?>
 <h2>Credit Card Information</h2>
 <select class="form-control" name="order[payment_type]">
@@ -226,7 +211,7 @@ if (isset($_SESSION['orderPayment']['type']) && $_SESSION['orderPayment']['type'
 } 
 
 /* PayPal */
-if (isset($_SESSION['orderPayment']['type']) && $_SESSION['orderPayment']['type'] == 'PayPal') {
+if ($_SESSION['orderPayment']['type'] == 'PayPal') {
     ?>
     <h2>Pay with PayPal</h2>
     <input id="token" name="token" type="hidden" value="">
@@ -247,7 +232,7 @@ if (isset($_SESSION['orderPayment']['type']) && $_SESSION['orderPayment']['type'
 }
 
 /* Klarna */
-if (isset($_SESSION['orderPayment']['type']) && $_SESSION['orderPayment']['type'] == 'Klarna') {
+if ($_SESSION['orderPayment']['type'] == 'Klarna') {
 ?>
 
 <div class="form-group col-md-6">
