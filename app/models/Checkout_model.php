@@ -31,6 +31,7 @@ class Checkout_model extends Base_model
 
     public function placeOrder() {
 
+        var_dump($_SESSION);
         $user_id = isset($_SESSION['loggedIn']['uid']) ? $_SESSION['loggedIn']['uid'] : null;
         $fname = $_SESSION['user']['first_Name'];
         $lname = $_SESSION['user']['last_Name'];
