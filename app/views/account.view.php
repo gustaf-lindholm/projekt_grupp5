@@ -5,7 +5,9 @@
 </head>
 <div class="container">
 <?php
-
+if (Registry::getStatus('userFromOrder') != null && Registry::getStatus('userFromOrder') == true) {
+    echo "Your account has been created!";
+}
 if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, return to index-page
     header("Location: index.php");
 }

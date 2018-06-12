@@ -31,7 +31,7 @@ class Checkout_model extends Base_model
 
     public function placeOrder() {
 
-        $user_id = $_SESSION['loggedIn']['uid'];
+        $user_id = isset($_SESSION['loggedIn']['uid']) ? $_SESSION['loggedIn']['uid'] : null;
         $fname = $_SESSION['user']['first_Name'];
         $lname = $_SESSION['user']['last_Name'];
         $email=$_SESSION['user']['email_Address'];
@@ -59,7 +59,8 @@ class Checkout_model extends Base_model
 } //End of Place order function
 
     public function saveOrderItems($order_id) {
-        $sku = $_POST['order']['sku'];
+        $sku = $_POST['order_set']['sku'];
+        $quantity = $_POST['order_set']['quantity'];
         $this->sql = "INSERT INTO `projekt_klon`.`order_items` (`order_id`, `quantity`, `sku`) VALUES (:order_id, :quantity, :sku)";
 
         var_dump($_POST);

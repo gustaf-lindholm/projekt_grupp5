@@ -48,10 +48,12 @@ class Account_model extends Base_model
     $sql = "INSERT INTO projekt_klon.private_address (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
     $paramBinds = [':adress'=>$address, ':post_nr'=>$zip, ':stad'=>$city, ':land'=>$country, ':uid'=>$uid];
     
-
-    echo "<h1>This works</h1><p>Your address is:";
-    var_dump($paramBinds);
-    echo "</h1>";
+    if($this->prepQuery($sql, $paramBinds))
+    {
+        echo "address saved";
+    } else {
+        echo "failed to save address";
+    }
 
 }
  

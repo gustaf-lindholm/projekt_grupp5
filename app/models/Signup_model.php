@@ -75,14 +75,14 @@ class Signup_Model extends base_model
 
 		$userId = $this->lastInsertId;
 		$this->prepQuery($sql, $paramBinds);
-		return true;
-			echo "<h1>".$userId."</h1>";
-		}
+
+		
 		$sql = "INSERT INTO projekt_klon.account (uid, username, password) VALUES (:userId, :username, :hashedPassword)";
 		$paramBinds = [':userId' => $userId, ':username' => $user_Name, ':hashedPassword' => $hashed_password];
 		
        	$this->prepQuery($sql, $paramBinds);
 		return true;
+		}
 
 		
     }

@@ -41,6 +41,8 @@ class Checkout extends Base_Controller
         $this->initModel('Checkout_model');
     
         $this->modelObj->placeOrder();
+
+        $this->reqView('checkoutConfirm');
     }
     
 }
