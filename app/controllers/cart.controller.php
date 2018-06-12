@@ -11,11 +11,16 @@ class Cart extends Base_Controller
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Cart_model');
 
+		if(!empty($_SESSION['cart']->getProdList()))
+		{
         //We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->showCart();
-
-        //This will be shown on our cart page
+		$data = $this->modelObj->showCart();
         $this->reqView('Cart', $data);
+
+		} else {
+			$this->reqView('Cart');
+		}
+        //This will be shown on our cart page
 	}
 
 	public function add() {

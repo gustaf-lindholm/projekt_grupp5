@@ -21,10 +21,10 @@ class Checkout_model extends Base_model
         "SELECT * FROM user WHERE user.uid = :uid"; 
         
         $paramBinds = [':uid' => $uid];
-        $base = new Base_model;
+        //$base = new Base_model;
         
-        $base->prepQuery($this->sql, $paramBinds);
-        $base->getAll();
+        $this->prepQuery($this->sql, $paramBinds);
+        $this->getAll();
         return self::$data;
     }
 
@@ -48,19 +48,14 @@ class Checkout_model extends Base_model
         $payment_Type= $_SESSION['orderPayment']['type'];
         $payment_status="unpaid";
         $status="pending";
-        $totalAmount="2000";
+        $totalAmount= $_POST['order']['totalPrice'];
     
         $sql = "INSERT INTO projekt_klon.orders (total_amount, payment_status, payment_method, user_id, alternative_address, lname, fname, email) VALUES (:total_amount, :payment_status, :payment_method, :user_id, :alternative_address, :lname, :fname, :email)";
         $paramBinds = [':total_amount' => $totalAmount, ':payment_status' => $payment_status,':payment_method' => $payment_Type, ':user_id' => $user_id, ':alternative_address' => $address, ':lname' => $lname, ':fname' => $fname, ':email' => $email];
-        //var_dump($paramBinds);
         echo "<h1>Thank you for your purchase</h1><div>We will shortly confirm your payment</div>";
-        var_dump($_SESSION);
 
         //unset session for the order processed
         //unset($_SESSION["order"]);
-        
-		//destroy the session
-		//session_destroy();
 
         if(isset($_SESSION['loggedIn'])) {
 ?>

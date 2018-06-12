@@ -23,7 +23,7 @@ include __DIR__."/checkout.view-$stage.php";
 
 echo "<div class='col-md-12'><pre>";
 var_dump($_SESSION);
-var_dump($_POST['order']);
+var_dump($_POST);
 echo "</pre>";
 
 ?>

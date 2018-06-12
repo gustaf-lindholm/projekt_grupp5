@@ -13,9 +13,8 @@ if(isset($_SESSION['loggedIn']))
 <div class="container">
     <h1>Great to see you, <?php 
       echo $_SESSION['loggedIn']['username']?>
-    ! <br>The total amount of your order:
+    ! <br>The total amount of your order: <?php echo $_POST['order']['totalPrice'];?> kr
     </h1>
-    <p><?php var_dump($_SESSION['cart']);?></p>
 </div>
 
 <?php
