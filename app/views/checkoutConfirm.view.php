@@ -9,14 +9,15 @@ if(isset($_SESSION['loggedIn'])) {
 
 
     <div class="col-md-6">
-        <form method="POST" action="<?php echo URLrewrite::BaseURL().'account/saveAddress'?>">
-            <input type="hidden" name="customer[address]" value="<?php echo $_SESSION['order']['street_address_1'] ?>">
-            <input type="hidden" name="customer[zip]" value="<?php echo $_SESSION['order']['zip'] ?>">
-            <input type="hidden" name="customer[city]" value="<?php echo  $_SESSION['order']['city'] ?>">
-            <input type="hidden" name="customer[country]" value="<?php echo $_SESSION['order']['country'] ?>">
-            <input type="hidden" name="customer[uid]" value="<?php echo $_SESSION['loggedIn']['uid'] ?>">
+        <!-- Under construction -->
+        <!-- <form method="POST" action="<?php //echo URLrewrite::BaseURL().'account/saveAddress'?>">
+            <input type="hidden" name="customer[address]" value="<?php //echo $_SESSION['order']['street_address_1'] ?>">
+            <input type="hidden" name="customer[zip]" value="<?php //echo $_SESSION['order']['zip'] ?>">
+            <input type="hidden" name="customer[city]" value="<?php //echo  $_SESSION['order']['city'] ?>">
+            <input type="hidden" name="customer[country]" value="<?php //echo $_SESSION['order']['country'] ?>">
+            <input type="hidden" name="customer[uid]" value="<?php //echo $_SESSION['loggedIn']['uid'] ?>">
             <button type="submit" class="btn btn-primary">Save your address in your account</button>
-        </form>
+        </form> -->
         <a href="<?php echo URLrewrite::BaseURL()?>"><button class="btn btn-primary">To homepage</button></a>
 
     </div>

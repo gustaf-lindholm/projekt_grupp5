@@ -13,7 +13,7 @@ require_once '../app/init.php';
 
 
  //instansierar varukorgen så att den är tillgänglig över hela sidan
- if (empty($_SESSION['cart']) && !$_SESSION['cart'] instanceof SessionCart) {
+ if (!isset($_SESSION['cart'])) {
  	$_SESSION['cart'] = new SessionCart();
  }
 
@@ -27,10 +27,11 @@ $app = new App;
 // include footer
 include '../app/views/footer.php';
 
-//var_dump($_SESSION['cart']);
+var_dump($_SESSION);
 // unset($_SESSION['cart']);
 // unset($_SESSION['order_set']);
 // session_destroy();
+// var_dump($_SESSION);
 
 
 
