@@ -29,7 +29,7 @@ include '../app/views/footer.php';
 
 //var_dump($_SESSION['cart']);
 // unset($_SESSION['cart']);
-// unset($_SESSION['order']);
+// unset($_SESSION['order_set']);
 // session_destroy();
 
 

@@ -41,6 +41,8 @@
                         $skuAmount = $product['sku'];
                         $skuAmount .= $product['amounts'];
                         $skuAmount = array($product['sku'] => $product['amounts']);
+                        $skuAmountString = serialize($skuAmount);
+                        var_dump($skuAmountString);
                         $skus .= "'".$product['sku']."'";
 
                         if (++$i === $count) {
@@ -51,8 +53,7 @@
                         }
                     }
                         printf('<span>TOTAL: %s SEK</span>', $totalPrice);
-                        $skuAmountString = serialize($skuAmount);
-                    ?>
+                        ?>
                 </div>
                 <div id="confirmCart">
                     <?php
@@ -60,7 +61,7 @@
                         printf("<button class='btn btn-success' type='submit'>Checkout</button>");
                         printf('<input type="hidden" name="order_set[sku]" value="%s" />', $skus);
                         printf('<input type="hidden" name="order_set[totalPrice]" value="%s" />', $totalPrice);
-                        printf('<input type="hidden" name="order_set[totalPrice]" value="%s" />', $skuAmountString);
+                        printf('<input type="hidden" name="order_set[quantity]" value="%s" />', $skuAmountString);
                         printf("</form>");  
                       ?>
                     <article>
