@@ -1,4 +1,5 @@
 <?php
+
 //Print our session and post
 echo "<div class='col-md-12'><pre>";
 var_dump($_SESSION);
@@ -164,7 +165,7 @@ if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 2) {
 
 <?php
 } 
-if($_SESSION['checkout']['step'] == 3) {
+if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 3) {
    
 ?>
     <form action="<?= URLrewrite::BaseURL().'checkout/placeOrder'?>" method='post'>

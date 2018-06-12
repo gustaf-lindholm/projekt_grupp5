@@ -42,12 +42,12 @@ class Checkout_model extends Base_model
         $address_2 = $_SESSION['order']['street_address_2'];
         $zip = $_SESSION['order']['zip'];
         $city = $_SESSION['order']['city'];
-        $address = $address_1.$address_2.$zip.$city;
+        $address = $address_1.'/'.$address_2.'/'.$zip.'/'.$city;
 
         $payment_Type= $_SESSION['orderPayment']['type'];
         $payment_status="unpaid";
         $status="pending";
-        $totalAmount= $_POST['order_set']['totalPrice'];
+        $totalAmount= $_SESSION['cart']->getTotalPrice();
     
         $sql = "INSERT INTO projekt_klon.orders (total_amount, payment_status, payment_method, user_id, alternative_address, lname, fname, email) VALUES (:total_amount, :payment_status, :payment_method, :user_id, :alternative_address, :lname, :fname, :email)";
         $paramBinds = [':total_amount' => $totalAmount, ':payment_status' => $payment_status,':payment_method' => $payment_Type, ':user_id' => $user_id, ':alternative_address' => $address, ':lname' => $lname, ':fname' => $fname, ':email' => $email];
@@ -55,25 +55,28 @@ class Checkout_model extends Base_model
        
         if ($this->prepQuery($sql, $paramBinds)) {
             $order_id = $this->lastInsertId;
-            $this->saveOrderItems($order_id);
-            echo "sparade";
+            $_SESSION['order']['orderId'] = $order_id;
+            $returnValues = ['status' => true, 'orderId' => $order_id];
+            return $returnValues;
         } else {
-            echo "fail";
-
+            return false;
         }
 
-        echo "<pre>";
-        var_dump($_SESSION);
 } //End of Place order function
 
     public function saveOrderItems($order_id) {
-        $sku = $_POST['order_set']['sku'];
-        $quantity = $_POST['order_set']['quantity'];
+
+        $orderItems = $_SESSION['cart']->getProdList();
         $this->sql = "INSERT INTO `projekt_klon`.`order_items` (`order_id`, `quantity`, `sku`) VALUES (:order_id, :quantity, :sku)";
 
-        var_dump($_POST);
-        var_dump($_SESSION);
-        //$paramBinds = [':order_id' => $order_id, ':quantity' => $quantity, ':sku' => $sku];
+        foreach ($orderItems as $product => $q) {
+            $sku = $product;
+            $quantity = $q;
+
+            $paramBinds = [':order_id' => $order_id, ':quantity' => $quantity, ':sku' => $sku];
+
+            $this->prepQuery($this->sql, $paramBinds);
+        }
     }
 
     public function tempCustomerUserInfo()

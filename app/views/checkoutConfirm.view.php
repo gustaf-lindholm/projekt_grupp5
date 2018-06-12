@@ -1,4 +1,11 @@
 <?php
+var_dump($_SESSION);?>
+<h1>Thank you for your order</h1>
+<h2><?php echo $_SESSION['user']['first_Name'].' '.$_SESSION['user']['last_Name'] ?>!</h2>
+<p>Order id: <strong><?php echo $_SESSION['order']['orderId'] ?></strong></p>
+<p>Delivery address: <?php echo $_SESSION['order']['street_address_1'] .' '. $_SESSION['order']['zip']
+.' '. $_SESSION['order']['city'] ?></p>
+<?php
 if(isset($_SESSION['loggedIn'])) {
 ?>
 
@@ -38,3 +45,8 @@ if(isset($_SESSION['loggedIn'])) {
 
 <?php
 }
+unset($_SESSION['cart']);
+unset($_SESSION['user']);
+unset($_SESSION['order']);
+unset($_SESSION['orderPayment']);
+unset($_SESSION['checkout']);

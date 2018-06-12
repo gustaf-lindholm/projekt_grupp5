@@ -73,9 +73,15 @@ class Checkout extends Base_Controller
         
         $this->initModel('Checkout_model');
     
-        $this->modelObj->placeOrder();
+        $data = $this->modelObj->placeOrder();
 
-        //$this->reqView('checkoutConfirm');
+        if ($data['status'] == true) {
+            $this->modelObj->saveOrderItems($data['orderId']);
+            $this->reqView('checkoutConfirm');
+        } else {
+            echo "place order failed";
+        }
     }
+
     
 }
