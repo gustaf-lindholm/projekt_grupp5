@@ -3,7 +3,7 @@ class Checkout_model extends Base_model
 {
     //The index function brings user account information which will automatically fill in the form
     public function index($uid) {
-        $this->sql ="SELECT user.uid, user.level_id, user_levels.level_type, fname, lname, phone, username, creation_time, modification_time, password
+        $this->sql ="SELECT user.uid, user.level_id, user_levels.level_type, email, fname, lname, phone, username, creation_time, modification_time, password
         FROM projekt_klon.user JOIN account
         ON user.uid = account.uid JOIN user_levels
         ON user.level_id = user_levels.level_id WHERE user.uid = :uid";
@@ -96,6 +96,7 @@ class Checkout_model extends Base_model
         $_SESSION['order']['street_address_2'] = $_POST['order']['street_address_2'];
         $_SESSION['order']['zip'] = $_POST['order']['zip'];
         $_SESSION['order']['city'] = $_POST['order']['city'];
+        $_SESSION['order']['country'] = $_POST['order']['country'];
 
         $_SESSION['checkout']['step'] = $_POST['step'];
 

@@ -38,21 +38,20 @@ class Account_model extends Base_model
 
    /* Save address to user's account */
    public function saveAddress() {
-    $address_1 = $_SESSION['order']['street_address_1'];
-    $address_2 = $_SESSION['order']['street_address_2'];
-    $zip = $_SESSION['order']['zip'];
-    $city = $_SESSION['order']['city'];
-    $address = $address_1."%".$address_2;
-    $country="Sverige";
-    $uid = $_SESSION['loggedIn']['uid'];
-    $sql = "INSERT INTO projekt_klon.private_address (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
-    $paramBinds = [':adress'=>$address, ':post_nr'=>$zip, ':stad'=>$city, ':land'=>$country, ':uid'=>$uid];
+    $address = $_POST['customer']['address'];
+    $zip = $_POST['customer']['zip'];;
+    $city = $_POST['customer']['city'];;
+    $country= $_POST['customer']['country'];;
+    $uid = $_POST['customer']['uid'];
+    $this->sql = "INSERT INTO `projekt_klon`.`private_adress` (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
+    $paramBinds = [':adress' => $address, ':post_nr' => $zip, ':stad' => $city, ':land' => $country, ':uid' => $uid];
     
-    if($this->prepQuery($sql, $paramBinds))
+    if($this->prepQuery($this->sql, $paramBinds))
     {
-        echo "address saved";
+        return true;
     } else {
-        echo "failed to save address";
+        return false;
+
     }
 
 }
