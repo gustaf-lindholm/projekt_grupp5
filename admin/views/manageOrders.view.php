@@ -1,6 +1,7 @@
 <div class="form-container">
 <?php include ADMIN_VIEW.'adminPanelNav.view.php';
-if (isset($data['orders'])) {
+
+if (!empty($data['orders'])) {
 
 ?>
 
@@ -41,6 +42,8 @@ if (isset($data['orders'])) {
 </div>
 
 <?php
+} else {
+    echo "<h1 class='status-alert'>No orders</h1>";
 }
 if (isset($data['order_items'])) {
 

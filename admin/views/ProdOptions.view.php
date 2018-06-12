@@ -15,7 +15,7 @@ $pid = isset($_POST['products']) ? $_POST['products'] : null;
 
     } elseif(isset($_POST['optiontype']['status']) && $_POST['optiontype']['status'] = 'false')
     {
-        echo "<h4 class='prod-title'>Failed to insert new option type, try again or contact site administrator</h4>";
+        echo "<h4 class='grid-alert'>Failed to insert new option type, try again or contact site administrator</h4>";
     }
     
     // instantiate new form object

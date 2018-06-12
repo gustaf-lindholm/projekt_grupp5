@@ -15,10 +15,8 @@ if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 's
         $variantForm->render($action,'Add New Variant Information', 'g-form');
 
 ?>
-</div>
-<h1 class="prod-title">All product variations</h1>
+<h1 class="admin-title">All product variations</h1>
 
-<div class="form-container">
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>

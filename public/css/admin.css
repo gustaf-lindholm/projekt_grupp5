@@ -39,7 +39,14 @@
 .status-alert {
 
     grid-column: 2 / 4;
+}
 
+.admin-title
+{
+    grid-column: 2 / 4;
+    padding: 5% 0 2% 0;
+    border-bottom: 2px solid black;
+    margin: 2% 0 2% 0;
 }
 
 @media only screen and (max-width: 768px) {

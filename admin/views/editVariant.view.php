@@ -47,7 +47,7 @@ $action = URLrewrite::BaseAdminURL('Variants/updateVariant');
 $variantForm->render($action, 'Edit variant info', 'g-form');
 ?>
 
-<h1 class="prod-title">Edit <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']?></strong> option values</h1>
+<h1 class="admin-title">Edit <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']?></strong> option values</h1>
     <table class="grid-table table-striped table-bordered">
         <thead class="thead-light">
             <tr>
@@ -108,7 +108,7 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
             Check that the option(s) is added to <a href="'.URLrewrite::BaseAdminURL('productOptions').'">'. $data['variantInfo']['title']. '</a></div>';
         }
 ?>
-<h1 class="prod-title">Add option and value to <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']; ?></h1>
+<h1 class="admin-title">Add option and value to <strong><?php echo $data['variantInfo']['title'].'</strong> variant '.$data['variantInfo']['variant_id']; ?></h1>
 
 <form id="variantValues" class="g-form" method="POST" action="<?php echo URLrewrite::BaseAdminURL('Variants/addVariantValue/'.$pid.'/'.$vid); ?>" style="display: contents;">
 <table class="grid-table table-striped table-bordered">
@@ -187,7 +187,7 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
 </form>
 <button id="weird-button" type="submit" form="variantValues" class="btn btn-primary">Save</button>
 
-<h1 class="prod-title">Manage Options</h1>
+<h1 class="admin-title">Manage Options</h1>
 <?php 
     // Available options and adding of new option
     $optionform = new Form;
