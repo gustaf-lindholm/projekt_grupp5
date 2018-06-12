@@ -2,7 +2,7 @@
 echo "<h2>".$_POST['manufacturer']."</h2>";
 //echo "<pre>";
 //var_dump($_POST);
-//var_dump($data);
+//var_dump($data[0]['sku']);
 //var_dump($data['variants']);
 //var_dump($data);
  foreach ($data['variants'] as $product) {
@@ -20,12 +20,6 @@ echo "<h2>".$_POST['manufacturer']."</h2>";
     echo "<li>".$product['price']." SEK</li>";
     echo "</ul>";
     ?>
-    <form method='POST' action="<?php echo URLrewrite::BaseURL().'cart/add'; ?>">
-    <?php
-    printf('<input type="hidden" name="sku" value="%s" />', $data[0]['sku']);
-    ?>
-    <button class='btn btn-success' type='submit'>Add to Basket</button>
-    </form>
     <?php
     echo "</div>";
     } 
