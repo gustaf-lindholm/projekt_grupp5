@@ -1,23 +1,20 @@
 <?php
 
 //Print our session and post
-echo "<div class='col-md-12'><pre>";
+echo "<div class='col-md-12'>";
 var_dump($_SESSION);
 echo "This below is post";
-var_dump($_POST);
-//var_dump(unserialize($_POST['order_set']['quantity']));
-echo "<pre>";
-
+var_dump($data);
 
 echo "<div class='col-md-12'>";
 //If a user is logged in, autofill all her/his info
 if(isset($data['userInfo']))
 {
   //Attach the data to a variable
-  $first_name = $data[0]['fname'];
-  $last_name = $data[0]['lname'];
-  $telephone_Number = $data[0]['phone'];
-  $email_Address = $data[0]['email'];
+  $first_name = $data['userInfo']['fname'];
+  $last_name = $data['userInfo']['lname'];
+  $telephone_Number = $data['userInfo']['phone'];
+  $email_Address = $data['userInfo']['email'];
 ?>
 
             <div class="container">
@@ -123,9 +120,17 @@ if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 1) {
 			  <label for="order[city]" class="control-label">	
 				  City </label>
               <input name="order[city]" class="form-control" type="text" id="city" required>
-              <input type="hidden" class="form-control" name="step" value="2"/>              
 			  <div class="invalid-feedback">
                   City required.
+                </div>
+		 	 </div>
+			<div class="control-group col-md-3  mb-3">
+			  <label for="order[country]" class="control-label">	
+				  Country </label>
+              <input name="order[country]" class="form-control" type="text" id="country" required>
+              <input type="hidden" class="form-control" name="step" value="2"/>              
+			  <div class="invalid-feedback">
+                    Country required.
                 </div>
 		 	 </div>
 

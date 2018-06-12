@@ -1,7 +1,5 @@
-<?php
-var_dump($_SESSION);?>
 <h1>Thank you for your order</h1>
-<h2><?php echo $_SESSION['user']['first_Name'].' '.$_SESSION['user']['last_Name'] ?>!</h2>
+<h1><?php echo $_SESSION['user']['first_Name'].' '.$_SESSION['user']['last_Name'] ?>!</h1>
 <p>Order id: <strong><?php echo $_SESSION['order']['orderId'] ?></strong></p>
 <p>Delivery address: <?php echo $_SESSION['order']['street_address_1'] .' '. $_SESSION['order']['zip']
 .' '. $_SESSION['order']['city'] ?></p>
@@ -11,7 +9,17 @@ if(isset($_SESSION['loggedIn'])) {
 
 
     <div class="col-md-6">
-<a href="<?= URLrewrite::BaseURL().'account/saveAddress'?>"/>Save your address in your account</span></a>
+        <!-- Under construction -->
+        <!-- <form method="POST" action="<?php //echo URLrewrite::BaseURL().'account/saveAddress'?>">
+            <input type="hidden" name="customer[address]" value="<?php //echo $_SESSION['order']['street_address_1'] ?>">
+            <input type="hidden" name="customer[zip]" value="<?php //echo $_SESSION['order']['zip'] ?>">
+            <input type="hidden" name="customer[city]" value="<?php //echo  $_SESSION['order']['city'] ?>">
+            <input type="hidden" name="customer[country]" value="<?php //echo $_SESSION['order']['country'] ?>">
+            <input type="hidden" name="customer[uid]" value="<?php //echo $_SESSION['loggedIn']['uid'] ?>">
+            <button type="submit" class="btn btn-primary">Save your address in your account</button>
+        </form> -->
+        <a href="<?php echo URLrewrite::BaseURL()?>"><button class="btn btn-primary">To homepage</button></a>
+
     </div>
 
 <?php
@@ -33,8 +41,7 @@ if(isset($_SESSION['loggedIn'])) {
                             <div class="checkbox mb-3">
                             <label>
                         <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    
+                        </label>                   
                     </div>
 
                     <button type="submit">Create an account</button>
@@ -45,6 +52,10 @@ if(isset($_SESSION['loggedIn'])) {
 
 <?php
 }
+//echo "<pre>";
+//var_dump($_SESSION);
+
+// unset cart and checkout variables
 unset($_SESSION['cart']);
 unset($_SESSION['user']);
 unset($_SESSION['order']);
