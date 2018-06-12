@@ -8,25 +8,48 @@ class Checkout extends Base_Controller
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Checkout_model');
         
-        //$uid = $_SESSION['loggedIn']['uid'];
 
-        //We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->getUser($uid);
-        if(!empty($_SESSION['cart']->getProdList())) {
+        if (isset($_SESSION['loggedIn'])) {
 
-        $data = $this->modelObj->index();
-        $this->reqView('checkout', $data);
-        
+            $uid = $_SESSION['loggedIn']['uid'];
+            $data['userInfo'] = $this->modelObj->index($uid);
+            $this->reqView('checkout', $data);
+
         } else {
-            //This will be shown on our cart page
-        $this->reqView('checkout', $data);
-    }
-        //$data = $this->modelObj->getUser($uid);
 
-        //This will be shown on our cart page
-        $this->reqView('checkout');
-        
-	}
+            $this->reqView('checkout');
+        }
+
+    }
+    
+    public function tempCustomerUserInfo()
+    {
+        $this->initModel('Checkout_model');
+        // save submitted info in session
+        $this->modelObj->tempCustomerUserInfo();
+
+        $this->index();
+
+    }
+    public function tempCustomerAccountInfo()
+    {
+        $this->initModel('Checkout_model');
+        // save submitted info in session
+        $this->modelObj->tempCustomerAccountInfo();
+
+        $this->index();
+
+    }
+    
+    public function tempPaymentMethod()
+    {
+        $this->initModel('Checkout_model');
+        // save submitted info in session
+        $this->modelObj->tempPaymentMethod();
+
+        $this->index();
+
+    }
 
     public function createNewAccount() {
 
@@ -52,7 +75,7 @@ class Checkout extends Base_Controller
     
         $this->modelObj->placeOrder();
 
-        $this->reqView('checkoutConfirm');
+        //$this->reqView('checkoutConfirm');
     }
     
 }
