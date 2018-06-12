@@ -3,18 +3,18 @@
 class Checkout extends Base_Controller
 {
 	
-	public function index($uid = "") 
+	public function index() 
 	{
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Checkout_model');
         
-        $uid = $_SESSION['loggedIn']['uid'];
+        //$uid = $_SESSION['loggedIn']['uid'];
 
         //We instansiate cartItems method where we save the new array from session
-        $data = $this->modelObj->getUser($uid);
+        //$data = $this->modelObj->getUser($uid);
 
         //This will be shown on our cart page
-        $this->reqView('checkout', $data);
+        $this->reqView('checkout');
         
 	}
 
