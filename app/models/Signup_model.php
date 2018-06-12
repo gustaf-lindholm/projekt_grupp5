@@ -2,8 +2,7 @@
 
 class Signup_Model extends base_model
 {
-	// här bygger jag olika metoder som kan hantera och göra olika saker
-    public function signupUser()
+	public function signupUser()
     {
 		//var_dump($_POST);
 		

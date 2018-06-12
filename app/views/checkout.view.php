@@ -6,7 +6,7 @@ var_dump($_SESSION);
 echo "This below is post";
 var_dump($_POST);
 //var_dump(unserialize($_POST['order_set']['quantity']));
-echo "</pre>";
+echo "<pre>";
 
 
 echo "<div class='col-md-12'>";

@@ -4,11 +4,11 @@ class Companysignup extends Base_controller
 	
 	public function index() {
 
-        // här kallar vi på vår model 
+        // instantiated model
         $this->initModel('companysignup_model');
-        // här kallar vi på metoder i den instanserade modeln
+        // instantiated method
         $this->modelObj->companysignup();
-        // kallar på rätt view
+        // Render the correct view
         $this->reqView('companysignup');
     }
 }

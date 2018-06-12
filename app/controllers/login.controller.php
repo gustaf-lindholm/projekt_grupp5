@@ -15,18 +15,19 @@ class Login extends Base_controller
 
     public function loginUser() {
 
-        // Call the model 
+        // instantiated model
         $this->initModel('Login_model');
-        // Call the method to instansiate
+        // instantiated method
         $this->modelObj->login();
+        // Render the correct view
         $this->reqView('login');
     }
 
     public function logout() {
 
-        // Call the model 
+        // instantiated model
         $this->initModel('Login_model');
-        // Call the method to instansiate
+        // instantiated method
         $this->modelObj->logout();
     }
 
