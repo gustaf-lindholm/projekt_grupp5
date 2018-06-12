@@ -7,6 +7,7 @@
             $count = count($data);
             $i = 0;
             $totalPrice = 0;
+            $skuAmount = "";
             foreach ($data as $products => $product) {
                     printf("<div class='col-md-8' id='%s'>", $product['sku']);
                     printf('<div class="col-md-4" id="imgUrl">');
@@ -37,6 +38,9 @@
                     <?php 
                     foreach ($data as $products => $product) {
                         $totalPrice += $product['price'] * $product['amounts'];
+                        $skuAmount = $product['sku'];
+                        $skuAmount .= $product['amounts'];
+                        $skuAmount = array($product['sku'] => $product['amounts']);
                         $skus .= "'".$product['sku']."'";
 
                         if (++$i === $count) {
@@ -47,14 +51,16 @@
                         }
                     }
                         printf('<span>TOTAL: %s SEK</span>', $totalPrice);
+                        $skuAmountString = serialize($skuAmount);
                     ?>
                 </div>
                 <div id="confirmCart">
                     <?php
                         printf("<form method='POST' action='%s'>", URLrewrite::BaseURL().'checkout');
                         printf("<button class='btn btn-success' type='submit'>Checkout</button>");
-                        printf('<input type="hidden" name="order[sku]" value="%s" />', $skus);
-                        printf('<input type="hidden" name="order[totalPrice]" value="%s" />', $totalPrice);
+                        printf('<input type="hidden" name="order_set[sku]" value="%s" />', $skus);
+                        printf('<input type="hidden" name="order_set[totalPrice]" value="%s" />', $totalPrice);
+                        printf('<input type="hidden" name="order_set[totalPrice]" value="%s" />', $skuAmountString);
                         printf("</form>");  
                       ?>
                     <article>

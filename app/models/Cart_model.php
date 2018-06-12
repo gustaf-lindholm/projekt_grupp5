@@ -21,7 +21,7 @@ class Cart_model extends Base_model
        WHERE product_variants.variant_id = variant_values.variant_id
        AND product_variants.sku IN (";
         
-        //loop trough the submitted vaulues to create an sql-query string
+        //loop trough the submitted values to create an sql-query string
         foreach ($prodList as $sku => $amount) {
             
             $this->sql .= "'".$sku."'";
