@@ -1,6 +1,6 @@
 <div class="form-container">
 <?php include ADMIN_VIEW.'adminPanelNav.view.php';
-// tanken är att visa en 'alert' efter att ny variant lagts till
+// an alert should show the user that a new variant has been added 
 if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 'success')
 {
     echo '<div class="alert alert-success grid-alert" role="alert">New variant added!</div>';

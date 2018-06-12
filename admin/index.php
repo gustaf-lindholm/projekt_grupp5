@@ -4,7 +4,7 @@ require_once '../app/inc/autoloader.inc.php';
 
 session_start();
 
-// includerar init.php som 'startar' sidan
+// include init.php to initiate page
 
 require_once '../app/init.php';
 

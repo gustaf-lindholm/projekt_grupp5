@@ -2,7 +2,7 @@
 {?>
     <div class="form-container">
     <?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
-    <h1>Hallå</h1>
+    <h1>Welcome <?php echo $_SESSION['loggedIn']['username'];?></h1>
     </div>
 <?php
 } else {

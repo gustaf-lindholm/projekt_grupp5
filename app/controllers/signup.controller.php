@@ -5,24 +5,24 @@ class Signup extends Base_controller
 
     public function index() {
 
-        // kallar på rätt view
+        // Render the correct view
         $this->reqView('signup');
     }
 
     public function createNewAccount() {
 
-    	// här kallar vi på vår model 
+    	// instantiated model
         $this->initModel('Signup_model');
-        // här kallar vi på metoder i den instanserade modeln
+        // instantiated method
         $this->modelObj->signupUser();
         //$this->reqView('login');
     }
 
     public function createUserFromOrder() {
 
-    	// här kallar vi på vår model 
+    	// instantiated model
         $this->initModel('Signup_model');
-        // här kallar vi på metoder i den instanserade modeln
+        // instantiated method
         $data = $this->modelObj->createUserFromOrder();
         
         // if createUserFromOrder is successful, continue with creating account
