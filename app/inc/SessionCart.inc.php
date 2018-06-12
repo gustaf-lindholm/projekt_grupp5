@@ -4,6 +4,7 @@
 */
 class SessionCart {
 	private $products = [];
+	private $totalPrice;
 
 	public function addProduct($sku, $amount = 1) 
 	{
@@ -14,6 +15,16 @@ class SessionCart {
 			$this->products[$sku] = $amount;
 		}
 	}	
+
+	public function setTotalPrice($totalPrice)
+	{
+		$this->totalPrice = $totalPrice;
+	}
+
+	public function getTotalPrice()
+	{
+		return $this->totalPrice;
+	}
 
 	public function getProdList()
 	{

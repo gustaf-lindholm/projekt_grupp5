@@ -35,11 +35,11 @@ class Cart extends Base_Controller
 		//$this->reqView('Cart', $data);
 	}
 
-	public function update()
+	public function update($totalPrice)
 	{
 		$this->initModel('Cart_model');
-
 		//We instansiate cartItems method where we save the new array from session
+        
         $this->modelObj->update();
 
         $this->modelObj->showCart();

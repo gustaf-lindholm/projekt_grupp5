@@ -12,9 +12,15 @@ class Checkout extends Base_Controller
 
         //We instansiate cartItems method where we save the new array from session
         $data = $this->modelObj->getUser($uid);
+        if(!empty($_SESSION['cart']->getProdList())) {
 
-        //This will be shown on our cart page
+        $data = $this->modelObj->index();
         $this->reqView('checkout', $data);
+        
+        } else {
+            //This will be shown on our cart page
+        $this->reqView('checkout', $data);
+    }
         
 	}
 

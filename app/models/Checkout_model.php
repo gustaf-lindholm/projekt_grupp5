@@ -25,12 +25,12 @@ class Checkout_model extends Base_model
         
         $this->prepQuery($this->sql, $paramBinds);
         $this->getAll();
+        var_dump($_SESSION['cart']->getTotalPrice());
         return self::$data;
     }
 
 
     public function placeOrder() {
-
         $user_id = isset($_SESSION['loggedIn']['uid']) ? $_SESSION['loggedIn']['uid'] : null;
         $fname = $_SESSION['user']['first_Name'];
         $lname = $_SESSION['user']['last_Name'];
