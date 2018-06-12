@@ -2,9 +2,9 @@
 
 //Print our session and post
 echo "<div class='col-md-12'>";
-var_dump($_SESSION);
-echo "This below is post";
-var_dump($data);
+//var_dump($_SESSION);
+//echo "This below is post";
+//var_dump($data);
 
 echo "<div class='col-md-12'>";
 //If a user is logged in, autofill all her/his info
