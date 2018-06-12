@@ -23,14 +23,16 @@ class Signup extends Base_controller
     	// här kallar vi på vår model 
         $this->initModel('Signup_model');
         // här kallar vi på metoder i den instanserade modeln
-        if($this->modelObj->createUserFromOrder())
+        $data = $this->modelObj->createUserFromOrder();
+        
+        // if createUserFromOrder is successful, continue with creating account
+        if($data['status'] === true)
         {
-            Registry::setStatus(['userFromOrder' => true]);
-            $this->reqView('account');
-
+            $this->modelObj->createAccountFromOrder($data['userId']);
         } else {
+            echo "failed createUserFRomOrder";
             //Registry::setStatus(['userFromOrder' => false]);   
-            header('Location'.URLrewrite::BaseURL());
+            //header('Location'.URLrewrite::BaseURL());
         }
         
     }
