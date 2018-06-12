@@ -1,4 +1,4 @@
-<?php if ($_SESSION['loggedIn']['level'] === '4')
+<?php if (isset($_SESSION['loggedIn']['level']) && $_SESSION['loggedIn']['level'] === '4')
 {?>
     <div class="form-container">
     <?php include ADMIN_VIEW.'adminPanelNav.view.php'; ?>
@@ -7,4 +7,6 @@
 <?php
 } else {
     echo "You do not have permission";
+    echo "<br>";
+    echo "<a href='".URLrewrite::BaseURL().'login'."'>Log In</a>";
 }

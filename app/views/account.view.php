@@ -18,13 +18,18 @@ if(!isset($_SESSION['loggedIn']['uid'])){ //if login in session is not set, retu
 
 printf("<h1 class='text-uppercase text-center'> %s</h1>", $data[0] ['fname'] . " " . $data[0] ['lname']); //displays the users surname and lastname
 
+//var_dump($_SESSION['loggedIn']);
 ?>
 
 <a  href="<?php echo URLrewrite::BaseURL().'account'?>"><button id="" class="btn btn-primary">My details</button></a> 
 <a  href="<?php echo URLrewrite::BaseURL().'orderhistory/'.$data[0]['uid']?>"><button id="" class="btn btn-primary">My Order History</button></a> <!-- here is the options between the users account and order history -->
 <a href="<?php echo URLrewrite::BaseURL().'updateuser' ?>"><button id="updateUser" class="btn btn-primary updateButton">Update User Information</button></a>
 <a href="<?php echo URLrewrite::BaseURL().'changepassword' ?>" class="btn btn-primary">Change password</a>
-
+<?php
+if ($_SESSION['loggedIn']['level'] == 4) {
+    echo "<a href='".URLrewrite::BaseAdminURL('index')."' class='btn btn-primary'>Admin page</a>";
+} 
+?>
 <!--- Page info for the users account -->
 
 <h3 class="text-center">Account Details </h3> <br>
