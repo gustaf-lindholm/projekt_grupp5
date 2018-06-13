@@ -1,6 +1,6 @@
-<div class="prod-container">
 
-        <div>
+
+        <div class="prod-container">
 <form action="
     <?php 
             //Loop for the mobile brands
@@ -31,7 +31,7 @@
 
 
     </div>
-
+    <div class="prod-container">
 <?php
         foreach ($data as $product) {
             if(isset($product['title'])){
