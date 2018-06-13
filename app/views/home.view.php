@@ -2,7 +2,7 @@
   <div class="hero-text">
     <h1 style="font-size:50px">Welcome to IM’MOBILÉ</h1>
     <p>We offer best quality mobile products.</p>
-    <button><a href="<?php echo URLrewrite::BaseURL().'products'?>">Explore our products</a></button>
+    <a href="<?php echo URLrewrite::BaseURL().'products'?>"><button>Explore our products</button></a>
   </div>
 </div>
 
