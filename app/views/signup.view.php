@@ -1,22 +1,31 @@
-<section class="main-container">
-
-	<div class="main-wrapper">
-		<h2>Fill in the form</h2>
+<section class="main-container text-center">
+	<div class="main-wrapper col-md-6">
+		<h2>Sign up</h2>
 		<form class="signup-form" action="<?php echo URLrewrite::BaseAdminURL('manageUsers/createUser');?>" method="POST">
 			<input type="hidden" name="user[level_id]" value="1">
+
+<div class="form-group">
 			<label for="firstname-input">Firstname <span class="text-danger">*</span></label>
-			<input type="text" name="user[fname]" placeholder="Firstname" required>
+			<input type="text" class="form-control" name="user[fname]" placeholder="Firstname" required>
 			<label for="lastnamename-input">Lastname <span class="text-danger">*</span></label>
-			<input type="text" name="user[lname]" placeholder="Lastname" required>
+			<input type="text" class="form-control" name="user[lname]" placeholder="Lastname" required>
+</div>
+
+<div class="form-group">
 			<label for="email-input">Email <span class="text-danger">*</span></label>
-			<input type="text" name="user[email]" placeholder="E-mail" required>
+			<input type="text" class="form-control" name="user[email]" placeholder="E-mail" required>
 			<label for="telephone-input">Telephone <span class="text-danger">*</span></label>
-			<input type="number" name="user[phone]" placeholder="Telephone" required>
+			<input type="number" class="form-control" name="user[phone]" placeholder="Telephone" required>
 			<label for="username-input">Username <span class="text-danger">*</span></label>
-			<input type="text" name="user[username]" placeholder="Username" required>
+</div>
+
+<div class="form-group">
+			<input type="text" name="user[username]" class="form-control" placeholder="Username" required>
 			<label for="password-input">Password <span class="text-danger">*</span></label>
-			<input type="password" name="user[password]" placeholder="Password" required>
-			<button type="submit" class="btn btn-warning" name="submit">Sign up</button>
+			<input type="password" name="user[password]" class="form-control" placeholder="Password" required>
+</div>
+
+			<button type="submit" class="btn btn-warning form-control" name="submit">Sign up</button>
 		</form>
 	</div>
 </section>

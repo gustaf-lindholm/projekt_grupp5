@@ -90,15 +90,22 @@ if (isset($_POST['send'])) {
     $to = 'Sarangua <sarangua97@gmail.com>';
     $subject = 'Feedback from online form';
     $headers = [];
-    $headers[] = 'From: webmaster@example.com';
+    $headers[] = 'From: sarangua97@gmail.com';
     $headers[] = 'Cc: gustaf@backers.fi';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
     $authorized = '-fsarangua97@gmail.com';
     require 'process_mail.php';
     if ($mailSent) {
-        header('Location:'.URLrewrite::BaseURL());
-        exit;
+        echo "Your email has been successfully sent";
+        echo "<pre>";
+        echo "Message: \n\n";
+        echo htmlentities($message);
+        echo "Headers: \n\n";
+        echo htmlentities($headers);
+        echo "</pre>";
     }
+        //header('Location:'.URLrewrite::BaseURL());
+        exit;
 }
 ?>
 
