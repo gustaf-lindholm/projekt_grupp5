@@ -37,37 +37,25 @@ class Account_model extends Base_model
 }
 
    /* Save address to user's account */
-   public function saveAddress() {
-    $address = $_POST['customer']['address'];
-    $zip = $_POST['customer']['zip'];;
-    $city = $_POST['customer']['city'];;
-    $country= $_POST['customer']['country'];;
-    $uid = $_POST['customer']['uid'];
-    $this->sql = "INSERT INTO `projekt_klon`.`private_adress` (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
-    $paramBinds = [':adress' => $address, ':post_nr' => $zip, ':stad' => $city, ':land' => $country, ':uid' => $uid];
-    
-    if($this->prepQuery($this->sql, $paramBinds))
-    {
-        return true;
-    } else {
-        return false;
+   public function saveAddress($uid = "")
+   {
+        $address = $_POST['customer']['address'];
+        $zip = $_POST['customer']['zip'];
+        $city = $_POST['customer']['city'];
+        $country= $_POST['customer']['country'];
+        $uid = $uid != "" ? $uid : $_POST['customer']['uid'];
+        $this->sql = "INSERT INTO `projekt_klon`.`private_adress` (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
+        $paramBinds = [':adress' => $address, ':post_nr' => $zip, ':stad' => $city, ':land' => $country, ':uid' => $uid];
+        
+        if($this->prepQuery($this->sql, $paramBinds))
+        {
+            return true;
+        } else {
+            return false;
+
+        }
 
     }
-
-}
- 
-    /*function getPersonForm($person) {
-        $this->sql =
-        "SELECT * user";
-
-        $base = new Base_model;
-        $base->prepQuery($this->sql);
-        $base->getAll();
-
-        return self::$data;
-
-        
-    }*/
 }
 
 

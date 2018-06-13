@@ -53,11 +53,11 @@ class Signup_Model extends base_model
     public function createUserFromOrder() {
 
         /* Create account when a new customer places order */
-       	$first_Name = $_SESSION['user']['first_Name'];
-       	$last_Name = $_SESSION['user']['last_Name'];
-	   	$telephone_Number = $_SESSION['user']['telephone_Number'];
-        $email_Address = $_SESSION['user']['email_Address'];
-        $level_id = $_POST['member']['level_id'];
+       	$first_Name = $_POST['customer']['first_Name'];
+       	$last_Name = $_POST['customer']['last_Name'];
+	   	$telephone_Number = $_POST['customer']['telephone_Number'];
+        $email_Address = $_POST['customer']['email_Address'];
+        $level_id = 1;
 	   
         $sql = "INSERT INTO projekt_klon.user (level_id, fname, lname, phone, email) VALUES (:level_id, :fname, :lname, :phone, :email)";
         $paramBinds = [':level_id' => $level_id, ':fname' => $first_Name, ':lname' => $last_Name, ':phone' => $telephone_Number, ':email' => $email_Address];

@@ -31,7 +31,7 @@ class Account extends base_controller
 
         $this->initModel('Account_model');
     
-        if($this->modelObj->saveAddress())
+        if($this->modelObj->saveAddress($uid = ""))
         {
             echo '<div class="alert alert-success alert-dismissible grid-alert" role="alert">Address Saved!</div>';              
             header('Refresh:3;'.URLrewrite::BaseURL().'account');

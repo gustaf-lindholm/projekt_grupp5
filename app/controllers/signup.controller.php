@@ -29,10 +29,13 @@ class Signup extends Base_controller
         if($data['status'] === true)
         {
             $this->modelObj->createAccountFromOrder($data['userId']);
+            $this->initModel('Account_model');
+            $this->modelObj->saveAddress($data['userId']);
+            header('Location:'.URLrewrite::BaseURL().'login');
         } else {
             echo "failed createUserFRomOrder";
-            //Registry::setStatus(['userFromOrder' => false]);   
-            //header('Location'.URLrewrite::BaseURL());
+            Registry::setStatus(['userFromOrder' => false]);   
+            header('Refresh:3;'.URLrewrite::BaseURL().'signup');
         }
         
     }
