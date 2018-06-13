@@ -127,18 +127,20 @@ $variantForm->render($action, 'Edit variant info', 'g-form');
         // all options
         $allOptions = [];
         $options;
-
+        //var_dump($data['optionType']);
         // Looping trough all options and options which are set to a variant
         // in order to only show options which are not yet added to a variant
         foreach ($data['optionType'] as $key => $aoptions) {
             foreach ($data['variantOptions'] as $k => $vOptions) {
                 $variantOptions['option_id'][$k] = $vOptions['option_id'];
                 $variantOptions['option_name'][$k] = $vOptions['option_name'];
+                //var_dump($variantOptions);
             }
             $allOptions['option_id'][$key] = $aoptions['option_id'];
             $allOptions['option_name'][$key] = $aoptions['option_name'];
             
         }
+        
         $optionIds = array_diff($allOptions['option_id'], $variantOptions['option_id']);
         $optionNames = array_diff($allOptions['option_name'], $variantOptions['option_name']);
         foreach ($optionIds as $key => $value) {

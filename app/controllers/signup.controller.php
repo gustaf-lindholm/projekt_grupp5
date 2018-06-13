@@ -31,6 +31,7 @@ class Signup extends Base_controller
             $this->modelObj->createAccountFromOrder($data['userId']);
             $this->initModel('Account_model');
             $this->modelObj->saveAddress($data['userId']);
+            var_dump($data['userId']);
             header('Location:'.URLrewrite::BaseURL().'login');
         } else {
             echo "failed createUserFRomOrder";

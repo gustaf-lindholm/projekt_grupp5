@@ -11,7 +11,7 @@ if(isset($_POST['addVariant']['status']) && $_POST['addVariant']['status'] == 's
         $variantForm->numInput('addVariant[price]', 'Price', 'Product Price');
         $variantForm->textInput('addVariant[img_url]', 'Image Url', 'Url to product image');
         $variantForm->button('Save Variant');
-        $action = URLrewrite::adminURL('addvariant/newvariant');
+        $action = URLrewrite::adminURL('variants/newvariant');
         $variantForm->render($action,'Add New Variant Information', 'g-form');
 
 ?>

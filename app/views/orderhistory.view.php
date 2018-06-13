@@ -15,6 +15,7 @@
 
 
 <?php
+var_dump($data);
 //creates table for specific values in the SQL-array
 if (!empty($data['orderInfo'])) { ?>
     <div class="container">

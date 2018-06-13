@@ -43,10 +43,10 @@ class Account_model extends Base_model
         $zip = $_POST['customer']['zip'];
         $city = $_POST['customer']['city'];
         $country= $_POST['customer']['country'];
-        $uid = $uid != "" ? $uid : $_POST['customer']['uid'];
-        $this->sql = "INSERT INTO `projekt_klon`.`private_adress` (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :uid)";
-        $paramBinds = [':adress' => $address, ':post_nr' => $zip, ':stad' => $city, ':land' => $country, ':uid' => $uid];
-        
+        $user_id = $uid != "" ? $uid : $_POST['customer']['uid'];
+        $this->sql = "INSERT INTO `projekt_klon`.`private_adress` (adress, post_nr, stad, land, uid) VALUES (:adress, :post_nr, :stad, :land, :user_id)";
+        $paramBinds = [':adress' => $address, ':post_nr' => $zip, ':stad' => $city, ':land' => $country, ':user_id' => $user_id];
+        //var_dump($user_id);
         if($this->prepQuery($this->sql, $paramBinds))
         {
             return true;
