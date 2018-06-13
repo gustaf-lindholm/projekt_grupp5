@@ -88,7 +88,7 @@ if (isset($_POST['send'])) {
     $expected = ['name', 'email', 'comments'];
     $required = ['name', 'comments'];
     $to = 'Sarangua <sarangua97@gmail.com>';
-    $subject = 'Feedback from online form';
+    $subject = 'Question to IM´MOBILÉ';
     $headers = [];
     $headers[] = 'From: sarangua97@gmail.com';
     $headers[] = 'Cc: gustaf@backers.fi';
@@ -98,8 +98,10 @@ if (isset($_POST['send'])) {
     if ($mailSent) {
         echo "Your email has been successfully sent";
         echo "<pre>";
-        echo "Message: \n\n";
+        echo "Message sent is: \n\n";
         echo htmlentities($message);
+        echo "Subject: \n\n";
+        echo htmlentities($subject);
         echo "Headers: \n\n";
         echo htmlentities($headers);
         echo "</pre>";

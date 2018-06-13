@@ -1,6 +1,6 @@
 <section class="main-container text-center">
 	<div class="main-wrapper col-md-6">
-		<h2>Sign up</h2>
+		<h2>Sign Up</h2>
 		<form class="signup-form" action="<?php echo URLrewrite::BaseAdminURL('manageUsers/createUser');?>" method="POST">
 			<input type="hidden" name="user[level_id]" value="1">
 
@@ -25,7 +25,7 @@
 			<input type="password" name="user[password]" class="form-control" placeholder="Password" required>
 </div>
 
-			<button type="submit" class="btn btn-warning form-control" name="submit">Sign up</button>
+			<button type="submit" id="send_My_Comments" class="btn form-control" name="submit">Sign up</button>
 		</form>
 	</div>
 </section>
