@@ -30,7 +30,7 @@ if (!empty($data['orders'])) {
                     .URLrewrite::BaseAdminURL('manageOrders/orderDetails').'/'.$value['order_id']
                     .'"<span class="glyphicon glyphicon-pencil"></span></a></td>'
                     .'<td><a href="'
-                    .URLrewrite::BaseAdminURL('manageOrders/removeOrder').'/'.$value['order_id']
+                    .URLrewrite::BaseAdminURL('manageOrders/deleteOrder').'/'.$value['order_id']
                     .'"<span class="glyphicon glyphicon-remove"></span></a></td>'."</tr>".
                     "</tr>";                                 
                 }?>
