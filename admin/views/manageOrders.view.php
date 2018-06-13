@@ -42,7 +42,7 @@ if (!empty($data['orders'])) {
 </div>
 
 <?php
-} else {
+} elseif(!isset($data['order_items'])) {
     echo "<h1 class='status-alert'>No orders</h1>";
 }
 if (isset($data['order_items'])) {
