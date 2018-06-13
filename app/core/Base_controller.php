@@ -20,6 +20,7 @@ class Base_controller
         $this->modelObj = new $model();
     }
 
+    // call a view and send data if needed
     public function reqView($view, $data = [])
     {
         $url = (array_filter( explode("/", $_SERVER['REQUEST_URI'])));

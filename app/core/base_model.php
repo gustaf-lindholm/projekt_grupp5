@@ -54,7 +54,6 @@ class Base_model
         return self::$data;
     }
 
-    //Is is both not the same?
     public function getOne()
     {
         self::$data = $this->stmt->fetch(PDO::FETCH_ASSOC);
