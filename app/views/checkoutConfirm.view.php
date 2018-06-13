@@ -58,7 +58,7 @@ if(isset($_SESSION['loggedIn'])) {
                 </label>                   
             </div>
 
-            <button type="submit">Create an account</button>
+            <button id="send_My_Comments" type="submit">Create an account</button>
             </div>
         </section>
     </form>
