@@ -1,16 +1,11 @@
 <?php
-
-//Print our session and post
 echo "<div class='col-md-12'>";
-//var_dump($_SESSION);
-//echo "This below is post";
-//var_dump($data);
-
 echo "<div class='col-md-12'>";
+
 //If a user is logged in, autofill all her/his info
 if(isset($data['userInfo']))
 {
-  //Attach the data to a variable
+//Attach the data to a variable
   $first_name = $data['userInfo']['fname'];
   $last_name = $data['userInfo']['lname'];
   $telephone_Number = $data['userInfo']['phone'];
@@ -25,7 +20,7 @@ if(isset($data['userInfo']))
             </div>
 
 <?php
-} else
+}else
 {
                 printf("<div><h1>Hi, Customer!<br>The total amount of your order:<br>".$_SESSION['cart']->getTotalPrice()." SEK</h1></div>");
                     $first_name = "";
@@ -36,54 +31,56 @@ if(isset($data['userInfo']))
                 echo "</div>";
 
 
+            
 if(!isset($_SESSION['checkout']['step']) || $_SESSION['checkout']['step'] < 1) {
 
 ?>
 
-
+                <!-- Skickar formen till tempCustomerUserinfo funktionen -->
 <form action="<?= URLrewrite::BaseURL().'checkout/tempCustomerUserInfo'?>" method='post'>
 
-<div class="container">
-<h1>Fill in Your Information</h1>
+    <div class="container">
+    <h1>Fill in Your Information</h1>
 
-<div class="form-row">
-                         <div class="mb-3 control-group">
-                        <label for="user[first_Name]">Firstname: </label>
-                        <input type="text" name="user[first_Name]" class="form-control" value="<?php echo $first_name?>" id="resultOfFirstName" placeholder="<?php echo $first_name?>"  required>
-                        </div>
+            <div class="form-row">
+                                    <div class="mb-3 control-group">
+                                    <label for="user[first_Name]">Firstname: </label>
+                                    <input type="text" name="user[first_Name]" class="form-control" value="<?php echo $first_name?>" id="resultOfFirstName" placeholder="<?php echo $first_name?>"  required>
+            </div>
 
-<div class="form-group mb-3 ">
-                        <label for="user[last_Name]">Surname: </label>
-                        <input type="text" class="form-control"  name="user[last_Name]" id="lastName" value="<?php echo $last_name?>" placeholder="<?php echo $last_name?>"  required>
-                        </div>
-</div>
-        
-<div class="form-row">
-                        <div class="form-group mb-3 ">
-                        <label for="user[email_Address]">Email Adress: </label>
-                        <input type="email" class="form-control" name="user[email_Address]"  value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
-                        </div>
+            <div class="form-group mb-3 ">
+                                    <label for="user[last_Name]">Surname: </label>
+                                    <input type="text" class="form-control"  name="user[last_Name]" id="lastName" value="<?php echo $last_name?>" placeholder="<?php echo $last_name?>"  required>
+                                    </div>
+            </div>
+                    
+
+            <div class="form-row">
+                                    <div class="form-group mb-3 ">
+                                    <label for="user[email_Address]">Email Adress: </label>
+                                    <input type="email" class="form-control" name="user[email_Address]"  value="<?php echo $email_Address?>" placeholder="<?php echo $email_Address?>" id="resultOfEmailAddress" size="50" required/>
+            </div>
 
                         <input type="hidden" class="form-control" name="user[level_id]"/>
                         <input type="hidden" class="form-control" name="step" value="1"/>
 
-                        <div class="form-group mb-3 ">
-                        <label for="user[telephone_Number]">Telephone: </label>
-                        <input type="tel" class="form-control" name="user[telephone_Number]" value="<?php echo $telephone_Number?>" placeholder="<?php echo $telephone_Number?>"  id="resultOfPhoneNumber" size="50" required/>
-                        </div>
+                                    <div class="form-group mb-3 ">
+                                    <label for="user[telephone_Number]">Telephone: </label>
+                                    <input type="tel" class="form-control" name="user[telephone_Number]" value="<?php echo $telephone_Number?>" placeholder="<?php echo $telephone_Number?>"  id="resultOfPhoneNumber" size="50" required/>
+                                    </div>
 
 
 
-<div class="control-group">			
-            <input type="submit" class="btn btn-success" value="Continue to Address"/>
-</div>
+                                <div class="control-group">			
+                                    <input type="submit" class="btn btn-success" value="Continue to Address"/>
+                                    </div>
 </div>
 
 </form>
 <!--End of first formula regarding personal information -->
 
-<!-- Start for Delivery Address Information -->
 
+<!-- Start for Delivery Address Information -->
 <?php
 }
 
@@ -144,9 +141,13 @@ if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 1) {
 <?php
 }
 
+/* End for Delivery Address Information */
+
+
 if(isset($_SESSION['checkout']['step']) && $_SESSION['checkout']['step'] == 2) { ?>
 
 
+<!-- Start for Payment Information -->
 <form action="<?= URLrewrite::BaseURL().'checkout/tempPaymentMethod'?>" method='post'>
 
   <div id="paymentMethod" class="container col-md-12">
@@ -272,3 +273,5 @@ if ($_SESSION['orderPayment']['type'] == 'Klarna') {
 }
 ?>
 </form>
+
+<!-- End for Payment Information -->

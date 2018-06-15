@@ -127,6 +127,7 @@ if (isset($_POST['send'])) {
 <div class="form-row">
   <div class="form-group">
     <label for="name">Name:
+    <!-- If the posted name is empty or missing -->
     <?php if ($missing && in_array('name', $missing)) : ?>
         <span class="warning">Please enter your name</span>
     <?php endif; ?>
@@ -140,6 +141,7 @@ if (isset($_POST['send'])) {
         >
     </div>
 
+ <!-- If the posted email is empty or missing -->
    <div class="form-group">
     <label for="email">Email:
         <?php if ($missing && in_array('email', $missing)) : ?>
@@ -159,6 +161,7 @@ if (isset($_POST['send'])) {
 
     </div>
     
+ <!-- If the question is empty or missing -->
   <div class="form-group">
     <label for="comments">Comments:
         <?php if ($missing && in_array('comments', $missing)) : ?>

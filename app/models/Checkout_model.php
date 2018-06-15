@@ -16,13 +16,14 @@ class Checkout_model extends Base_model
         return self::$data;
     }
 
+    //Hömta alla user
     public function getUser($uid) 
     {
         $this->sql = 
         "SELECT * FROM user WHERE user.uid = :uid"; 
         
         $paramBinds = [':uid' => $uid];
-        //$base = new Base_model;
+    
         
         $this->prepQuery($this->sql, $paramBinds);
         $this->getAll();
@@ -30,10 +31,10 @@ class Checkout_model extends Base_model
         return self::$data;
     }
 
-
+    //Sätta ordrar
     public function placeOrder() {
 
-
+        //Spara alla session value till variablar
         $user_id = isset($_SESSION['loggedIn']['uid']) ? $_SESSION['loggedIn']['uid'] : null;
         $fname = $_SESSION['user']['first_Name'];
         $lname = $_SESSION['user']['last_Name'];
@@ -42,17 +43,20 @@ class Checkout_model extends Base_model
         $address_2 = $_SESSION['order']['street_address_2'];
         $zip = $_SESSION['order']['zip'];
         $city = $_SESSION['order']['city'];
+        //Spara addressen till en lång sträng
         $address = $address_1.'/'.$address_2.'/'.$zip.'/'.$city;
 
         $payment_Type= $_SESSION['orderPayment']['type'];
         $payment_status="unpaid";
         $status="pending";
+        //Kör funktionen i cart klassen att hämta ut pris
         $totalAmount= $_SESSION['cart']->getTotalPrice();
     
+        //Databasfråga
         $sql = "INSERT INTO projekt_klon.orders (total_amount, payment_status, payment_method, user_id, alternative_address, lname, fname, email) VALUES (:total_amount, :payment_status, :payment_method, :user_id, :alternative_address, :lname, :fname, :email)";
         $paramBinds = [':total_amount' => $totalAmount, ':payment_status' => $payment_status,':payment_method' => $payment_Type, ':user_id' => $user_id, ':alternative_address' => $address, ':lname' => $lname, ':fname' => $fname, ':email' => $email];
-        //echo "<h1>Thank you for your purchase</h1><div>We will shortly confirm your payment</div>";
        
+        //Om succé, sätta en order id och status till true
         if ($this->prepQuery($sql, $paramBinds)) {
             $order_id = $this->lastInsertId;
             $_SESSION['order']['orderId'] = $order_id;
@@ -64,6 +68,7 @@ class Checkout_model extends Base_model
 
 } //End of Place order function
 
+//Spara order items
     public function saveOrderItems($order_id) {
 
         $orderItems = $_SESSION['cart']->getProdList();
@@ -79,6 +84,7 @@ class Checkout_model extends Base_model
         }
     }
 
+//Vi behövde spara customer info i session eftersom vi skickar post flera gånger
     public function tempCustomerUserInfo()
     {
         $_SESSION['user']['first_Name'] = $_POST['user']['first_Name'];
@@ -90,6 +96,7 @@ class Checkout_model extends Base_model
         $_SESSION['checkout']['step'] = $_POST['step'];
     }
 
+//Samma som Tempcustomerinfo funktionen
     public function tempCustomerAccountInfo()
     {
         $_SESSION['order']['street_address_1'] = $_POST['order']['street_address_1'];
@@ -102,6 +109,7 @@ class Checkout_model extends Base_model
 
     }
 
+//Samma som Tempcustomerinfo funktionen
     public function tempPaymentMethod()
     {
         $_SESSION["orderPayment"]["type"] = $_POST["orderPayment"]["type"];

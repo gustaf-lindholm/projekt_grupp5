@@ -8,7 +8,7 @@ class Checkout extends Base_Controller
 		// instansiate new model using the function built in from the Base Controller
         $this->initModel('Checkout_model');
         
-
+        //If a user is a client and has an account that is logged in at the moment, bring userInfo
         if (isset($_SESSION['loggedIn'])) {
 
             $uid = $_SESSION['loggedIn']['uid'];
@@ -69,6 +69,7 @@ class Checkout extends Base_Controller
         $this->reqView('checkout', $data);
     }
 
+    //Place an order through function placeOrder and if successful, show checkoutConfirm
     public function placeOrder() {
         
         $this->initModel('Checkout_model');

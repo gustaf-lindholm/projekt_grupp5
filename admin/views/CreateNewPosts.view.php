@@ -17,6 +17,7 @@
 <div class="form-group col-md-10">
 <label for="textArea">Chosen Feature Product: </label>
 <select name="chosen_Item">
+    <!-- Display products to feature on idnex page/home view -->
       <?php
       foreach ($data as $post) {
           echo '<option name="'.$post["sku"].'" value="'.$post['sku'].'">'.$post['title'].' : '.$post['sku'].'</option>';
