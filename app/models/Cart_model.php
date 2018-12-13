@@ -9,6 +9,7 @@ class Cart_model extends Base_model
 	public function showCart()
 	{	
 		$prodList = $_SESSION['cart']->getProdList();
+		var_dump($_SESSION['cart']);
 		$count = count($prodList);
         $i = 0;
         $this->sql = 

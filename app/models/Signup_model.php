@@ -1,10 +1,10 @@
 <?php
-
+echo $_POST;
 class Signup_Model extends base_model
 {
 	public function signupUser()
     {
-		//var_dump($_POST);
+		var_dump($_POST);
 		
     	    if (empty($_POST['user']['fname']) || empty($_POST['user']['lname']) || empty($_POST['user']['email']) || empty($_POST['user']['phone']) || empty($_POST['user']['username']) || empty($_POST['user']['password'])) {
 				echo "Please, fill out the required fields";
